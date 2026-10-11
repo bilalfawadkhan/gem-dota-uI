@@ -50,15 +50,19 @@ and for some types also on its encoder name and bit count. The order is:
    | `uint64`, `CStrongHandle` | encoder `fixed64` → fixed 64-bit; otherwise 64-bit varint |
    | `CHandle`, `CEntityHandle` | unsigned varint |
 
-2. **Types with a fixed decoder:** `bool` → 1 bit; `int8` to `int64` → signed
-   varint; `uint8` to `uint32`, `color32`, `Color`, `CUtlStringToken` → unsigned
-   varint; `char`, `CUtlString`, `CUtlSymbolLarge` → string; `GameTime_t` → raw
-   32-bit float; `HeroFacetKey_t` → 64-bit varint.
+2. **Types with a fixed decoder:** `bool` → 1 bit; `int8` to `int64` and
+   `AbilityID_t` → signed varint; `uint8` to `uint32`, `color32`, `Color`,
+   `CUtlStringToken` → unsigned varint; `char`, `CUtlString`, `CUtlSymbolLarge` →
+   string; `GameTime_t` → raw 32-bit float; `HeroFacetKey_t` → 64-bit varint.
 3. **Anything else** → unsigned varint. That covers enums such as
    `DOTA_HeroPickState`, and ID types such as `PlayerID_t`, as in the update above.
 
 Elements of variable-length arrays are chosen from the element type alone, using
-steps 2 and 3. These tables are identical to Manta's `field_decoder.go`.
+steps 2 and 3. These tables match Manta's `field_decoder.go`, with one
+addition: `AbilityID_t`, which Manta (and Clarity) leave to the default. Read
+unsigned, every item and ability ID comes out doubled and the `-1` padding reads
+as `1`. The neutral craft picks on the team data entity only match the
+`DOTA_UM_FoundNeutralItem` messages when it is read signed.
 
 ## The decoder families
 
@@ -68,10 +72,10 @@ decoders:
 | Decoder | Fields | Reads |
 |---|---:|---|
 | Raw 32-bit float | 441 | exactly 32 bits, as an IEEE float |
-| Signed varint | 416 | a zigzag varint |
+| Signed varint | 427 | a zigzag varint |
 | Boolean | 359 | 1 bit |
 | Unsigned varint | 288 | a varint |
-| Default (unsigned varint) | 128 | a varint |
+| Default (unsigned varint) | 117 | a varint |
 | Vector | 78 | 2–4 floats, each with the field's float decoder |
 | String | 66 | bytes up to a zero byte, as UTF-8 |
 | 64-bit varint | 45 | a varint of up to 10 bytes |

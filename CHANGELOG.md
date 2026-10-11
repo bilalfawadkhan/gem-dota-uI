@@ -242,6 +242,14 @@ of answering questions from them, see the Recipes docs.
   does, so it matches the player and the combat log (221 of 221 wards on
   8856501050). The class name is only the fallback before the table loads.
 
+- **`AbilityID_t` entity fields decode as signed** (HY-174). They were read
+  as unsigned varints, so every item or ability ID came out doubled and the
+  `-1` "none" padding read as `1`. They are zigzag-signed: the neutral craft
+  picks on the team data entity (`m_vecTrinketChoices`,
+  `m_vecEnhancementChoices`) now match the `DOTA_UM_FoundNeutralItem` IDs.
+  Pinned Manta and Clarity both leave this type to the unsigned default. No
+  gem output read these fields, so only raw `Entity.get` values change.
+
 ## [0.12.0] - 2026-10-03
 
 gem now presents replay facts and leaves interpretation to you. The tags, scores

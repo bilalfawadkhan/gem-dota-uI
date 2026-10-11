@@ -640,6 +640,13 @@ class TestFindDecoderExtended:
         r = BitReader(b"\x01")  # zigzag -1
         assert dec(r) == -1
 
+    def test_ability_id_is_zigzag_signed(self):
+        # 3212 on the wire is item 1606 (polliwog_charm); 1 is the -1 padding.
+        field = FakeField(base_type="AbilityID_t")
+        dec = find_decoder(field)
+        assert dec(BitReader(_pack_varuint32(3212))) == 1606
+        assert dec(BitReader(b"\x01")) == -1
+
     def test_string_type(self):
         field = FakeField(base_type="CUtlString")
         dec = find_decoder(field)
@@ -673,6 +680,11 @@ class TestFindDecoderByBaseType:
         dec = find_decoder_by_base_type("uint32")
         r = BitReader(b"\x0a")
         assert dec(r) == 10
+
+    def test_ability_id_vector_elements_are_signed(self):
+        # CNetworkUtlVectorBase< AbilityID_t > children use this path.
+        dec = find_decoder_by_base_type("AbilityID_t")
+        assert dec(BitReader(_pack_varuint32(3730))) == 1865
 
 
 # ---------------------------------------------------------------------------
