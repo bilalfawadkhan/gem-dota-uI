@@ -9,6 +9,10 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 DEST_DIR="proto_definitions/dota2"
+# Transient GitHub failures (the 2026-09-27 run lost 2 of 84 files) retry with
+# backoff instead of failing the whole snapshot; --max-time bounds a stalled
+# transfer.
+CURL_RETRY=(--retry 4 --retry-delay 2 --retry-all-errors --connect-timeout 15 --max-time 60)
 # Note: the upstream repo was renamed SteamDatabase/Protobufs -> SteamTracking/Protobufs.
 # All curl calls use -L so the GitHub redirect from the old name is followed.
 PROTO_UPSTREAM_REF="${PROTO_UPSTREAM_REF:-master}"
@@ -44,7 +48,7 @@ fi
 
 # Fetch file list via GitHub API — use python3 to parse JSON properly
 echo -e "${YELLOW}Fetching file list from GitHub API...${NC}"
-API_RESPONSE=$(curl -sfL ${AUTH_HEADER:+"-H" "Authorization: Bearer $GITHUB_TOKEN"} "$API_URL") || {
+API_RESPONSE=$(curl -sfL "${CURL_RETRY[@]}" ${AUTH_HEADER:+"-H" "Authorization: Bearer $GITHUB_TOKEN"} "$API_URL") || {
     echo -e "${RED}Failed to reach GitHub API. Check your internet connection.${NC}"
     exit 1
 }
@@ -93,7 +97,7 @@ while IFS='|' read -r filename url; do
 
     echo -n "  $filename ... "
     rm -f "$temp_dest"
-    if curl -sfL -o "$temp_dest" "$url"; then
+    if curl -sfL "${CURL_RETRY[@]}" -o "$temp_dest" "$url"; then
         mv "$temp_dest" "$dest"
         echo -e "${GREEN}✓${NC}"
         ((DOWNLOADED += 1))

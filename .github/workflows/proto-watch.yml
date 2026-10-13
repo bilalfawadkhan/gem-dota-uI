@@ -183,3 +183,25 @@ jobs:
               --title "$TITLE" \
               --body-file "$BODY_FILE"
           fi
+
+  alert:
+    name: Report proto-watch health
+    needs: [check, update]
+    # Always runs, so a red scheduled run opens an issue instead of failing
+    # silently, and the next green run closes it. "update" is skipped when
+    # upstream has not changed; that counts as healthy.
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Open, update or close the proto-watch alert issue
+        uses: ./.github/actions/workflow-alert
+        with:
+          label: proto-watch
+          title: "proto-watch: Dota 2 proto update is failing"
+          failed: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}

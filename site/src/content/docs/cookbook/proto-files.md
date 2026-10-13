@@ -25,7 +25,12 @@ commits only the Python generated from it:
    `src/gem/proto/`. A dotted file name becomes a subpackage:
    `steammessages_steamlearn.steamworkssdk.proto` becomes
    `steammessages_steamlearn/steamworkssdk_pb2.py`. Never edit the generated files
-   by hand. Regenerate them instead.
+   by hand. Regenerate them instead. Since October 2026 the files also use three
+   options that only Valve's own copy of `google/protobuf/descriptor.proto` defines:
+   `additional_includes`, `boxed_type` and `synthetic_default`, all hints for
+   Valve's C++ code. `protoc` rejects them, so the script compiles copies without
+   those three and keeps every other option, `default` values included. The wire
+   format is the same either way.
 3. **`.github/workflows/proto-watch.yml`** checks upstream every day. When the Dota 2
    folder changes, it downloads the new snapshot, regenerates the Python modules and
    the generated reference pages, imports each module in its own interpreter
@@ -33,7 +38,9 @@ commits only the Python generated from it:
    file, and opens (or updates) a single draft pull request. Upstream's
    `steammessages.proto` and `steammessages_base.proto` declare the same custom
    options, so the two cannot load in one process. Nothing imports
-   `steammessages_base`, and the check expects exactly that conflict from it.
+   `steammessages_base`, and the check expects exactly that conflict from it. When
+   a run fails, the workflow opens one issue labelled `proto-watch` and keeps it
+   updated; the next green run closes it.
 
 To download the `.proto` files locally, pass the `commit` from
 `proto-upstream.lock.json` (without `PROTO_UPSTREAM_REF`, the script downloads

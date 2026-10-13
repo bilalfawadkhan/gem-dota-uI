@@ -1,0 +1,90 @@
+name: Workflow alert
+description: >-
+  Keep one GitHub issue per watched workflow: open it when a run fails, update
+  it while the failure continues, and close it when a run succeeds. Scheduled
+  jobs otherwise fail silently (proto-watch was red for a week unnoticed, HY-184).
+
+inputs:
+  label:
+    description: Label identifying this workflow's alert issue (created if missing).
+    required: true
+  title:
+    description: Title for a newly opened alert issue.
+    required: true
+  failed:
+    description: '"true" when the watched jobs failed or were cancelled.'
+    required: true
+  token:
+    description: Token with issues:write and actions:read.
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - name: Open, update or close the alert issue
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        GH_REPO: ${{ github.repository }}
+        LABEL: ${{ inputs.label }}
+        TITLE: ${{ inputs.title }}
+        FAILED: ${{ inputs.failed }}
+        RUN_ID: ${{ github.run_id }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        WORKFLOW: ${{ github.workflow }}
+        EVENT: ${{ github.event_name }}
+        REF: ${{ github.ref_name }}
+      run: |
+        set -euo pipefail
+        gh label create "$LABEL" --color B60205 \
+          --description "Automated alert from the $WORKFLOW workflow" 2>/dev/null || true
+        ISSUE=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number // empty')
+        NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+        if [ "$FAILED" != "true" ]; then
+          if [ -n "$ISSUE" ]; then
+            gh issue comment "$ISSUE" --body "Recovered: [run $RUN_ID]($RUN_URL) succeeded at $NOW."
+            gh issue close "$ISSUE" --reason completed
+            echo "Closed alert issue #$ISSUE."
+          else
+            echo "No open alert issue; nothing to do."
+          fi
+          exit 0
+        fi
+
+        # Jobs and steps that failed so far in this run (this job is still running).
+        FAILURES=$(gh run view "$RUN_ID" --json jobs --jq '
+          .jobs[] | select(.conclusion == "failure" or .conclusion == "cancelled")
+          | "- **\(.name)** (\(.conclusion)): " +
+            ([.steps[] | select(.conclusion == "failure") | .name] | join(", "))' || true)
+        [ -n "$FAILURES" ] || FAILURES="- (could not list the failed steps; see the run)"
+
+        FIRST="$NOW"
+        if [ -n "$ISSUE" ]; then
+          FIRST=$(gh issue view "$ISSUE" --json body --jq '.body' \
+            | sed -n 's/^First failure: \(.*\)$/\1/p' | head -n 1)
+          [ -n "$FIRST" ] || FIRST="$NOW"
+        fi
+
+        BODY_FILE=$(mktemp)
+        trap 'rm -f "$BODY_FILE"' EXIT
+        {
+          echo "The **$WORKFLOW** workflow is failing."
+          echo
+          echo "First failure: $FIRST"
+          echo "Latest failure: $NOW, [run $RUN_ID]($RUN_URL) ($EVENT on \`$REF\`)"
+          echo
+          echo "Failed in the latest run:"
+          echo
+          echo "$FAILURES"
+          echo
+          echo "This issue is updated while the workflow keeps failing and closed by"
+          echo "its next successful run."
+        } > "$BODY_FILE"
+
+        if [ -n "$ISSUE" ]; then
+          gh issue edit "$ISSUE" --body-file "$BODY_FILE"
+          echo "Updated alert issue #$ISSUE."
+        else
+          gh issue create --title "$TITLE" --label "$LABEL" --body-file "$BODY_FILE"
+        fi

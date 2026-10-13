@@ -540,6 +540,12 @@ uv run python scripts/check_proto_imports.py
 ```
 
 Advance the lock only after the generated bindings pass validation.
+`compile_protos.py` compiles copies of the files without the three options only
+Valve's own `descriptor.proto` defines (`additional_includes`, `boxed_type`,
+`synthetic_default`; C++ hints that `protoc` rejects), keeping every other option
+including `default`. A new `Option "..." unknown` error prints a hint naming it.
+proto-watch failures open or update one `proto-watch` issue
+(`.github/actions/workflow-alert`), closed by the next green run.
 `check_proto_imports.py` imports each module in its own interpreter. Upstream's
 `steammessages.proto` and `steammessages_base.proto` declare the same custom
 options (`msgpool_soft_limit`, …), so importing every module into one process
