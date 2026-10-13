@@ -137,6 +137,13 @@ the pinned upstream sources directly so reviews use stable reference revisions:
 | [skadistats/clarity](https://github.com/skadistats/clarity/tree/7fb3f1d07564a12efa99194d45cfbf5762ba5910) | `7fb3f1d0` | Java | Correctness authority for edge cases and combat-log ingestion |
 | [odota/parser](https://github.com/odota/parser/tree/e58a668f72866531b9a4e0293387163e8a927f5b) | `e58a668f` | Java | Output-schema authority (`Entry.java`, `CreateParsedDataBlob.java`) |
 
+The pins live in `upstream-refs.lock.json`, the source of truth; a test keeps
+this table in step with it, so bump both together. Each repository's paths that
+gem follows are listed there too. The daily `.github/workflows/upstream-watch.yml`
+(`scripts/check_upstream_refs.py`) keeps one issue labelled `upstream` per
+repository listing the commits since the pin that touch those paths; it closes
+once a pin bump covers them. Review those commits before relying on a pin.
+
 When translating from Manta, the Go file maps closely to the Python module:
 `manta/reader.go` → `binary/reader.py`, `manta/field_reader.go` →
 `schema/field_reader.py`, `manta/entity.go` → `state/entities.py`, etc.
