@@ -217,6 +217,30 @@
       "dem_size_bytes": 128411224,
       "dem_sha256": "8e17a913425908be62aa85d0fd501a3527c54f8a76d896120f3943249886b1da",
       "note": "Roshan conversion calibration fixture with a denied Aegis followed by a later normal pickup"
+    },
+    {
+      "match_id": 9039619076,
+      "name": "blast-slam-viii-fixed8-encoder",
+      "dem": "9039619076.dem",
+      "opendota_json": "9039619076.opendota.json",
+      "status": "active",
+      "tier": "regression",
+      "capabilities": [
+        "fixed8-encoder",
+        "medium-match",
+        "opendota-parity"
+      ],
+      "replaced_by": null,
+      "fetched_at": "2026-10-13T06:15:23Z",
+      "duration": 2293,
+      "game_mode": 2,
+      "lobby_type": 1,
+      "patch": 60,
+      "replay_url": "http://replay272.valve.net/570/9039619076_1900156309.dem.bz2",
+      "artifact_url": null,
+      "dem_size_bytes": 138583332,
+      "dem_sha256": "c338ebbee2721264d6b246f89a8098c4c21e636b1fc3bb2d5406a9c01b4bb86b",
+      "note": "BLAST SLAM VIII (PARIVISION vs Team Spirit), game build 6956: the first fixture whose send tables declare the fixed8 var encoder (build 6951+); regression for GitHub #301 / HY-177"
     }
   ]
 }

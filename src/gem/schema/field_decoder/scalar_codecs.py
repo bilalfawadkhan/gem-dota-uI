@@ -59,6 +59,17 @@ def fixed64_decoder(r: BitReader) -> int:
     return r.read_le_uint64()
 
 
+def fixed8_decoder(r: BitReader) -> int:
+    """Read 8 raw bits as an unsigned integer (the ``fixed8`` var encoder)."""
+    return r.read_bits(8)
+
+
+def fixed8_signed_decoder(r: BitReader) -> int:
+    """Read 8 raw bits as a two's-complement ``int8`` (the ``fixed8`` var encoder)."""
+    value = r.read_bits(8)
+    return value - 0x100 if value & 0x80 else value
+
+
 def component_decoder(r: BitReader) -> int:
     """Read a 1-bit component presence flag."""
     return r.read_bits(1)

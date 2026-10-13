@@ -18,6 +18,8 @@ from gem.schema.field_decoder import (
     component_decoder,
     find_decoder,
     find_decoder_by_base_type,
+    fixed8_decoder,
+    fixed8_signed_decoder,
     fixed64_decoder,
     float_coord_decoder,
     noscale_decoder,
@@ -36,6 +38,13 @@ from gem.schema.field_decoder.quantized_float import (
     _QFF_ROUNDUP,
 )
 from gem.schema.field_decoder.type_resolver import _unsigned64_factory, _vector_factory
+from gem.schema.sendtable import (
+    FIELD_MODEL_FIXED_ARRAY,
+    FIELD_MODEL_SIMPLE,
+    FIELD_MODEL_VARIABLE_ARRAY,
+    Field,
+)
+from gem.schema.sendtable.models import _parse_field_type
 
 
 def _bits_to_bytes(bit_str: str) -> bytes:
@@ -790,3 +799,77 @@ def test_quantized_flag_edge_cases_match_manta(setup, expected):
 
     q = QuantizedFloatDecoder(*setup)
     assert (q.bitcount, q.flags) == expected
+
+
+# ---------------------------------------------------------------------------
+# fixed8 var encoder (HY-177) — cases from manta field_decoder_test.go
+# TestFixed8Encoder (d29a0824)
+# ---------------------------------------------------------------------------
+
+
+def _fixed8_field(var_name: str, var_type: str, model: int) -> Field:
+    field = Field(
+        var_name=var_name,
+        var_type=var_type,
+        send_node="",
+        serializer_name="",
+        serializer_version=0,
+        encoder="fixed8",
+        encode_flags=None,
+        bit_count=None,
+        low_value=None,
+        high_value=None,
+        field_type=_parse_field_type(var_type),
+    )
+    field.set_model(model)
+    return field
+
+
+class TestFixed8Encoder:
+    def test_uint8_array_of_255_reads_four_bytes(self):
+        # The first CParticleSystem baseline on build 6951+ replays: read as
+        # varints, the first 255 swallowed the following bytes and the parse
+        # ran off the end of the 379-byte baseline.
+        field = _fixed8_field(
+            "m_iServerControlPointAssignments", "uint8[4]", FIELD_MODEL_FIXED_ARRAY
+        )
+        r = BitReader(b"\xff\xff\xff\xff" + _pack_varuint32(0xFFFFFF))
+        assert [field.decoder(r) for _ in range(4)] == [255, 255, 255, 255]
+        assert unsigned_decoder(r) == 0xFFFFFF
+        assert r.rem_bits() == 0
+
+    @pytest.mark.parametrize(
+        ("var_type", "byte", "expected"),
+        [
+            ("int8", 0xFF, -1),
+            ("int8", 0x29, 41),
+            ("int8", 0x80, -128),
+            ("uint8", 0x83, 131),
+            ("AnimationAlgorithm_t", 0xFF, 255),
+            ("CHandle< CBaseEntity >", 0xFF, 255),
+        ],
+    )
+    def test_reads_exactly_eight_bits_whatever_the_type(self, var_type, byte, expected):
+        field = _fixed8_field("m_field", var_type, FIELD_MODEL_SIMPLE)
+        r = BitReader(bytes([byte, 0x01]))
+        assert field.decoder(r) == expected
+        assert r.rem_bits() == 8
+
+    def test_variable_array_keeps_varint_length_and_8_bit_elements(self):
+        field = _fixed8_field(
+            "m_vecPlayerDraftPickOrder",
+            "CNetworkUtlVectorBase< uint8 >",
+            FIELD_MODEL_VARIABLE_ARRAY,
+        )
+        r = BitReader(b"\x02\xff\x80")
+        assert field.base_decoder(r) == 2
+        assert field.child_decoder(r) == 255
+        assert field.child_decoder(r) == 128
+        assert r.rem_bits() == 0
+
+    def test_without_the_encoder_types_keep_their_varint_decoders(self):
+        assert find_decoder(FakeField(base_type="uint8")) is unsigned_decoder
+        assert find_decoder(FakeField(base_type="int8")) is signed_decoder
+        assert find_decoder_by_base_type("uint8") is unsigned_decoder
+        assert find_decoder_by_base_type("uint8", "fixed8") is fixed8_decoder
+        assert find_decoder_by_base_type("int8", "fixed8") is fixed8_signed_decoder
