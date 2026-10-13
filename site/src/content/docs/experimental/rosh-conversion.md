@@ -151,8 +151,8 @@ are excluded rather than guessed.
 
 Buybacks are listed on the timeline. They are not a differential.
 
-The HTML report's `Roshan` tab shows only the kill and Aegis lifecycle facts
-from these records (see [Match Reports](../reports/index.md)). The differential
+The [Roshan recipe](../cookbook/roshan-next-fight.md) answers one question from
+these records: what happened in the fight after each Roshan. The differential
 profile is available in Python and the DataFrame exports.
 
 ## Status and missing data
@@ -190,7 +190,7 @@ nested public records and enum values as strings.
 
 ## Related pages
 
-1. [Reports](../reports/index.md)
+1. [Did the Roshan team win the next fight?](../cookbook/roshan-next-fight.md)
 2. [Roshan Conversion Calibration](./rosh-conversion-calibration.md)
 3. [Farming Patterns](./farming-patterns.md)
 4. [Point-Vision Evidence](./estimate-vision.md)

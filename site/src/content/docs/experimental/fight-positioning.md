@@ -121,10 +121,6 @@ lifecycles become evidence-gap codes instead of active claims.
 canonical hero. Nullable values preserve unavailable geometry.
 `active_reveal_modifiers` and `evidence_gaps` are `";"`-joined strings.
 
-The HTML report presents the same four moments on one map. Team colour,
-active/nonparticipant emphasis, visibility styling, short fresh-sample trails,
-and an evidence note are descriptive only.
-
 To start from a smoke instead, use `SmokeAnalysis.first_fight` from
 [Smoke Analysis](./smoke-analysis.md) and look that fight's snapshots up here.
 

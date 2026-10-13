@@ -1,59 +1,32 @@
 # Match Reports
 
-> [!WARNING]
-> The HTML report is deprecated and will be removed in gem 0.14. Its views are
-> moving to the [Recipes](../cookbook/questions.md): each one answers a question from
-> the match's facts, with a figure and the code to run on your own replays.
-> `gem.reports` and `python -m gem reports` warn until then.
+> [!NOTE]
+> The HTML report was removed in gem 0.14, with `gem.reports`,
+> `python -m gem reports` and `examples/match_report.py`. Its views became
+> [Recipes](../cookbook/questions.md): each one answers a question from the match's
+> facts, with a figure and the code to run on your own replays.
 
-gem can generate self-contained HTML reports from real `.dem` replay files.
+Where each part of the report went:
 
-The report shows facts from the replay. It leaves interpretation, such as
-whether a Roshan "converted" or a farming pattern was safe, to you.
+| Report view | Recipe |
+|---|---|
+| Fights tab: maps, timelines and playback | [Where were the fights, and who got the kills?](../cookbook/fights.md) |
+| Vision tab: wards and what they saw | [Where did each team ward, and what could the wards see?](../cookbook/wards.md) |
+| Laning | [How did each lane go?](../cookbook/lanes.md) |
+| Gold and XP advantage | [What moved the gold and XP lead?](../cookbook/lead.md) |
+| Objectives and buildings | [When did each objective fall, and did teams convert their edges?](../cookbook/objectives.md) |
+| Runes | [Who took each rune, and what happened while a power rune lasted?](../cookbook/runes.md) |
+| Roshan tab | [Did the Roshan team win the next fight?](../cookbook/roshan-next-fight.md) |
+| Farming tab | [How fast did each core farm from 10 to 20 minutes?](../cookbook/core-farm.md) |
+| Smoke Operations | [How often did a smoke lead to a kill?](../cookbook/smoke-to-kill.md) |
 
-The `Farming` tab shows the camp-by-camp route of each team's cores. For each
-team and lane role (safe lane → carry, mid → mid, off lane → offlaner), the
-core is the player with the most last hits at 10:00. Each camp visit lists its
-duration, the hero's neutral kills inside the camp zone, and the gold and XP the
-hero earned during the visit. The route builder is documented in
-[Experimental Features → Farming Patterns](../experimental/farming-patterns.md).
+Purchases and neutral items, buybacks, and the draft don't have a recipe yet. Until
+they do, the facts behind them are `ParsedPlayer.purchase_log` and `.buybacks`, and
+`ParsedMatch.neutral_item_finds` and `.draft`. The scoreboard, the kill
+feed, the per-minute combat charts and the Movement tab were dropped.
 
-The `Roshan` tab lists each Roshan kill: who killed it, what it dropped, who
-picked up the Aegis, and when and how the Aegis ended. While the Aegis was held
-it also lists the fights that overlapped the hold and the enemy towers and
-barracks the holder's team destroyed (denies excluded). A consumed Aegis that the replay infers from the holder's
-death is marked `*`.
-
-The `Fights` tab includes one positioning map per fight with pre-engagement,
-engagement-start, first-death, and fight-end controls. Marker visibility,
-position freshness, missing samples, and the current conservative
-engagement-start fallback are documented in
-[Experimental Features → Fight Positioning](../experimental/fight-positioning.md).
-A fight card is badged "after Smoke #N" when it was that smoke's first fight,
-and "during Aegis #N" when it overlapped an Aegis hold.
-
-The **Smoke Operations** view in the `Vision` tab lists each smoke's time, team
-and members, when it broke (the first member to lose it early, and how many
-in-game seconds after activation), and its first fight: the first fight whose
-first death came within 60 in-game seconds (pauses excluded). See
-[Experimental Features → Smoke Analysis](../experimental/smoke-analysis.md).
-
-The report embeds the map image at up to 4096 px wide. A wider image is
-downscaled when the report is written; the file on disk is not changed.
-
-## Hosted samples
-
-Sample reports are not bundled into this VitePress site. They are large,
-self-contained HTML artifacts and should be hosted separately from the docs.
-
-To generate your own report:
+To keep generating the old report, pin the last release that has it:
 
 ```bash
-python examples/match_report.py path/to/replay.dem --output ./my_match_report.html
+pip install "gem-dota<0.14"
 ```
-
-Hero and item icons are Valve's artwork, so gem does not ship them. The script
-downloads the icons the match needs into the report asset cache before rendering
-(`--offline` skips this). From Python, call `gem.reports.fetch_match_icons(match)`
-before `write_html_report`; any icon still missing is shown as a name, and the
-report logs a warning listing them.

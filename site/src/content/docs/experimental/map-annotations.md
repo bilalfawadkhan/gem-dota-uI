@@ -8,8 +8,8 @@ replays.
 
 ![gem's map regions and neutral camps on the 7.41 map](/map-annotations.jpg)
 
-Every point is placed with the same projection as the HTML report maps, which
-was fitted to replay landmarks (fountains, ancients, lotus pools, wisdom shrines
+Every point is placed with the same projection as the recipe figures
+(`gem.catalog.map`), which was fitted to replay landmarks (fountains, ancients, lotus pools, wisdom shrines
 and outposts) to within about 60 world units.
 
 ## Regions

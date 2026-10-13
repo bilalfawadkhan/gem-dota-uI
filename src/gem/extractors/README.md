@@ -318,7 +318,7 @@ not re-derive them:
   conversion records are `gem.analysis`. The boundary: if it needs the live
   parser, it belongs here; if it needs only an assembled `ParsedMatch`, it
   belongs in `gem.analysis`.
-- **It does not render reports.** That is `gem.reports`.
+- **It does not render anything.** The docs site's recipes draw the figures.
 
 ## Common Pitfalls
 
@@ -412,7 +412,7 @@ Poor fits:
   `gem.state`), or combat-log wire parsing (`gem.combat`);
 - ID→display-name tables (`gem.catalog`);
 - shaping the final output model or DataFrame/JSON export (`gem.results`);
-- HTML/report rendering (`gem.reports`).
+- HTML or figure rendering (the docs site's recipes, not the library).
 
 When adding shared snapshot dataclasses or helpers reused by more than one
 extractor, put them in `_snapshots.py` rather than duplicating per module.

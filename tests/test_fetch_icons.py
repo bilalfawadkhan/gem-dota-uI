@@ -171,18 +171,3 @@ def test_download_skips_non_png_responses_and_replaces_bad_files(
 
     assert (result.downloaded, result.skipped, result.failed) == (1, 0, 0)
     assert (out_dir / "axe.png").read_bytes() == _PNG_BYTES
-
-
-def test_fetch_scripts_do_not_import_the_report() -> None:
-    import subprocess
-    import sys
-
-    root = Path(__file__).resolve().parents[1]
-    for script in ("fetch_hero_icons.py", "fetch_item_icons.py"):
-        code = (
-            f"import runpy, sys; sys.argv = ['{script}', '--check']\n"
-            f"try:\n    runpy.run_path(r'{root / 'scripts' / script}', run_name='__main__')\n"
-            "except SystemExit:\n    pass\n"
-            "assert 'gem.reports' not in sys.modules"
-        )
-        subprocess.run([sys.executable, "-c", code], check=True, capture_output=True)

@@ -7,7 +7,8 @@ routes through calibrated neutral-camp zones. It answers one question:
 > supports treating each segment as farming rather than transit?
 
 The route builder is available as `gem.build_farming_routes(match)`. The same
-records feed the HTML report and the flat DataFrame exports.
+records feed the flat DataFrame exports and the
+[core farm recipe](../cookbook/core-farm.md).
 
 > [!IMPORTANT]
 > A route segment is not proof of player intent or a complete camp clear.
@@ -182,18 +183,6 @@ topology provenance remain separate fields.
 String enums are exported as their raw values. Lists of reasons/gaps use
 semicolon-delimited strings, matching the other flat analysis exports.
 
-## Report behavior
-
-The report's Farming tab shows the route and timeline for each team's cores
-(see [Match Reports](../reports/index.md)). Each segment row lists the camp,
-its type, the visit's duration, the hero's neutral kills inside the camp zone,
-and the gold and XP the hero earned during the visit. Evidence strength stays
-available in Python and the DataFrame exports but is not rendered.
-
-The playback trail uses the route builder's point-to-camp assignments rather
-than recalculating geometry in the report. This keeps Python, DataFrame, and
-HTML behavior aligned.
-
 ## Calibration
 
 The farming-route corpus records factual counts per fixture replay (segments,
@@ -207,4 +196,3 @@ route was strategically correct. See
 - `src/gem/analysis/farming.py`
 - `src/gem/data/camp_zones.json`
 - `src/gem/results/dataframes.py`
-- `src/gem/reports/sections/vision.py`

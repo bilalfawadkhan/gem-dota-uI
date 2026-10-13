@@ -120,9 +120,8 @@ The legacy `event.smoked`, `event.x`, and `event.y` fields remain available.
 activator's item-use position.
 
 DataFrame exports include both `smoke_events` (with `smoked` as a `";"`-joined
-hero list) and a flat `smoke_members` table.
-The HTML report's **Smoke Operations** card shows each smoke's time, team and
-members, when it broke, and its `first_fight`.
+hero list) and a flat `smoke_members` table. The
+[smoke recipe](../cookbook/smoke-to-kill.md) follows each smoke to its first kill.
 
 ## Known limitations
 

@@ -68,10 +68,6 @@ Public API
 
 ``resolve_pick_team(event, players)``
     Resolve the team (Radiant/Dire) for a draft pick/ban event.
-
-``gem.reports.build_html_report(match)``
-    Build a self-contained HTML match report. Deprecated: removed in 0.14; the
-    report's views move to the recipes on the docs site.
 """
 
 from __future__ import annotations

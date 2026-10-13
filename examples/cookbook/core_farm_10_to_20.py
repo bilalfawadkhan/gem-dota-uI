@@ -3,7 +3,7 @@
 Uses the per-minute curves (``total_earned_gold_t_min``, ``lh_t_min``), the
 combat log's neutral creep deaths, and the sampled positions labelled with
 ``gem.region_of``. The cores are each team's safe-lane, mid and off-lane player
-with the most last hits at 10:00, the rule the HTML report's Farming tab uses.
+with the most last hits at 10:00.
 
     python examples/cookbook/core_farm_10_to_20.py replay.dem [more.dem ...]
 """

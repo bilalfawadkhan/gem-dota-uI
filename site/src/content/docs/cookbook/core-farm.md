@@ -18,7 +18,7 @@ they?
   `player.lane_last_hits` (last hits at 10:00).
 
 The cores are each team's safe-lane, mid and off-lane player with the most last
-hits at 10:00, the rule the HTML report's Farming tab uses. Earned gold counts
+hits at 10:00. Earned gold counts
 every source (creeps, kills, passive income), not only farm; the neutral kills
 column shows how much of the farm came from the jungle.
 

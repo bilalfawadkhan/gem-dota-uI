@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- **The HTML report** (HY-137), deprecated in 0.13: `gem.reports`
+  (`build_html_report`, `write_html_report`, `ReportOptions`, `ReportAssets`,
+  `fetch_match_icons`), the `python -m gem reports` command (it now exits with a
+  pointer to the recipes) and `examples/match_report.py`. Its views are recipes on
+  the docs site; the Match Reports page lists where each one went. Purchases and
+  neutral items, buybacks and the draft have no recipe yet. To keep the report, pin
+  `gem-dota<0.14`.
+- **Plotly, Pillow and ipykernel are no longer installed with gem.** Only the report
+  used Plotly; Pillow (the map and banner scripts) and ipykernel (the notebook) move
+  to the `dev` group.
+
 ## [0.13.0] - 2026-10-13
 
 Current replays parse again. Since Dota build 6951 (early October 2026), 0.12.0

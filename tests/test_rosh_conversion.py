@@ -21,7 +21,6 @@ from gem.extractors.objectives import (
     TowerKill,
 )
 from gem.extractors.wards import WardEvent
-from gem.reports._sections import build_rosh_conversion
 from gem.results.models import ParsedMatch, ParsedPlayer
 
 
@@ -358,45 +357,6 @@ def test_banner_rax_ignores_rax_before_plant_and_enemy_banner() -> None:
     conversion = build_rosh_conversions(match)[0]
     assert conversion.banner_planted is False
     assert conversion.banner_rax_conversion is False
-
-
-def test_build_rosh_conversion_html_lists_drops_and_buildings_while_held() -> None:
-    players = _make_players()
-    match = ParsedMatch(
-        game_start_tick=0,
-        game_end_tick=6000,
-        radiant_win=None,
-        players=players,
-        roshans=[
-            RoshanKill(
-                tick=1000,
-                killer="npc_dota_hero_hero_0",
-                kill_number=1,
-                drops=["aegis", "cheese", "banner"],
-            )
-        ],
-        aegis_events=[AegisEvent(tick=1010, player_id=0, event_type="pickup")],
-        banner_plants=[BannerPlant(tick=1200, team=2, player_id=0, x=22000.0, y=18000.0)],
-        barracks=[
-            BarracksKill(
-                tick=1500,
-                team=3,
-                killer="npc_dota_hero_hero_0",
-                barracks_name="npc_dota_badguys_melee_rax_mid",
-            )
-        ],
-    )
-
-    html = build_rosh_conversion(match)
-    assert "<summary>Roshan</summary>" in html
-    assert 'id="roshan-1"' in html
-    assert "<th>Drops</th>" in html
-    assert "Aegis, Cheese, Banner" in html
-    assert "Held to game end" in html
-    assert "1 barracks" in html
-    # The banner→rax association and high-value badge were interpretation.
-    assert "rosh-banner-badge" not in html
-    assert "rosh-hv-badge" not in html
 
 
 @pytest.mark.parametrize(

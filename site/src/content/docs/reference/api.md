@@ -23,7 +23,7 @@ def parse(path: str | Path) -> ParsedMatch
 
 Parse a Dota 2 replay file and return structured match data.
 
-Source: [src/gem/api.py:215](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L215)
+Source: [src/gem/api.py:211](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L211)
 
 ### `find_player`
 
@@ -33,7 +33,7 @@ def find_player(match: ParsedMatch, hero: str) -> ParsedPlayer | None
 
 Look up a player by hero name.
 
-Source: [src/gem/api.py:330](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L330)
+Source: [src/gem/api.py:326](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L326)
 
 ### `parse_to_json`
 
@@ -43,7 +43,7 @@ def parse_to_json(path: str | Path, *, analyze: bool = False, indent: int | None
 
 Parse a replay and return the result as JSON.
 
-Source: [src/gem/api.py:350](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L350)
+Source: [src/gem/api.py:346](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L346)
 
 ### `parse_to_dataframe`
 
@@ -53,7 +53,7 @@ def parse_to_dataframe(path: str | Path, *, include: Iterable[str] = ()) -> dict
 
 Parse a replay and return flat tabular projections as pandas DataFrames.
 
-Source: [src/gem/api.py:374](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L374)
+Source: [src/gem/api.py:370](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L370)
 
 ### `to_parquet`
 
@@ -63,7 +63,7 @@ def to_parquet(match: ParsedMatch, output_dir: str | Path, *, include: Iterable[
 
 Export DataFrame projections for a parsed match to parquet files.
 
-Source: [src/gem/api.py:409](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L409)
+Source: [src/gem/api.py:405](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L405)
 
 ### `parse_to_parquet`
 
@@ -73,4 +73,4 @@ def parse_to_parquet(path: str | Path, output_dir: str | Path, *, include: Itera
 
 Parse a replay and export DataFrame projections to parquet files.
 
-Source: [src/gem/api.py:451](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L451)
+Source: [src/gem/api.py:447](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/api.py#L447)

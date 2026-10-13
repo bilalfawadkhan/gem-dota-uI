@@ -94,7 +94,6 @@ api.py                    ← high-level parse/export helpers exposed by the pub
 results/models.py         ← ParsedMatch, ParsedPlayer, ChatEntry, NeutralItemFoundEvent dataclasses
 results/assembly.py       ← wires extractor outputs into ParsedMatch
 results/dataframes.py     ← flat DataFrame projections (core tables + opt-in include= groups)
-reports/                  ← HTML report generation (deprecated: removed in 0.14, HY-124)
 analysis/spatial.py       ← position, nearby-hero, and net-worth lookup helpers
 analysis/regions.py       ← map regions: region_of / MAP_REGIONS (river, halves, lotus areas)
 analysis/combat.py        ← ability-hit grouping, fight lookup and regrouping (find_fights)
@@ -458,8 +457,8 @@ That was wrong: the pools do drop, on the BUYBACK tick itself.
 
 `ParsedPlayer.gold` / `net_worth` / `gold_spent` come from the postgame summary
 when present, matching OpenDota exactly. Without the summary, `gold_spent` falls
-back to the ledger's items + consumables. The report marks estimated costs `~`
-and labels the split as an estimate. DataFrames have an opt-in
+back to the ledger's items + consumables. `BuybackEvent.cost_exact` marks the
+estimated costs, and the reliable/unreliable split is always an estimate. DataFrames have an opt-in
 `include="gold_ledger"` group (`player_gold_ledger`,
 `player_gold_ledger_minutes`).
 
@@ -614,7 +613,7 @@ scripts (`test_audit_camp_annotations.py`, `test_audit_opendota_fixture_constant
   `uv run python scripts/sync_opendota_fixtures.py`; select broader tiers or exact
   match IDs when required. The committed `manifest.json` is the source of truth
   for fixture lifecycle, capabilities, integrity metadata, and replacements.
-  Map/reference images for examples, reports, and camp-zone tooling live under
+  Map/reference images for examples, the docs site and camp-zone tooling live under
   `assets/maps/`, not `tests/fixtures/`.
 - `uv run pytest` skips `slow`, `integration`, and `network` markers by default so local
   checks do not fetch or parse large replay files accidentally. Use `-m ""` to
@@ -644,19 +643,16 @@ scripts (`test_audit_camp_annotations.py`, `test_audit_opendota_fixture_constant
 | Script | Description |
 |---|---|
 | `examples/quickstart.py` | Minimal: parse a replay, print per-minute gold/XP |
-| `examples/match_report.py` | Full HTML match dashboard (deprecated with `gem.reports`; removed in 0.14) |
 | `examples/extraction_demo.py` | Developer guide for combat-log extraction and entity polling |
 | `examples/steam_match_info.py` | Fetch match info from the Steam API, display with Rich tables |
 | `examples/cookbook/*.py` | Recipes answering one question each from facts (docs: `site/src/content/docs/cookbook/questions.md`); tested in `tests/test_cookbook.py` |
 
-Report generation lives in `src/gem/reports/`; `examples/match_report.py` is a
-thin wrapper around `gem.reports.write_html_report()`. Both are deprecated
-(HY-124/HY-136): importing `gem.reports` warns, `import gem` no longer imports it,
-and 0.14 removes it. The report's views move to docs-site recipes. Don't build new
-features on it; the map calibration it used lives in `gem.catalog.map`, and the
-icon download for the site export in `scripts/_icons.py`.
+gem has no renderer. The HTML report (`gem.reports`, `python -m gem reports`,
+`examples/match_report.py`) was removed in 0.14 (HY-137); its views are docs-site
+recipes (HY-124), and `/reports/` lists where each went. The map calibration lives
+in `gem.catalog.map`, the icon download for the site export in `scripts/_icons.py`.
 
-Hero and item icons for reports are downloaded separately — not committed or
+Hero and item icons for the docs site are downloaded separately — not committed or
 shipped in the package (the fetch scripts skip unchanged assets):
 
 ```bash
@@ -664,7 +660,6 @@ uv run python scripts/fetch_hero_icons.py   # -> src/gem/data/hero_icons/
 uv run python scripts/fetch_item_icons.py   # -> src/gem/data/item_icons/
 ```
 
-The reports page is `site/src/content/docs/reports/index.md`; no sample HTML report is committed.
 
 ## Docs
 

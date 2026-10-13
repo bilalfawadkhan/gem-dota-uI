@@ -75,18 +75,3 @@ def test_medium_replay_objective_times_match_opendota(
             assert delta <= 1, objective
         compared += 1
     assert compared >= 20
-
-
-@pytest.mark.integration
-@pytest.mark.slow
-def test_medium_replay_report_header_uses_match_duration(paused_match: ParsedMatch) -> None:
-    from gem.reports import ReportOptions, build_html_report
-    from gem.reports.assets import ReportAssets
-
-    html = build_html_report(
-        paused_match,
-        assets=ReportAssets(),
-        options=ReportOptions(include_movement=False),
-    )
-    assert '<span class="value">50:05</span>' in html
-    assert "65:52" not in html

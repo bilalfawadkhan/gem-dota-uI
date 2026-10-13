@@ -1,21 +1,12 @@
-"""Tests for the pause-aware game clock and its parser/assembly/report consumers."""
+"""Tests for the pause-aware game clock and its parser and assembly consumers."""
 
 from __future__ import annotations
 
 from types import SimpleNamespace
 
-import pytest
-
 from gem.analysis._shared import infer_match_end_tick
 from gem.extractors.wards import WardEvent
 from gem.parser import ReplayParser
-from gem.reports._formatting import (
-    fmt_tick,
-    set_game_clock,
-    set_game_start_tick,
-    tick_after_game_seconds,
-)
-from gem.reports.sections.match import build_header
 from gem.results.assembly import _tick_game_seconds, _ward_left_entry
 from gem.results.models import ParsedMatch
 from gem.state.entities import Entity
@@ -208,55 +199,3 @@ class TestMatchEndTick:
 
     def test_falls_back_to_recording_end(self) -> None:
         assert infer_match_end_tick(ParsedMatch(game_end_tick=5000)) == 5000
-
-
-class TestReportClock:
-    def teardown_method(self) -> None:
-        set_game_start_tick(0)
-
-    def test_fmt_tick_uses_configured_clock(self) -> None:
-        set_game_clock(_PAUSED)
-        assert fmt_tick(3430) == "01:01"
-        set_game_start_tick(1000)
-        assert fmt_tick(3430) == "01:21"
-
-    def test_timers_stop_during_pauses(self) -> None:
-        set_game_clock(_PAUSED)
-        # 60 s before the pause plus 20 s of pause: a 2 s timer from 59 s ends at 61 s.
-        assert tick_after_game_seconds(2770, 2) == 3430
-        set_game_start_tick(1000)
-        assert tick_after_game_seconds(2770, 2) == 2830
-
-    @pytest.mark.parametrize(
-        ("duration", "expected"),
-        [(3005, "50:05"), (0, "01:00")],
-    )
-    def test_header_duration_ignores_post_game_recording(
-        self, duration: int, expected: str
-    ) -> None:
-        set_game_start_tick(0)
-        match = ParsedMatch(
-            game_start_tick=0,
-            game_end_tick=118_560,
-            post_game_tick=1800,
-            duration=duration,
-        )
-        html = build_header(match, fmt_tick, {})
-        assert expected in html
-        assert "65:52" not in html
-
-
-def test_objectives_timeline_reads_rune_type_and_legacy_gold_reason():
-    from gem.combat.log import CombatLogEntry, CombatLogType
-    from gem.reports.sections.match import build_objectives
-    from gem.results.models import ParsedMatch, ParsedPlayer
-
-    new = CombatLogEntry(tick=100, log_type=CombatLogType.PICKUP_RUNE, value=0, rune_type=8)
-    # JSON written before rune_type existed loads with rune_type=None.
-    legacy = CombatLogEntry(tick=200, log_type=CombatLogType.PICKUP_RUNE, value=0, gold_reason=8)
-    other = CombatLogEntry(tick=300, log_type=CombatLogType.PICKUP_RUNE, value=0, rune_type=5)
-    player = ParsedPlayer(player_id=0, hero_name="npc_dota_hero_axe", team=2)
-    player.runes_log = [new, legacy, other]
-    html = build_objectives(ParsedMatch(players=[player]), lambda tick: f"t{tick}")
-
-    assert html.count("picked up Wisdom Rune") == 2
