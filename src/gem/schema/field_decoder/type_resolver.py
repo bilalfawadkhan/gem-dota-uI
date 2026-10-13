@@ -1,4 +1,10 @@
-"""Field type and encoder dispatch for entity field-value decoders."""
+"""Field type and encoder dispatch for entity field-value decoders.
+
+Reference: dotabuff/manta field_decoder.go ``findDecoder`` and
+skadistats/clarity S2DecoderFactory.java (pinned revisions in CLAUDE.md). The
+``fixed8`` encoder postdates those pins: manta d29a0824 (``fixed8Decoder``) and
+clarity 17b33df6 (its ``ENCODERS`` map).
+"""
 
 from __future__ import annotations
 
@@ -12,6 +18,8 @@ from gem.schema.field_decoder.scalar_codecs import (
     boolean_decoder,
     component_decoder,
     default_decoder,
+    fixed8_decoder,
+    fixed8_signed_decoder,
     fixed64_decoder,
     float_coord_decoder,
     noscale_decoder,
@@ -124,14 +132,29 @@ _FIELD_TYPE_DECODERS: dict[str, FieldDecoder] = {
 _FIELD_NAME_DECODERS: dict[str, FieldDecoder] = {}
 
 
+def _encoder_decoder(encoder: str, base_type: str) -> FieldDecoder | None:
+    """Return the decoder a var encoder forces whatever the type, if any.
+
+    Since build 6951 the send tables mark 90 field definitions (~25k serializer
+    slots) ``fixed8`` (``uint8``, ``int8``, enums such as ``MoveType_t``,
+    ``CNetworkUtlVectorBase< uint8 >`` elements): the server writes 8 raw bits. Read as varints they agree only
+    below 128, so a 255 swallows the next bytes and shifts every later field
+    (HY-177). Clarity likewise checks its encoder map before the type table.
+    """
+    if encoder == "fixed8":
+        return fixed8_signed_decoder if base_type == "int8" else fixed8_decoder
+    return None
+
+
 def find_decoder(field: _FieldLike) -> FieldDecoder:
     """Return the appropriate decoder for the given field.
 
     Dispatch order:
-    1. Type factories (QAngle, float32, Vector, ...) - need field parameters
-    2. Name overrides
-    3. Direct type -> decoder table
-    4. Default (varuint32)
+    1. Var encoders that apply to any type (``fixed8``)
+    2. Type factories (QAngle, float32, Vector, ...) - need field parameters
+    3. Name overrides
+    4. Direct type -> decoder table
+    5. Default (varuint32)
 
     Args:
         field: An object with ``field_type.base_type``, ``encoder``,
@@ -142,6 +165,10 @@ def find_decoder(field: _FieldLike) -> FieldDecoder:
         A callable ``(BitReader) -> value``.
     """
     base_type = field.field_type.base_type
+
+    forced = _encoder_decoder(field.encoder, base_type)
+    if forced is not None:
+        return forced
 
     if base_type in _FIELD_TYPE_FACTORIES:
         return _FIELD_TYPE_FACTORIES[base_type](field)
@@ -155,15 +182,21 @@ def find_decoder(field: _FieldLike) -> FieldDecoder:
     return default_decoder
 
 
-def find_decoder_by_base_type(base_type: str) -> FieldDecoder:
+def find_decoder_by_base_type(base_type: str, encoder: str = "") -> FieldDecoder:
     """Return a decoder for a base type string without field context.
 
-    Used for variable-array child elements where no field object is available.
+    Used for variable-array child elements, which take the array field's var
+    encoder: a ``fixed8`` ``CNetworkUtlVectorBase< uint8 >`` keeps a varint
+    length but stores 8-bit elements.
 
     Args:
         base_type: The C++ type name string (e.g. ``"uint32"``).
+        encoder: The owning field's var encoder (``""`` when none).
 
     Returns:
         A callable ``(BitReader) -> value``.
     """
+    forced = _encoder_decoder(encoder, base_type)
+    if forced is not None:
+        return forced
     return _FIELD_TYPE_DECODERS.get(base_type, default_decoder)

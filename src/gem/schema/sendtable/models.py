@@ -158,7 +158,7 @@ class Field:
                 )
             self.base_decoder = unsigned_decoder
             generic_base = self.field_type.generic_type.base_type
-            self.child_decoder = find_decoder_by_base_type(generic_base)
+            self.child_decoder = find_decoder_by_base_type(generic_base, self.encoder)
         elif model == FIELD_MODEL_VARIABLE_TABLE:
             self.base_decoder = unsigned_decoder
         else:

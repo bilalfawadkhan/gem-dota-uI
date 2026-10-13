@@ -83,8 +83,8 @@ compactness.
 - `quantized_float.py` — `QuantizedFloatDecoder`, the bit-count/flag-driven
   decoder for Valve's quantized floats.
 - `type_resolver.py` — the dispatch tables (`find_decoder`,
-  `find_decoder_by_base_type`) that pick a decoder from a field's declared type
-  or name.
+  `find_decoder_by_base_type`) that pick a decoder from a field's var encoder
+  (`fixed8` overrides the type), declared type or name.
 - `contracts.py` — the typing protocols (`FieldDecoder`, and the `_FieldLike` /
   `_FieldTypeLike` structural protocols). This is a thin module on purpose: it
   exists so the dispatch tables and codecs can share types without an import

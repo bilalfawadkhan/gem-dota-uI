@@ -235,6 +235,22 @@ of answering questions from them, see the Recipes docs.
 
 ### Fixed
 
+- **Replays from Dota build 6951 on parse to the end** (HY-177, #301).
+  Since build 6951 the send tables mark 90 field definitions (about 25,000
+  serializer slots) with the `fixed8` var encoder (`uint8`, `int8`, enums such
+  as `MoveType_t`, `uint8` vectors): the server writes 8 raw bits. gem chose decoders by type name only and read them
+  as varints, which agree only below 128. The first 255, in the
+  `CParticleSystem` instance baseline, shifted every later field, so every
+  recent replay stopped minutes in with `BufferReadError` and a near-empty
+  `ParsedMatch`. `int8` fields such as these were misread as well (41 came out -21).
+  `fixed8` now reads 8 bits (signed for `int8`) whatever the type, including
+  the elements of `fixed8` variable arrays, as manta d29a0824 and clarity
+  17b33df6 do. On 9 recent pro replays (7 from BLAST SLAM VIII, one each from
+  EPL Masters and the DreamLeague Season 30 qualifiers) every per-player total
+  and per-minute curve checked matches OpenDota. Older builds declare no
+  `fixed8` fields and are unchanged. New regression fixture: 9039619076
+  (BLAST SLAM VIII, build 6956).
+
 - **Ward placers have the hero's real name.** `WardEvent.placer` was the
   hero's class name lowercased, so compound heroes came out wrong:
   `npc_dota_hero_ancientapparition`, `npc_dota_hero_emberspirit`. It now
