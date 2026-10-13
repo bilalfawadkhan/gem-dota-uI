@@ -458,6 +458,7 @@ dependencies = [
     { name = "protobuf" },
     { name = "protoc-wheel-0" },
     { name = "python-snappy" },
+    { name = "rich" },
     { name = "zstandard" },
 ]
 
@@ -472,7 +473,6 @@ dev = [
     { name = "pymdown-extensions" },
     { name = "pytest" },
     { name = "pytest-cov" },
-    { name = "rich" },
     { name = "ruff" },
 ]
 
@@ -483,6 +483,7 @@ requires-dist = [
     { name = "protobuf", specifier = ">=7.34.0" },
     { name = "protoc-wheel-0", specifier = ">=30.2" },
     { name = "python-snappy", specifier = ">=0.7.3" },
+    { name = "rich", specifier = ">=14.0.0" },
     { name = "zstandard", specifier = ">=0.25.0" },
 ]
 
@@ -497,7 +498,6 @@ dev = [
     { name = "pymdown-extensions", specifier = ">=10.21" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
-    { name = "rich", specifier = ">=14.0.0" },
     { name = "ruff", specifier = ">=0.15.5" },
 ]
 

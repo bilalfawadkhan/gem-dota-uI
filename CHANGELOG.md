@@ -20,6 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   used Plotly; Pillow (the map and banner scripts) and ipykernel (the notebook) move
   to the `dev` group.
 
+### Fixed
+
+- **`python -m gem` runs from a pip install.** `rich`, which the CLI imports, was
+  only a dev dependency, so the command failed with `ModuleNotFoundError: No module
+  named 'rich'` outside a development checkout. It is a runtime dependency now.
+
 ## [0.13.0] - 2026-10-13
 
 Current replays parse again. Since Dota build 6951 (early October 2026), 0.12.0

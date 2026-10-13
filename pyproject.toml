@@ -27,6 +27,7 @@ dependencies = [
     "protobuf>=7.34.0",
     "protoc-wheel-0>=30.2",
     "python-snappy>=0.7.3",
+    "rich>=14.0.0",
     "zstandard>=0.25.0",
 ]
 
@@ -62,7 +63,6 @@ dev = [
     "pymdown-extensions>=10.21",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
-    "rich>=14.0.0",
     "ruff>=0.15.5",
 ]
 
