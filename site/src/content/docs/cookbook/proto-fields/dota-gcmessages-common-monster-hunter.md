@@ -3,8 +3,8 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `dota_gcmessages_common_monster_hunter_pb2`
-- Imports: **4**
-- Messages: **36** (top-level: 33)
+- Imports: **5**
+- Messages: **35** (top-level: 33)
 - Enums: **16** (top-level: 2)
 
 ## Imports
@@ -13,6 +13,7 @@
 - `dota_shared_enums.proto`
 - `dota_gcmessages_common.proto`
 - `gcsdk_gcmessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -26,7 +27,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `material_id` | `uint32` | `optional` |  |  |
+| 1 | `material_id` | `uint32` | `optional` |  | boxed_type = "MonsterHunterMaterialID_t" |
 | 2 | `material_count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -45,7 +46,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgMonsterHunterUserData</code> — fields: 3; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgMonsterHunterUserData</code> — fields: 3; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -53,21 +54,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `material_inventory` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
-| 2 | `hero_codex` | `.CMsgMonsterHunterUserData.HeroCodexEntry` | `repeated` |  |  |
+| 2 | `hero_codex` | `map<int32, .CMsgMonsterHunterHeroCodexEntry>` | `unlabeled` |  | map field |
 | 3 | `unlocked_count` | `int32` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgMonsterHunterUserData.HeroCodexEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgMonsterHunterUserData`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `int32` | `optional` |  |  |
-| 2 | `value` | `.CMsgMonsterHunterHeroCodexEntry` | `optional` |  |  |
 
 </details>
 
@@ -91,7 +79,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_slot` | `uint32` | `optional` |  |  |
+| 1 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 2 | `possible_match_reward_materials` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 3 | `actual_match_reward_materials` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 4 | `hunt_reward` | `.CMsgMonsterHunterMatchRewards.Player.HuntReward` | `optional` |  |  |
@@ -108,7 +96,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `materials` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 3 | `success` | `bool` | `optional` |  |  |
 
@@ -186,7 +174,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `econ_item_id` | `uint32` | `optional` |  |  |
+| 1 | `econ_item_id` | `uint32` | `optional` |  | boxed_type = "MonsterHunterEconItemID_t" |
 | 2 | `set_index` | `uint32` | `optional` |  |  |
 
 </details>
@@ -226,7 +214,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `material_offer` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 2 | `material_request` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
-| 3 | `recipe_id` | `uint32` | `optional` |  |  |
+| 3 | `recipe_id` | `uint32` | `optional` |  | boxed_type = "MonsterHunterTradeRecipeID_t" |
 
 </details>
 
@@ -253,7 +241,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `token_gift` | `.CMsgMonsterHunterMaterialCount` | `optional` |  |  |
 | 2 | `recipient_account_id` | `uint32` | `optional` |  |  |
-| 3 | `periodic_resource_id` | `uint32` | `optional` |  |  |
+| 3 | `periodic_resource_id` | `uint32` | `optional` |  | boxed_type = "PeriodicResourceID_t" |
 
 </details>
 
@@ -399,7 +387,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `codex_id` | `uint32` | `optional` |  |  |
+| 1 | `codex_id` | `uint32` | `optional` |  | boxed_type = "MonsterHunterCodexID_t" |
 | 2 | `reward` | `uint32` | `optional` |  |  |
 
 </details>
@@ -425,7 +413,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `codex_id` | `uint32` | `optional` |  |  |
+| 1 | `codex_id` | `uint32` | `optional` |  | boxed_type = "MonsterHunterCodexID_t" |
 | 2 | `stat_type` | `.EHeroCodexEntryStatType` | `optional` |  | default = k_eHeroCodexEntryStatType_Killed |
 | 3 | `action` | `.CMsgDevModifyCodexAction.EAction` | `optional` |  | default = k_eClear |
 

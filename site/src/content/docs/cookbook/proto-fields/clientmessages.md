@@ -3,9 +3,13 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `clientmessages_pb2`
-- Imports: **0**
+- Imports: **1**
 - Messages: **6** (top-level: 6)
 - Enums: **2** (top-level: 2)
+
+## Imports
+
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -34,7 +38,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `event_name` | `string` | `optional` |  |  |
 | 2 | `data` | `bytes` | `optional` |  |  |
-| 3 | `player_slot` | `int32` | `optional` |  | default = -1 |
+| 3 | `player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 
 </details>
 

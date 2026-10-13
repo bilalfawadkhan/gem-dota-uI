@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_tournament_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **20** (top-level: 11)
 - Enums: **1** (top-level: 1)
 
 ## Imports
 
 - `dota_client_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -140,7 +141,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `node_idx` | `uint32` | `optional` |  |  |
 | 2 | `lobby_id` | `fixed64` | `optional` |  |  |
-| 3 | `match_id` | `uint64` | `optional` |  |  |
+| 3 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 4 | `team_a_good` | `bool` | `optional` |  |  |
 | 5 | `state` | `.ETournamentGameState` | `optional` |  | default = k_ETournamentGameState_Unknown |
 | 6 | `start_time` | `uint32` | `optional` |  |  |
@@ -188,7 +189,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `new_state` | `.ETournamentGameState` | `optional` |  | default = k_ETournamentGameState_Unknown |
 
 </details>

@@ -18,7 +18,7 @@ Expand any message to inspect all fields.
 Expand any enum to inspect all values.
 
 <details>
-<summary><code>EDOTAGCMsg</code> — values: 1027</summary>
+<summary><code>EDOTAGCMsg</code> — values: 1020</summary>
 
 - Parent: *(top-level)*
 
@@ -580,12 +580,8 @@ Expand any enum to inspect all values.
 | `k_EMsgGCToGCGrantAutographResponse` | 8316 |
 | `k_EMsgSignOutConsumableUsage` | 8317 |
 | `k_EMsgLobbyEventGameDetails` | 8318 |
-| `k_EMsgDevGrantEventPoints` | 8319 |
-| `k_EMsgDevGrantEventPointsResponse` | 8320 |
 | `k_EMsgDevGrantEventAction` | 8321 |
 | `k_EMsgDevGrantEventActionResponse` | 8322 |
-| `k_EMsgDevResetEventState` | 8323 |
-| `k_EMsgDevResetEventStateResponse` | 8324 |
 | `k_EMsgGCToGCReconcileEventOwnership` | 8325 |
 | `k_EMsgConsumeEventSupportGrantItem` | 8326 |
 | `k_EMsgConsumeEventSupportGrantItemResponse` | 8327 |
@@ -616,8 +612,6 @@ Expand any enum to inspect all values.
 | `k_EMsgSQLGCToGCGrantAllHeroProgressVictory` | 8364 |
 | `k_EMsgDevDeleteEventActions` | 8365 |
 | `k_EMsgDevDeleteEventActionsResponse` | 8366 |
-| `k_EMsgDevReloadAllEvents` | 8367 |
-| `k_EMsgDevReloadAllEventsResponse` | 8368 |
 | `k_EMsgGCToGCGetAllHeroCurrent` | 8635 |
 | `k_EMsgGCToGCGetAllHeroCurrentResponse` | 8636 |
 | `k_EMsgGCSubmitPlayerAvoidRequest` | 8637 |
@@ -722,7 +716,6 @@ Expand any enum to inspect all values.
 | `k_EMsgGCToClientGuildMembersDataUpdated` | 8747 |
 | `k_EMsgSignOutReportActivityMarkers` | 8748 |
 | `k_EMsgSignOutDiretideCandy` | 8749 |
-| `k_EMsgGCToClientPostGameItemAwardNotification` | 8750 |
 | `k_EMsgClientToGCGetOWMatchDetails` | 8751 |
 | `k_EMsgClientToGCGetOWMatchDetailsResponse` | 8752 |
 | `k_EMsgClientToGCSubmitOWConviction` | 8753 |

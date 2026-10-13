@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `connectionless_netmessages_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **3** (top-level: 3)
 - Enums: **0** (top-level: 0)
 
 ## Imports
 
 - `netmessages.proto`
+- `networkbasetypes.proto`
 
 ## Messages
 

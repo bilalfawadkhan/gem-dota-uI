@@ -1,4 +1,5 @@
 from . import networkbasetypes_pb2 as _networkbasetypes_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf.internal import python_message as _python_message
@@ -61,6 +62,8 @@ class EBaseUserMessages(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     UM_PlayResponseConditional: _ClassVar[EBaseUserMessages]
     UM_UserSentBugBug: _ClassVar[EBaseUserMessages]
     UM_UsageReport: _ClassVar[EBaseUserMessages]
+    UM_RemoteServerCommand: _ClassVar[EBaseUserMessages]
+    UM_RemoteServerResponse: _ClassVar[EBaseUserMessages]
     UM_MAX_BASE: _ClassVar[EBaseUserMessages]
 
 class EBaseEntityMessages(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
@@ -179,6 +182,8 @@ UM_NotifyResponseFound: EBaseUserMessages
 UM_PlayResponseConditional: EBaseUserMessages
 UM_UserSentBugBug: EBaseUserMessages
 UM_UsageReport: EBaseUserMessages
+UM_RemoteServerCommand: EBaseUserMessages
+UM_RemoteServerResponse: EBaseUserMessages
 UM_MAX_BASE: EBaseUserMessages
 EM_PlayJingle: EBaseEntityMessages
 EM_ScreenOverlay: EBaseEntityMessages
@@ -237,10 +242,12 @@ VR_HAND_HAPTIC_PULSE_MEDIUM: EHapticPulseType
 VR_HAND_HAPTIC_PULSE_STRONG: EHapticPulseType
 
 class CUserMessageAchievementEvent(_message.Message):
-    __slots__ = ("achievement",)
+    __slots__ = ("achievement", "count")
     ACHIEVEMENT_FIELD_NUMBER: _ClassVar[int]
+    COUNT_FIELD_NUMBER: _ClassVar[int]
     achievement: int
-    def __init__(self, achievement: _Optional[int] = ...) -> None: ...
+    count: int
+    def __init__(self, achievement: _Optional[int] = ..., count: _Optional[int] = ...) -> None: ...
 
 class CUserMessageCloseCaptionPlaceholder(_message.Message):
     __slots__ = ("string", "duration", "from_player", "ent_index")
@@ -331,17 +338,19 @@ class CUserMessageScreenTilt(_message.Message):
     def __init__(self, command: _Optional[int] = ..., ease_in_out: bool = ..., angle: _Optional[_Union[_networkbasetypes_pb2.CMsgVector, _Mapping]] = ..., duration: _Optional[float] = ..., time: _Optional[float] = ...) -> None: ...
 
 class CUserMessageSayText(_message.Message):
-    __slots__ = ("playerindex", "text", "chat")
+    __slots__ = ("playerindex", "text", "chat", "textallchat")
     PLAYERINDEX_FIELD_NUMBER: _ClassVar[int]
     TEXT_FIELD_NUMBER: _ClassVar[int]
     CHAT_FIELD_NUMBER: _ClassVar[int]
+    TEXTALLCHAT_FIELD_NUMBER: _ClassVar[int]
     playerindex: int
     text: str
     chat: bool
-    def __init__(self, playerindex: _Optional[int] = ..., text: _Optional[str] = ..., chat: bool = ...) -> None: ...
+    textallchat: bool
+    def __init__(self, playerindex: _Optional[int] = ..., text: _Optional[str] = ..., chat: bool = ..., textallchat: bool = ...) -> None: ...
 
 class CUserMessageSayText2(_message.Message):
-    __slots__ = ("entityindex", "chat", "messagename", "param1", "param2", "param3", "param4")
+    __slots__ = ("entityindex", "chat", "messagename", "param1", "param2", "param3", "param4", "textallchat")
     ENTITYINDEX_FIELD_NUMBER: _ClassVar[int]
     CHAT_FIELD_NUMBER: _ClassVar[int]
     MESSAGENAME_FIELD_NUMBER: _ClassVar[int]
@@ -349,6 +358,7 @@ class CUserMessageSayText2(_message.Message):
     PARAM2_FIELD_NUMBER: _ClassVar[int]
     PARAM3_FIELD_NUMBER: _ClassVar[int]
     PARAM4_FIELD_NUMBER: _ClassVar[int]
+    TEXTALLCHAT_FIELD_NUMBER: _ClassVar[int]
     entityindex: int
     chat: bool
     messagename: str
@@ -356,7 +366,8 @@ class CUserMessageSayText2(_message.Message):
     param2: str
     param3: str
     param4: str
-    def __init__(self, entityindex: _Optional[int] = ..., chat: bool = ..., messagename: _Optional[str] = ..., param1: _Optional[str] = ..., param2: _Optional[str] = ..., param3: _Optional[str] = ..., param4: _Optional[str] = ...) -> None: ...
+    textallchat: bool
+    def __init__(self, entityindex: _Optional[int] = ..., chat: bool = ..., messagename: _Optional[str] = ..., param1: _Optional[str] = ..., param2: _Optional[str] = ..., param3: _Optional[str] = ..., param4: _Optional[str] = ..., textallchat: bool = ...) -> None: ...
 
 class CUserMessageHudMsg(_message.Message):
     __slots__ = ("channel", "x", "y", "color1", "color2", "effect", "message")
@@ -1431,3 +1442,45 @@ class CUserMessage_UsageReport(_message.Message):
     USAGE_FIELD_NUMBER: _ClassVar[int]
     usage: str
     def __init__(self, usage: _Optional[str] = ...) -> None: ...
+
+class CUserMessage_RemoteServerCommand(_message.Message):
+    __slots__ = ("ecommand", "convar", "value", "command_str", "command_args")
+    class ECommand(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        ECommandChangeConVar: _ClassVar[CUserMessage_RemoteServerCommand.ECommand]
+        ECommandRunCommand: _ClassVar[CUserMessage_RemoteServerCommand.ECommand]
+    ECommandChangeConVar: CUserMessage_RemoteServerCommand.ECommand
+    ECommandRunCommand: CUserMessage_RemoteServerCommand.ECommand
+    ECOMMAND_FIELD_NUMBER: _ClassVar[int]
+    CONVAR_FIELD_NUMBER: _ClassVar[int]
+    VALUE_FIELD_NUMBER: _ClassVar[int]
+    COMMAND_STR_FIELD_NUMBER: _ClassVar[int]
+    COMMAND_ARGS_FIELD_NUMBER: _ClassVar[int]
+    ecommand: CUserMessage_RemoteServerCommand.ECommand
+    convar: str
+    value: str
+    command_str: str
+    command_args: str
+    def __init__(self, ecommand: _Optional[_Union[CUserMessage_RemoteServerCommand.ECommand, str]] = ..., convar: _Optional[str] = ..., value: _Optional[str] = ..., command_str: _Optional[str] = ..., command_args: _Optional[str] = ...) -> None: ...
+
+class CUserMessageRemoteServerResponse(_message.Message):
+    __slots__ = ("command_result", "request", "results")
+    class ECommandResult(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        EResultSuccess: _ClassVar[CUserMessageRemoteServerResponse.ECommandResult]
+        EResultServerDoesntAllow: _ClassVar[CUserMessageRemoteServerResponse.ECommandResult]
+        EResultClientNotAuthenticated: _ClassVar[CUserMessageRemoteServerResponse.ECommandResult]
+        EResultClientNotAllowed: _ClassVar[CUserMessageRemoteServerResponse.ECommandResult]
+        EResultCommandNotAllowed: _ClassVar[CUserMessageRemoteServerResponse.ECommandResult]
+    EResultSuccess: CUserMessageRemoteServerResponse.ECommandResult
+    EResultServerDoesntAllow: CUserMessageRemoteServerResponse.ECommandResult
+    EResultClientNotAuthenticated: CUserMessageRemoteServerResponse.ECommandResult
+    EResultClientNotAllowed: CUserMessageRemoteServerResponse.ECommandResult
+    EResultCommandNotAllowed: CUserMessageRemoteServerResponse.ECommandResult
+    COMMAND_RESULT_FIELD_NUMBER: _ClassVar[int]
+    REQUEST_FIELD_NUMBER: _ClassVar[int]
+    RESULTS_FIELD_NUMBER: _ClassVar[int]
+    command_result: CUserMessageRemoteServerResponse.ECommandResult
+    request: str
+    results: str
+    def __init__(self, command_result: _Optional[_Union[CUserMessageRemoteServerResponse.ECommandResult, str]] = ..., request: _Optional[str] = ..., results: _Optional[str] = ...) -> None: ...

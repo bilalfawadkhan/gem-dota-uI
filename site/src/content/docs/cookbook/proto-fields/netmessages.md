@@ -3,14 +3,15 @@
 **Used by gem**: gem decodes messages from this file. See [The Proto Files gem Uses](../proto-files.md) for what it reads and why.
 
 - Module: `netmessages_pb2`
-- Imports: **2**
-- Messages: **74** (top-level: 63)
+- Imports: **3**
+- Messages: **77** (top-level: 65)
 - Enums: **12** (top-level: 11)
 
 ## Imports
 
 - `networkbasetypes.proto`
 - `source2_steam_stats.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -151,7 +152,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `slot` | `int32` | `optional` |  |  |
+| 1 | `slot` | `int32` | `optional` |  | boxed_type = "CSplitScreenSlot" |
 
 </details>
 
@@ -216,7 +217,7 @@ Expand any message to inspect all fields.
 | 2 | `vprof_report` | `.CMsgSource2VProfLiteReport` | `optional` |  |  |
 | 3 | `downstream_flow` | `.CMsgSource2NetworkFlowQuality` | `optional` |  |  |
 | 4 | `upstream_flow` | `.CMsgSource2NetworkFlowQuality` | `optional` |  |  |
-| 5 | `perf_samples` | `.CMsgSource2PerfIntervalSample` | `repeated` |  |  |
+| 5 | `perf_samples` | `.CMsgSource2FramePerfSample` | `repeated` |  |  |
 
 </details>
 
@@ -235,7 +236,7 @@ Expand any message to inspect all fields.
 | 6 | `c_os` | `int32` | `optional` |  |  |
 | 10 | `max_clients` | `int32` | `optional` |  |  |
 | 11 | `max_classes` | `int32` | `optional` |  |  |
-| 12 | `player_slot` | `int32` | `optional` |  | default = -1 |
+| 12 | `player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 13 | `tick_interval` | `float` | `optional` |  |  |
 | 14 | `game_dir` | `string` | `optional` |  |  |
 | 15 | `map_name` | `string` | `optional` |  |  |
@@ -338,7 +339,7 @@ Expand any message to inspect all fields.
 | 4 | `volume` | `uint32` | `optional` |  |  |
 | 5 | `delay_value` | `float` | `optional` |  |  |
 | 6 | `sequence_number` | `int32` | `optional` |  |  |
-| 7 | `entity_index` | `int32` | `optional` |  | default = -1 |
+| 7 | `entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 8 | `channel` | `int32` | `optional` |  |  |
 | 9 | `pitch` | `int32` | `optional` |  |  |
 | 10 | `flags` | `int32` | `optional` |  |  |
@@ -375,8 +376,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `entity_index` | `int32` | `optional` |  | default = -1 |
-| 2 | `slot` | `int32` | `optional` |  | default = -1 |
+| 1 | `entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
+| 2 | `slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 
 </details>
 
@@ -415,7 +416,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `pos` | `.CMsgVector` | `optional` |  |  |
 | 2 | `decal_texture_index` | `int32` | `optional` |  |  |
-| 3 | `entity_index` | `int32` | `optional` |  | default = -1 |
+| 3 | `entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 4 | `model_index` | `int32` | `optional` |  |  |
 | 5 | `low_priority` | `bool` | `optional` |  |  |
 
@@ -430,8 +431,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `type` | `.ESplitScreenMessageType` | `optional` |  | default = MSG_SPLITSCREEN_ADDUSER |
-| 2 | `slot` | `int32` | `optional` |  |  |
-| 3 | `player_index` | `int32` | `optional` |  | default = -1 |
+| 2 | `slot` | `int32` | `optional` |  | boxed_type = "CSplitScreenSlot" |
+| 3 | `player_index` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 
 </details>
 
@@ -671,7 +672,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CSVCMsg_VoiceData</code> — fields: 8; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CSVCMsg_VoiceData</code> — fields: 9; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -679,13 +680,27 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `audio` | `.CMsgVoiceAudio` | `optional` |  |  |
-| 2 | `client_deprecated` | `int32` | `optional` |  | default = -1 |
+| 2 | `client_deprecated` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 3 | `proximity` | `bool` | `optional` |  |  |
 | 4 | `xuid` | `fixed64` | `optional` |  |  |
 | 5 | `audible_mask` | `int32` | `optional` |  |  |
 | 6 | `tick` | `uint32` | `optional` |  |  |
 | 7 | `passthrough` | `int32` | `optional` |  |  |
-| 8 | `entity` | `int32` | `optional` |  | default = -1 |
+| 8 | `entity` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
+| 9 | `caster` | `bool` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>CSVCMsg_EncryptedData</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `encrypted` | `bytes` | `optional` |  |  |
+| 2 | `key_type` | `int32` | `optional` |  |  |
 
 </details>
 
@@ -791,7 +806,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_slot` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 2 | `steamid` | `fixed64` | `optional` |  |  |
 | 3 | `ipc` | `.CMsgIPCAddress` | `optional` |  |  |
 | 4 | `they_hear_you` | `bool` | `optional` |  |  |
@@ -826,7 +841,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>ProtoFlattenedSerializerField_t</code> — fields: 12; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>ProtoFlattenedSerializerField_t</code> — fields: 13; oneofs: 0; nested messages: 2; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -845,6 +860,7 @@ Expand any message to inspect all fields.
 | 10 | `var_encoder_sym` | `int32` | `optional` |  |  |
 | 11 | `polymorphic_types` | `.ProtoFlattenedSerializerField_t.polymorphic_field_t` | `repeated` |  |  |
 | 12 | `var_serializer_sym` | `int32` | `optional` |  |  |
+| 13 | `var_enum_info` | `.ProtoFlattenedSerializerField_t.proto_enum_info_t` | `optional` |  |  |
 
 </details>
 
@@ -858,6 +874,18 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `polymorphic_field_serializer_name_sym` | `int32` | `optional` |  |  |
 | 2 | `polymorphic_field_serializer_version` | `int32` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>ProtoFlattenedSerializerField_t.proto_enum_info_t</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: `ProtoFlattenedSerializerField_t`
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `is_signed_enum` | `bool` | `optional` |  |  |
 
 </details>
 
@@ -876,7 +904,24 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CSVCMsg_FlattenedSerializer</code> — fields: 3; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>ProtoCoordSizeParams_t</code> — fields: 6; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `coord_integer_bits` | `int32` | `optional` |  |  |
+| 2 | `coord_fractional_bits` | `int32` | `optional` |  |  |
+| 3 | `coord_integer_bits_mp` | `int32` | `optional` |  |  |
+| 4 | `coord_fractional_bits_mp` | `int32` | `optional` |  |  |
+| 5 | `normal_fractional_bits` | `int32` | `optional` |  |  |
+| 6 | `angle_bits` | `int32` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>CSVCMsg_FlattenedSerializer</code> — fields: 4; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -886,6 +931,7 @@ Expand any message to inspect all fields.
 | 1 | `serializers` | `.ProtoFlattenedSerializer_t` | `repeated` |  |  |
 | 2 | `symbols` | `string` | `repeated` |  |  |
 | 3 | `fields` | `.ProtoFlattenedSerializerField_t` | `repeated` |  |  |
+| 4 | `coord_size_params` | `.ProtoCoordSizeParams_t` | `optional` |  |  |
 
 </details>
 
@@ -1020,7 +1066,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `delay` | `int32` | `optional` |  |  |
-| 2 | `primary_target` | `int32` | `optional` |  | default = -1 |
+| 2 | `primary_target` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 3 | `replay_stop_at` | `int32` | `optional` |  |  |
 | 4 | `replay_start_at` | `int32` | `optional` |  |  |
 | 5 | `replay_slowdown_begin` | `int32` | `optional` |  |  |
@@ -1041,7 +1087,7 @@ Expand any message to inspect all fields.
 | 1 | `request` | `int32` | `optional` |  |  |
 | 2 | `slowdown_length` | `float` | `optional` |  |  |
 | 3 | `slowdown_rate` | `float` | `optional` |  |  |
-| 4 | `primary_target` | `int32` | `optional` |  | default = -1 |
+| 4 | `primary_target` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 5 | `event_time` | `float` | `optional` |  |  |
 
 </details>
@@ -1091,7 +1137,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgServerUserCmd</code> — fields: 6; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CMsgServerUserCmd</code> — fields: 7; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -1100,10 +1146,11 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `data` | `bytes` | `optional` |  |  |
 | 2 | `cmd_number` | `int32` | `optional` |  |  |
-| 3 | `player_slot` | `int32` | `optional` |  | default = -1 |
+| 3 | `player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 4 | `server_tick_executed` | `int32` | `optional` |  |  |
 | 5 | `client_tick` | `int32` | `optional` |  |  |
 | 6 | `delta_data` | `bytes` | `optional` |  |  |
+| 7 | `delta_processed` | `bool` | `optional` |  |  |
 
 </details>
 
@@ -1127,7 +1174,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `predicted_by_player_slot` | `int32` | `optional` |  | default = -1 |
+| 1 | `predicted_by_player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 2 | `message_type_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1161,7 +1208,7 @@ Expand any enum to inspect all values.
 </details>
 
 <details>
-<summary><code>SVC_Messages</code> — values: 31</summary>
+<summary><code>SVC_Messages</code> — values: 33</summary>
 
 - Parent: *(top-level)*
 
@@ -1198,6 +1245,8 @@ Expand any enum to inspect all values.
 | `svc_HltvFixupOperatorStatus` | 75 |
 | `svc_UserCmds` | 76 |
 | `svc_NextMsgPredicted` | 77 |
+| `svc_EncryptedData` | 78 |
+| `svc_UserCmdKeyframe` | 79 |
 
 </details>
 

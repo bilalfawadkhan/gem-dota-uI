@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_match_management_pb2`
-- Imports: **5**
+- Imports: **6**
 - Messages: **62** (top-level: 57)
 - Enums: **1** (top-level: 1)
 
@@ -14,6 +14,7 @@
 - `dota_client_enums.proto`
 - `base_gcmessages.proto`
 - `dota_gcmessages_common_lobby.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -170,7 +171,7 @@ Expand any message to inspect all fields.
 | 11 | `fill_with_bots` | `bool` | `optional` |  |  |
 | 13 | `allow_spectating` | `bool` | `optional` |  |  |
 | 15 | `pass_key` | `string` | `optional` |  |  |
-| 16 | `leagueid` | `uint32` | `optional` |  |  |
+| 16 | `leagueid` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 17 | `penalty_level_radiant` | `uint32` | `optional` |  |  |
 | 18 | `penalty_level_dire` | `uint32` | `optional` |  |  |
 | 20 | `series_type` | `uint32` | `optional` |  |  |
@@ -188,7 +189,7 @@ Expand any message to inspect all fields.
 | 33 | `visibility` | `.DOTALobbyVisibility` | `optional` |  | default = DOTALobbyVisibility_Public |
 | 34 | `custom_game_crc` | `fixed64` | `optional` |  |  |
 | 37 | `custom_game_timestamp` | `fixed32` | `optional` |  |  |
-| 38 | `previous_match_override` | `uint64` | `optional` |  |  |
+| 38 | `previous_match_override` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 42 | `pause_setting` | `.LobbyDotaPauseSetting` | `optional` |  | default = LobbyDotaPauseSetting_Unlimited |
 | 43 | `bot_difficulty_dire` | `.DOTABotDifficulty` | `optional` |  | default = BOT_DIFFICULTY_PASSIVE |
 | 44 | `bot_radiant` | `uint64` | `optional` |  |  |
@@ -196,8 +197,8 @@ Expand any message to inspect all fields.
 | 46 | `selection_priority_rules` | `.DOTASelectionPriorityRules` | `optional` |  | default = k_DOTASelectionPriorityRules_Manual |
 | 47 | `custom_game_penalties` | `bool` | `optional` |  |  |
 | 48 | `lan_host_ping_location` | `string` | `optional` |  |  |
-| 49 | `league_node_id` | `uint32` | `optional` |  |  |
-| 50 | `requested_hero_ids` | `int32` | `repeated` |  |  |
+| 49 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 50 | `requested_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 | 51 | `scenario_save` | `.CMsgLobbyScenarioSave` | `optional` |  |  |
 | 52 | `ability_draft_specific_details` | `.CMsgPracticeLobbySetDetails.AbilityDraftSpecificDetails` | `optional` |  |  |
 | 53 | `do_player_draft` | `bool` | `optional` |  |  |
@@ -334,7 +335,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgPracticeLobbyLaunch</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CMsgPracticeLobbyLaunch</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -342,6 +343,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 5 | `client_version` | `uint32` | `optional` |  |  |
+| 6 | `nonce` | `fixed64` | `optional` |  |  |
 
 </details>
 
@@ -391,7 +393,7 @@ Expand any message to inspect all fields.
 | 15 | `custom_map_name` | `string` | `optional` |  |  |
 | 16 | `max_player_count` | `uint32` | `optional` |  |  |
 | 17 | `server_region` | `uint32` | `optional` |  |  |
-| 19 | `league_id` | `uint32` | `optional` |  |  |
+| 19 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 20 | `lan_host_ping_location` | `string` | `optional` |  |  |
 | 21 | `min_player_count` | `uint32` | `optional` |  |  |
 | 22 | `penalties_enabled` | `bool` | `optional` |  |  |
@@ -746,11 +748,11 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `language` | `uint32` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 3 | `server_steam_id` | `fixed64` | `optional` |  |  |
 | 4 | `stream_url` | `string` | `optional` |  |  |
 | 5 | `stream_name` | `string` | `optional` |  |  |
-| 6 | `league_id` | `uint32` | `optional` |  |  |
+| 6 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 7 | `series_type` | `uint32` | `optional` |  |  |
 | 8 | `series_game` | `uint32` | `optional` |  |  |
 | 9 | `radiant_team` | `.CMsgSpectatorLobbyGameDetails.Team` | `optional` |  |  |

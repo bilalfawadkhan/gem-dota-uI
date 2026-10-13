@@ -1,4 +1,5 @@
 from . import steammessages_pb2 as _steammessages_pb2
+from . import event_gcmessages_common_pb2 as _event_gcmessages_common_pb2
 from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
 from . import dota_gcmessages_common_pb2 as _dota_gcmessages_common_pb2
@@ -9,6 +10,7 @@ from . import dota_gcmessages_common_match_management_pb2 as _dota_gcmessages_co
 from . import base_gcmessages_pb2 as _base_gcmessages_pb2
 from . import econ_gcmessages_pb2 as _econ_gcmessages_pb2
 from . import valveextensions_pb2 as _valveextensions_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -1004,6 +1006,20 @@ class CMsgGCLobbyUpdateBroadcastChannelInfo(_message.Message):
     language_code: str
     def __init__(self, channel_id: _Optional[int] = ..., country_code: _Optional[str] = ..., description: _Optional[str] = ..., language_code: _Optional[str] = ...) -> None: ...
 
+class CMsgClaimEventActionData_ItemGift(_message.Message):
+    __slots__ = ("give_to_account_id", "gift_message")
+    GIVE_TO_ACCOUNT_ID_FIELD_NUMBER: _ClassVar[int]
+    GIFT_MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    give_to_account_id: int
+    gift_message: str
+    def __init__(self, give_to_account_id: _Optional[int] = ..., gift_message: _Optional[str] = ...) -> None: ...
+
+class CMsgClaimEventActionData_ItemChoice(_message.Message):
+    __slots__ = ("grant_item_choice_item_def",)
+    GRANT_ITEM_CHOICE_ITEM_DEF_FIELD_NUMBER: _ClassVar[int]
+    grant_item_choice_item_def: int
+    def __init__(self, grant_item_choice_item_def: _Optional[int] = ...) -> None: ...
+
 class CMsgDOTAClaimEventActionData(_message.Message):
     __slots__ = ("grant_item_gift_data", "grant_item_choice_item_def")
     class GrantItemGiftData(_message.Message):
@@ -1031,9 +1047,9 @@ class CMsgDOTAClaimEventAction(_message.Message):
     action_id: int
     quantity: int
     data: CMsgDOTAClaimEventActionData
-    score_mode: _dota_shared_enums_pb2.EEventActionScoreMode
+    score_mode: _event_gcmessages_common_pb2.EEventActionScoreMode
     suppress_rewards: bool
-    def __init__(self, event_id: _Optional[int] = ..., action_id: _Optional[int] = ..., quantity: _Optional[int] = ..., data: _Optional[_Union[CMsgDOTAClaimEventActionData, _Mapping]] = ..., score_mode: _Optional[_Union[_dota_shared_enums_pb2.EEventActionScoreMode, str]] = ..., suppress_rewards: bool = ...) -> None: ...
+    def __init__(self, event_id: _Optional[int] = ..., action_id: _Optional[int] = ..., quantity: _Optional[int] = ..., data: _Optional[_Union[CMsgDOTAClaimEventActionData, _Mapping]] = ..., score_mode: _Optional[_Union[_event_gcmessages_common_pb2.EEventActionScoreMode, str]] = ..., suppress_rewards: bool = ...) -> None: ...
 
 class CMsgClientToGCClaimEventActionUsingItem(_message.Message):
     __slots__ = ("event_id", "action_id", "item_id", "quantity", "suppress_rewards")
@@ -3868,22 +3884,6 @@ class CMsgGCToClientRecordContestVoteResponse(_message.Message):
     eresult: CMsgGCToClientRecordContestVoteResponse.EResult
     def __init__(self, eresult: _Optional[_Union[CMsgGCToClientRecordContestVoteResponse.EResult, str]] = ...) -> None: ...
 
-class CMsgDevGrantEventPoints(_message.Message):
-    __slots__ = ("event_id", "event_points", "premium_points")
-    EVENT_ID_FIELD_NUMBER: _ClassVar[int]
-    EVENT_POINTS_FIELD_NUMBER: _ClassVar[int]
-    PREMIUM_POINTS_FIELD_NUMBER: _ClassVar[int]
-    event_id: _events_pb2.EEvent
-    event_points: int
-    premium_points: int
-    def __init__(self, event_id: _Optional[_Union[_events_pb2.EEvent, str]] = ..., event_points: _Optional[int] = ..., premium_points: _Optional[int] = ...) -> None: ...
-
-class CMsgDevGrantEventPointsResponse(_message.Message):
-    __slots__ = ("result",)
-    RESULT_FIELD_NUMBER: _ClassVar[int]
-    result: EDevEventRequestResult
-    def __init__(self, result: _Optional[_Union[EDevEventRequestResult, str]] = ...) -> None: ...
-
 class CMsgDevGrantEventAction(_message.Message):
     __slots__ = ("event_id", "action_id", "action_score")
     EVENT_ID_FIELD_NUMBER: _ClassVar[int]
@@ -3913,30 +3913,6 @@ class CMsgDevDeleteEventActions(_message.Message):
     def __init__(self, event_id: _Optional[_Union[_events_pb2.EEvent, str]] = ..., start_action_id: _Optional[int] = ..., end_action_id: _Optional[int] = ..., remove_audit: bool = ...) -> None: ...
 
 class CMsgDevDeleteEventActionsResponse(_message.Message):
-    __slots__ = ("result",)
-    RESULT_FIELD_NUMBER: _ClassVar[int]
-    result: EDevEventRequestResult
-    def __init__(self, result: _Optional[_Union[EDevEventRequestResult, str]] = ...) -> None: ...
-
-class CMsgDevResetEventState(_message.Message):
-    __slots__ = ("event_id", "remove_audit")
-    EVENT_ID_FIELD_NUMBER: _ClassVar[int]
-    REMOVE_AUDIT_FIELD_NUMBER: _ClassVar[int]
-    event_id: _events_pb2.EEvent
-    remove_audit: bool
-    def __init__(self, event_id: _Optional[_Union[_events_pb2.EEvent, str]] = ..., remove_audit: bool = ...) -> None: ...
-
-class CMsgDevResetEventStateResponse(_message.Message):
-    __slots__ = ("result",)
-    RESULT_FIELD_NUMBER: _ClassVar[int]
-    result: EDevEventRequestResult
-    def __init__(self, result: _Optional[_Union[EDevEventRequestResult, str]] = ...) -> None: ...
-
-class CMsgDevReloadAllEvents(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class CMsgDevReloadAllEventsResponse(_message.Message):
     __slots__ = ("result",)
     RESULT_FIELD_NUMBER: _ClassVar[int]
     result: EDevEventRequestResult
@@ -4532,16 +4508,6 @@ class CMsgClientToGCRecalibrateMMRResponse(_message.Message):
     RESULT_FIELD_NUMBER: _ClassVar[int]
     result: CMsgClientToGCRecalibrateMMRResponse.EResponse
     def __init__(self, result: _Optional[_Union[CMsgClientToGCRecalibrateMMRResponse.EResponse, str]] = ...) -> None: ...
-
-class CMsgDOTAPostGameItemAwardNotification(_message.Message):
-    __slots__ = ("receiver_account_id", "item_def_index", "action_id")
-    RECEIVER_ACCOUNT_ID_FIELD_NUMBER: _ClassVar[int]
-    ITEM_DEF_INDEX_FIELD_NUMBER: _ClassVar[int]
-    ACTION_ID_FIELD_NUMBER: _ClassVar[int]
-    receiver_account_id: int
-    item_def_index: _containers.RepeatedScalarFieldContainer[int]
-    action_id: int
-    def __init__(self, receiver_account_id: _Optional[int] = ..., item_def_index: _Optional[_Iterable[int]] = ..., action_id: _Optional[int] = ...) -> None: ...
 
 class CMsgClientToGCGetOWMatchDetails(_message.Message):
     __slots__ = ()

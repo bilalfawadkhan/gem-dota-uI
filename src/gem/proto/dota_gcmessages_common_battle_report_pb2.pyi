@@ -6,6 +6,7 @@ from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
 from . import base_gcmessages_pb2 as _base_gcmessages_pb2
 from . import econ_gcmessages_pb2 as _econ_gcmessages_pb2
 from . import valveextensions_pb2 as _valveextensions_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor

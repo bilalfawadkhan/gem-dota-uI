@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_coaching_pb2`
-- Imports: **2**
+- Imports: **3**
 - Messages: **35** (top-level: 35)
 - Enums: **17** (top-level: 4)
 
@@ -11,6 +11,7 @@
 
 - `dota_shared_enums.proto`
 - `dota_gcmessages_common_lobby.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -24,7 +25,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `match_outcome` | `.EMatchOutcome` | `optional` |  | default = k_EMatchOutcome_Unknown |
 | 3 | `coached_team` | `uint32` | `optional` |  |  |
 | 4 | `start_time` | `fixed32` | `optional` |  |  |
@@ -56,7 +57,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `private_coaching_session_id` | `uint64` | `optional` |  |  |
+| 1 | `private_coaching_session_id` | `uint64` | `optional` |  | boxed_type = "PrivateCoachingSessionID_t" |
 | 2 | `requested_timestamp` | `fixed32` | `optional` |  |  |
 | 3 | `requested_language` | `uint32` | `optional` |  |  |
 | 4 | `coaching_session_state` | `.EPrivateCoachingSessionState` | `optional` |  | default = k_ePrivateCoachingSessionState_Invalid |
@@ -151,7 +152,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 
 </details>
 
@@ -176,7 +177,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `coach_account_id` | `uint32` | `optional` |  |  |
 | 3 | `rating` | `.ECoachTeammateRating` | `optional` |  | default = k_ECoachTeammateRating_None |
 | 4 | `reason` | `string` | `optional` |  |  |

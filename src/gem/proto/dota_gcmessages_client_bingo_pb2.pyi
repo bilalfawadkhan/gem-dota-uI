@@ -8,6 +8,7 @@ from . import base_gcmessages_pb2 as _base_gcmessages_pb2
 from . import econ_gcmessages_pb2 as _econ_gcmessages_pb2
 from . import dota_gcmessages_client_pb2 as _dota_gcmessages_client_pb2
 from . import valveextensions_pb2 as _valveextensions_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -82,9 +83,9 @@ class CMsgBingoUserData(_message.Message):
         def __init__(self, key: _Optional[int] = ..., value: _Optional[_Union[CMsgBingoTokens, _Mapping]] = ...) -> None: ...
     BINGO_CARDS_FIELD_NUMBER: _ClassVar[int]
     BINGO_TOKENS_FIELD_NUMBER: _ClassVar[int]
-    bingo_cards: _containers.RepeatedCompositeFieldContainer[CMsgBingoUserData.BingoCardsEntry]
-    bingo_tokens: _containers.RepeatedCompositeFieldContainer[CMsgBingoUserData.BingoTokensEntry]
-    def __init__(self, bingo_cards: _Optional[_Iterable[_Union[CMsgBingoUserData.BingoCardsEntry, _Mapping]]] = ..., bingo_tokens: _Optional[_Iterable[_Union[CMsgBingoUserData.BingoTokensEntry, _Mapping]]] = ...) -> None: ...
+    bingo_cards: _containers.MessageMap[int, CMsgBingoCard]
+    bingo_tokens: _containers.MessageMap[int, CMsgBingoTokens]
+    def __init__(self, bingo_cards: _Optional[_Mapping[int, CMsgBingoCard]] = ..., bingo_tokens: _Optional[_Mapping[int, CMsgBingoTokens]] = ...) -> None: ...
 
 class CMsgClientToGCBingoGetUserData(_message.Message):
     __slots__ = ("league_id",)

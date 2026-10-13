@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_common_league_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **37** (top-level: 17)
 - Enums: **2** (top-level: 2)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -24,12 +25,12 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
-| 3 | `node_group_id` | `uint32` | `optional` |  |  |
-| 4 | `winning_node_id` | `uint32` | `optional` |  |  |
-| 5 | `losing_node_id` | `uint32` | `optional` |  |  |
-| 6 | `incoming_node_id_1` | `uint32` | `optional` |  |  |
-| 7 | `incoming_node_id_2` | `uint32` | `optional` |  |  |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 3 | `node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
+| 4 | `winning_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 5 | `losing_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 6 | `incoming_node_id_1` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 7 | `incoming_node_id_2` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 8 | `node_type` | `.ELeagueNodeType` | `optional` |  | default = INVALID_NODE_TYPE |
 | 9 | `scheduled_time` | `uint32` | `optional` |  |  |
 | 10 | `series_id` | `uint32` | `optional` |  |  |
@@ -54,7 +55,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `winning_team_id` | `uint32` | `optional` |  |  |
 | 3 | `duration` | `uint32` | `optional` |  |  |
 
@@ -83,10 +84,10 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
-| 2 | `node_group_id` | `uint32` | `optional` |  |  |
-| 3 | `parent_node_group_id` | `uint32` | `optional` |  |  |
-| 4 | `incoming_node_group_ids` | `uint32` | `repeated` |  |  |
-| 5 | `advancing_node_group_id` | `uint32` | `optional` |  |  |
+| 2 | `node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
+| 3 | `parent_node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
+| 4 | `incoming_node_group_ids` | `uint32` | `repeated` |  | boxed_type = "LeagueNodeGroupID_t" |
+| 5 | `advancing_node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
 | 6 | `advancing_team_count` | `uint32` | `optional` |  |  |
 | 7 | `team_count` | `uint32` | `optional` |  |  |
 | 8 | `node_group_type` | `.ELeagueNodeGroupType` | `optional` |  | default = INVALID_GROUP_TYPE |
@@ -103,9 +104,9 @@ Expand any message to inspect all fields.
 | 19 | `region` | `.ELeagueRegion` | `optional` |  | default = LEAGUE_REGION_UNSET |
 | 20 | `start_time` | `uint32` | `optional` |  |  |
 | 21 | `end_time` | `uint32` | `optional` |  |  |
-| 22 | `secondary_advancing_node_group_id` | `uint32` | `optional` |  |  |
+| 22 | `secondary_advancing_node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
 | 23 | `secondary_advancing_team_count` | `uint32` | `optional` |  |  |
-| 24 | `tertiary_advancing_node_group_id` | `uint32` | `optional` |  |  |
+| 24 | `tertiary_advancing_node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
 | 25 | `tertiary_advancing_team_count` | `uint32` | `optional` |  |  |
 | 26 | `elimination_dpc_points` | `uint32` | `optional` |  |  |
 | 27 | `win_loss_limit` | `uint32` | `optional` |  |  |
@@ -165,7 +166,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `tier` | `.ELeagueTier` | `optional` |  | default = LEAGUE_TIER_UNSET |
 | 4 | `region` | `.ELeagueRegion` | `optional` |  | default = LEAGUE_REGION_UNSET |
@@ -204,7 +205,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `sales_stop_timestamp` | `uint32` | `optional` |  |  |
 | 3 | `revenue_pct` | `uint32` | `optional` |  |  |
 | 4 | `revenue_cents_per_sale` | `uint32` | `optional` |  |  |
@@ -254,7 +255,7 @@ Expand any message to inspect all fields.
 | 1 | `series_id` | `uint32` | `optional` |  |  |
 | 2 | `series_type` | `uint32` | `optional` |  |  |
 | 3 | `start_time` | `uint32` | `optional` |  |  |
-| 4 | `match_ids` | `uint64` | `repeated` |  |  |
+| 4 | `match_ids` | `uint64` | `repeated` |  | boxed_type = "MatchID_t" |
 | 5 | `team_id_1` | `uint32` | `optional` |  |  |
 | 6 | `team_id_2` | `uint32` | `optional` |  |  |
 
@@ -294,7 +295,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `tier` | `.ELeagueTier` | `optional` |  | default = LEAGUE_TIER_UNSET |
 | 4 | `region` | `.ELeagueRegion` | `optional` |  | default = LEAGUE_REGION_UNSET |
@@ -338,7 +339,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `server_steam_id` | `uint64` | `optional` |  |  |
 | 3 | `radiant_name` | `string` | `optional` |  |  |
 | 4 | `radiant_logo` | `uint64` | `optional` |  |  |
@@ -348,9 +349,9 @@ Expand any message to inspect all fields.
 | 8 | `spectators` | `uint32` | `optional` |  |  |
 | 9 | `radiant_team_id` | `uint32` | `optional` |  |  |
 | 10 | `dire_team_id` | `uint32` | `optional` |  |  |
-| 11 | `league_node_id` | `uint32` | `optional` |  |  |
+| 11 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 12 | `series_id` | `uint32` | `optional` |  |  |
-| 13 | `match_id` | `uint64` | `optional` |  |  |
+| 13 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 
 </details>
 
@@ -413,7 +414,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 
 </details>
 
@@ -437,7 +438,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 2 | `node_name` | `string` | `optional` |  |  |
 | 3 | `node_group_name` | `string` | `optional` |  |  |
 | 4 | `team_id_1` | `uint32` | `optional` |  |  |
@@ -465,11 +466,11 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `node_id` | `uint32` | `optional` |  |  |
-| 2 | `winning_node_id` | `uint32` | `optional` |  |  |
-| 3 | `losing_node_id` | `uint32` | `optional` |  |  |
-| 4 | `incoming_node_id_1` | `uint32` | `optional` |  |  |
-| 5 | `incoming_node_id_2` | `uint32` | `optional` |  |  |
+| 1 | `node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 2 | `winning_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 3 | `losing_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 4 | `incoming_node_id_1` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
+| 5 | `incoming_node_id_2` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 6 | `team_id_1` | `uint32` | `optional` |  |  |
 | 7 | `team_id_2` | `uint32` | `optional` |  |  |
 | 8 | `team_1_name` | `string` | `optional` |  |  |
@@ -481,7 +482,7 @@ Expand any message to inspect all fields.
 | 14 | `has_started` | `bool` | `optional` |  |  |
 | 15 | `is_completed` | `bool` | `optional` |  |  |
 | 16 | `scheduled_time` | `uint32` | `optional` |  |  |
-| 17 | `match_ids` | `uint64` | `repeated` |  |  |
+| 17 | `match_ids` | `uint64` | `repeated` |  | boxed_type = "MatchID_t" |
 
 </details>
 
@@ -540,7 +541,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `standing` | `uint32` | `optional` |  |  |
 | 3 | `points` | `uint32` | `optional` |  |  |
 | 4 | `earnings` | `uint32` | `optional` |  |  |
@@ -573,7 +574,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `timestamp` | `uint32` | `optional` |  |  |
-| 2 | `league_id` | `uint32` | `optional` |  |  |
+| 2 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 3 | `standing` | `uint32` | `optional` |  |  |
 | 4 | `points` | `uint32` | `optional` |  |  |
 | 5 | `earnings` | `uint32` | `optional` |  |  |

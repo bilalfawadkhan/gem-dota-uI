@@ -3,8 +3,8 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `dota_gcmessages_common_overworld_pb2`
-- Imports: **5**
-- Messages: **68** (top-level: 62)
+- Imports: **6**
+- Messages: **67** (top-level: 62)
 - Enums: **26** (top-level: 4)
 
 ## Imports
@@ -14,6 +14,7 @@
 - `dota_gcmessages_common.proto`
 - `dota_gcmessages_common_survivors.proto`
 - `gcsdk_gcmessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -27,7 +28,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `token_id` | `uint32` | `optional` |  |  |
+| 1 | `token_id` | `uint32` | `optional` |  | boxed_type = "OverworldTokenID_t" |
 | 2 | `token_count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -104,7 +105,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_ids` | `int32` | `repeated` |  |  |
+| 1 | `hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -156,7 +157,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 | 2 | `node_state` | `.EOverworldNodeState` | `optional` |  | default = k_eOverworldNodeState_Invalid |
 | 3 | `node_encounter_data` | `.CMsgOverworldEncounterData` | `optional` |  |  |
 
@@ -170,7 +171,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `path_id` | `uint32` | `optional` |  |  |
+| 1 | `path_id` | `uint32` | `optional` |  | boxed_type = "OverworldPathID_t" |
 | 2 | `path_cost` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
 | 3 | `path_state` | `.EOverworldPathState` | `optional` |  | default = k_eOverworldPathState_Invalid |
 
@@ -196,7 +197,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 | 2 | `currency_amount` | `uint32` | `optional` |  |  |
 | 3 | `custom_data` | `.CMsgOverworldMinigameCustomData` | `optional` |  |  |
 
@@ -210,7 +211,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `fortune` | `uint32` | `optional` |  |  |
+| 1 | `fortune` | `uint32` | `optional` |  | boxed_type = "OverworldTarotCardID_t" |
 | 4 | `timestamp` | `uint32` | `optional` |  |  |
 | 5 | `times_completed` | `uint32` | `optional` |  |  |
 | 7 | `reward_claimed` | `bool` | `optional` |  |  |
@@ -227,7 +228,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `fortune` | `uint32` | `optional` |  |  |
+| 1 | `fortune` | `uint32` | `optional` |  | boxed_type = "OverworldTarotCardID_t" |
 | 2 | `count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -246,7 +247,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgOverworldUserData</code> — fields: 8; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgOverworldUserData</code> — fields: 8; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -256,24 +257,11 @@ Expand any message to inspect all fields.
 | 1 | `token_inventory` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
 | 2 | `overworld_nodes` | `.CMsgOverworldNode` | `repeated` |  |  |
 | 3 | `overworld_paths` | `.CMsgOverworldPath` | `repeated` |  |  |
-| 4 | `current_node_id` | `uint32` | `optional` |  |  |
-| 5 | `minigame_data` | `.CMsgOverworldUserData.MinigameDataEntry` | `repeated` |  |  |
+| 4 | `current_node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
+| 5 | `minigame_data` | `map<uint32, .CMsgOverworldMinigameUserData>` | `unlabeled` |  | map field |
 | 6 | `current_fortune` | `.CMsgOverworldFortune` | `optional` |  |  |
-| 7 | `last_related_hero_id` | `int32` | `optional` |  |  |
+| 7 | `last_related_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 8 | `overworld_version` | `uint32` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgOverworldUserData.MinigameDataEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgOverworldUserData`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgOverworldMinigameUserData` | `optional` |  |  |
 
 </details>
 
@@ -297,9 +285,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_slot` | `uint32` | `optional` |  |  |
+| 1 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 2 | `tokens` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
-| 3 | `overworld_id` | `uint32` | `optional` |  |  |
+| 3 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -311,7 +299,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -336,7 +324,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 | 2 | `user_data` | `.CMsgOverworldUserData` | `optional` |  |  |
 
 </details>
@@ -349,8 +337,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `path_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `path_id` | `uint32` | `optional` |  | boxed_type = "OverworldPathID_t" |
 | 3 | `use_path_unlocker` | `bool` | `optional` |  |  |
 | 4 | `dev_ignore_release_schedule` | `bool` | `optional` |  |  |
 
@@ -377,7 +365,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `token_id` | `uint32` | `optional` |  |  |
+| 1 | `token_id` | `uint32` | `optional` |  | boxed_type = "OverworldTokenID_t " |
 | 2 | `choice` | `uint32` | `optional` |  |  |
 
 </details>
@@ -390,10 +378,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 | 3 | `reward_data` | `uint32` | `optional` |  |  |
-| 4 | `periodic_resource_id` | `uint32` | `optional` |  |  |
+| 4 | `periodic_resource_id` | `uint32` | `optional` |  | boxed_type = "PeriodicResourceID_t" |
 | 5 | `extra_reward_data` | `.CMsgOverworldEncounterData` | `optional` |  |  |
 | 6 | `leaderboard_data` | `uint32` | `optional` |  |  |
 | 7 | `leaderboard_index` | `uint32` | `optional` |  |  |
@@ -423,8 +411,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 
 </details>
 
@@ -448,8 +436,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 
 </details>
 
@@ -473,11 +461,11 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 | 2 | `token_offer` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
 | 3 | `token_request` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
 | 4 | `recipe` | `uint32` | `optional` |  |  |
-| 5 | `encounter_id` | `uint32` | `optional` |  |  |
+| 5 | `encounter_id` | `uint32` | `optional` |  | boxed_type = "OverworldEncounterID_t" |
 
 </details>
 
@@ -502,10 +490,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 | 2 | `token_gift` | `.CMsgOverworldTokenCount` | `optional` |  |  |
 | 3 | `recipient_account_id` | `uint32` | `optional` |  |  |
-| 4 | `periodic_resource_id` | `uint32` | `optional` |  |  |
+| 4 | `periodic_resource_id` | `uint32` | `optional` |  | boxed_type = "PeriodicResourceID_t" |
 
 </details>
 
@@ -530,7 +518,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `friend_account_id` | `uint32` | `optional` |  |  |
-| 2 | `overworld_id` | `uint32` | `optional` |  |  |
+| 2 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -555,7 +543,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -579,8 +567,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 
 </details>
 
@@ -604,7 +592,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 | 2 | `token_quantity` | `.CMsgOverworldTokenQuantity` | `optional` |  |  |
 
 </details>
@@ -629,7 +617,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -653,8 +641,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `fortune_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `fortune_id` | `uint32` | `optional` |  | boxed_type = "OverworldTarotCardID_t" |
 
 </details>
 
@@ -678,8 +666,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `fortune_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `fortune_id` | `uint32` | `optional` |  | boxed_type = "OverworldTarotCardID_t" |
 
 </details>
 
@@ -703,7 +691,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -727,7 +715,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -752,7 +740,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 
 </details>
 
@@ -778,8 +766,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `fortune_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `fortune_id` | `uint32` | `optional` |  | boxed_type = "OverworldTarotCardID_t" |
 
 </details>
 
@@ -805,7 +793,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `language` | `uint32` | `optional` |  |  |
-| 2 | `overworld_id` | `uint32` | `optional` |  |  |
+| 2 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
 | 3 | `feedback` | `string` | `optional` |  |  |
 
 </details>
@@ -872,8 +860,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `node_id` | `uint32` | `optional` |  | boxed_type = "OverworldNodeID_t" |
 | 3 | `action` | `.EOverworldMinigameAction` | `optional` |  | default = k_eOverworldMinigameAction_Invalid |
 | 4 | `selection` | `uint32` | `optional` |  |  |
 | 5 | `option_value` | `uint32` | `optional` |  |  |
@@ -901,8 +889,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `overworld_id` | `uint32` | `optional` |  |  |
-| 2 | `story_node_id` | `uint32` | `optional` |  |  |
+| 1 | `overworld_id` | `uint32` | `optional` |  | boxed_type = "OverworldID_t" |
+| 2 | `story_node_id` | `uint32` | `optional` |  | boxed_type = "OverworldFortuneTellerStoryNodeID_t" |
 
 </details>
 

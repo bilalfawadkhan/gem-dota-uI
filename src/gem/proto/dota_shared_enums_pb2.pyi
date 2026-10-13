@@ -1,4 +1,6 @@
 from . import events_pb2 as _events_pb2
+from . import event_gcmessages_common_pb2 as _event_gcmessages_common_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -712,11 +714,6 @@ class EDPCPushNotification(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     DPC_PUSH_NOTIFICATION_FANTASY_DAILY_SUMMARY: _ClassVar[EDPCPushNotification]
     DPC_PUSH_NOTIFICATION_FANTASY_FINAL_RESULTS: _ClassVar[EDPCPushNotification]
 
-class EEventActionScoreMode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = ()
-    k_eEventActionScoreMode_Add: _ClassVar[EEventActionScoreMode]
-    k_eEventActionScoreMode_Min: _ClassVar[EEventActionScoreMode]
-
 class EPlayerChallengeHistoryType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     k_EPlayerChallengeHistoryType_Invalid: _ClassVar[EPlayerChallengeHistoryType]
@@ -1257,8 +1254,6 @@ DPC_PUSH_NOTIFICATION_PREDICTION_RESULT: EDPCPushNotification
 DPC_PUSH_NOTIFICATION_FANTASY_PLAYER_CLEARED: EDPCPushNotification
 DPC_PUSH_NOTIFICATION_FANTASY_DAILY_SUMMARY: EDPCPushNotification
 DPC_PUSH_NOTIFICATION_FANTASY_FINAL_RESULTS: EDPCPushNotification
-k_eEventActionScoreMode_Add: EEventActionScoreMode
-k_eEventActionScoreMode_Min: EEventActionScoreMode
 k_EPlayerChallengeHistoryType_Invalid: EPlayerChallengeHistoryType
 k_EPlayerChallengeHistoryType_KillEater: EPlayerChallengeHistoryType
 k_EPlayerChallengeHistoryType_DotaPlusRelic: EPlayerChallengeHistoryType
@@ -1524,10 +1519,10 @@ class CMsgPendingEventAward(_message.Message):
     event_id: _events_pb2.EEvent
     action_id: int
     num_to_grant: int
-    score_mode: EEventActionScoreMode
+    score_mode: _event_gcmessages_common_pb2.EEventActionScoreMode
     audit_action: int
     audit_data: int
-    def __init__(self, event_id: _Optional[_Union[_events_pb2.EEvent, str]] = ..., action_id: _Optional[int] = ..., num_to_grant: _Optional[int] = ..., score_mode: _Optional[_Union[EEventActionScoreMode, str]] = ..., audit_action: _Optional[int] = ..., audit_data: _Optional[int] = ...) -> None: ...
+    def __init__(self, event_id: _Optional[_Union[_events_pb2.EEvent, str]] = ..., action_id: _Optional[int] = ..., num_to_grant: _Optional[int] = ..., score_mode: _Optional[_Union[_event_gcmessages_common_pb2.EEventActionScoreMode, str]] = ..., audit_action: _Optional[int] = ..., audit_data: _Optional[int] = ...) -> None: ...
 
 class CMsgMonsterHunterMaterialQuantity(_message.Message):
     __slots__ = ("material_counts",)
@@ -1539,8 +1534,8 @@ class CMsgMonsterHunterMaterialQuantity(_message.Message):
         value: int
         def __init__(self, key: _Optional[int] = ..., value: _Optional[int] = ...) -> None: ...
     MATERIAL_COUNTS_FIELD_NUMBER: _ClassVar[int]
-    material_counts: _containers.RepeatedCompositeFieldContainer[CMsgMonsterHunterMaterialQuantity.MaterialCountsEntry]
-    def __init__(self, material_counts: _Optional[_Iterable[_Union[CMsgMonsterHunterMaterialQuantity.MaterialCountsEntry, _Mapping]]] = ...) -> None: ...
+    material_counts: _containers.ScalarMap[int, int]
+    def __init__(self, material_counts: _Optional[_Mapping[int, int]] = ...) -> None: ...
 
 class CMsgMonsterHunterInvestigation(_message.Message):
     __slots__ = ("hero_id", "persona_id", "match_rewards", "hunt_rewards", "success_state")

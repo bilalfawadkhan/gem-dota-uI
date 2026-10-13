@@ -3,7 +3,7 @@
 **Used by gem**: gem decodes messages from this file. See [The Proto Files gem Uses](../proto-files.md) for what it reads and why.
 
 - Module: `dota_gcmessages_common_pb2`
-- Imports: **4**
+- Imports: **5**
 - Messages: **185** (top-level: 101)
 - Enums: **30** (top-level: 12)
 
@@ -13,6 +13,7 @@
 - `gcsdk_gcmessages.proto`
 - `dota_shared_enums.proto`
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -54,7 +55,7 @@ Expand any message to inspect all fields.
 | 61 | `solo_competitive_games_played` | `uint32` | `optional` |  |  |
 | 62 | `party_competitive_games_played` | `uint32` | `optional` |  |  |
 | 65 | `casual_1v1_games_played` | `uint32` | `optional` |  |  |
-| 67 | `curr_all_hero_challenge_id` | `int32` | `optional` |  |  |
+| 67 | `curr_all_hero_challenge_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 68 | `play_time_points` | `uint32` | `optional` |  |  |
 | 69 | `account_flags` | `uint32` | `optional` |  |  |
 | 70 | `play_time_level` | `uint32` | `optional` |  |  |
@@ -81,7 +82,7 @@ Expand any message to inspect all fields.
 | 120 | `event_mode_recent_time` | `uint32` | `optional` |  |  |
 | 121 | `mmr_recalibration_time` | `uint32` | `optional` |  |  |
 | 122 | `prevent_new_player_chat_until_date` | `uint32` | `optional` |  |  |
-| 123 | `banned_hero_ids` | `int32` | `repeated` |  |  |
+| 123 | `banned_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -125,7 +126,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `message_id` | `uint32` | `optional` |  | default = 4294967295, (key_field) = true |
+| 1 | `message_id` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295", (key_field) = true |
 
 </details>
 
@@ -207,13 +208,13 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `status_effect_index` | `uint32` | `optional` |  |  |
 | 3 | `sequence_name` | `string` | `optional` |  |  |
 | 4 | `cycle` | `float` | `optional` |  |  |
-| 5 | `wearable` | `uint32` | `repeated` |  |  |
+| 5 | `wearable` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 | 6 | `inscription` | `string` | `optional` |  |  |
-| 7 | `style` | `uint32` | `repeated` |  |  |
+| 7 | `style` | `uint32` | `repeated` |  | boxed_type = "style_index_t" |
 | 8 | `tournament_drop` | `bool` | `optional` |  |  |
 
 </details>
@@ -226,7 +227,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `ability` | `int32` | `optional` |  | default = -1 |
+| 1 | `ability` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `time` | `uint32` | `optional` |  |  |
 
 </details>
@@ -318,7 +319,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `unit_name` | `string` | `optional` |  |  |
-| 2 | `items` | `int32` | `repeated` |  |  |
+| 2 | `items` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
 
 </details>
 
@@ -346,7 +347,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `is_pick` | `bool` | `optional` |  |  |
 | 2 | `team` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -363,8 +364,8 @@ Expand any message to inspect all fields.
 | 3 | `game_time_seconds` | `uint32` | `optional` |  |  |
 | 4 | `duration_seconds` | `uint32` | `optional` |  |  |
 | 5 | `player_id` | `uint32` | `optional` |  |  |
-| 6 | `hero_id` | `int32` | `optional` |  |  |
-| 7 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 6 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 7 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 8 | `camera_mode` | `uint32` | `optional` |  |  |
 | 9 | `comment` | `string` | `optional` |  |  |
 
@@ -393,7 +394,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -418,7 +419,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `player_card_item_ids` | `uint64` | `repeated` |  |  |
+| 2 | `player_card_item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 | 3 | `all_for_event` | `uint32` | `optional` |  |  |
 
 </details>
@@ -443,7 +444,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_card_item_id` | `uint64` | `optional` |  |  |
+| 1 | `player_card_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `account_id` | `uint32` | `optional` |  |  |
 | 3 | `packed_bonuses` | `uint64` | `optional` |  |  |
 
@@ -554,7 +555,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `serialized_item` | `bytes` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -566,7 +567,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `hero_wins` | `uint32` | `optional` |  |  |
 | 3 | `hero_losses` | `uint32` | `optional` |  |  |
 
@@ -619,7 +620,7 @@ Expand any message to inspect all fields.
 | 14 | `quest_rank` | `uint32` | `optional` |  |  |
 | 15 | `max_quest_rank` | `uint32` | `optional` |  |  |
 | 16 | `instance_id` | `uint32` | `optional` |  |  |
-| 17 | `hero_id` | `int32` | `optional` |  |  |
+| 17 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 18 | `template_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -634,7 +635,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 3 | `sequence_id` | `uint32` | `optional` |  |  |
-| 4 | `hero_id` | `int32` | `optional` |  |  |
+| 4 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -709,7 +710,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_ability_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `item_ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `time` | `int32` | `optional` |  |  |
 | 4 | `sold` | `bool` | `optional` |  |  |
@@ -725,7 +726,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `optional` |  | default = -1 |
+| 1 | `id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `level` | `uint32` | `optional` |  |  |
 | 4 | `cooldown` | `float` | `optional` |  |  |
@@ -741,7 +742,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `victimid` | `int32` | `optional` |  | default = -1 |
+| 1 | `victimid` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `kills` | `uint32` | `optional` |  |  |
 | 3 | `assists` | `uint32` | `optional` |  |  |
 
@@ -755,7 +756,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `repeated` |  |  |
+| 1 | `id` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
 
 </details>
 
@@ -768,10 +769,10 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `accountid` | `uint32` | `optional` |  |  |
-| 2 | `playerid` | `int32` | `optional` |  | default = -1 |
+| 2 | `playerid` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 3 | `name` | `string` | `optional` |  |  |
 | 4 | `team` | `uint32` | `optional` |  |  |
-| 5 | `heroid` | `int32` | `optional` |  |  |
+| 5 | `heroid` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 6 | `healthpoints` | `uint32` | `optional` |  |  |
 | 7 | `maxhealthpoints` | `uint32` | `optional` |  |  |
 | 8 | `healthregenrate` | `float` | `optional` |  |  |
@@ -847,9 +848,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `death_time` | `int32` | `optional` |  |  |
-| 3 | `killer_player_id` | `int32` | `optional` |  | default = -1 |
+| 3 | `killer_player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 
 </details>
 
@@ -861,7 +862,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 
 </details>
 
@@ -873,7 +874,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero` | `int32` | `optional` |  |  |
+| 1 | `hero` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `team` | `uint32` | `optional` |  |  |
 
 </details>
@@ -887,7 +888,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `server_steam_id` | `fixed64` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 3 | `timestamp` | `uint32` | `optional` |  |  |
 | 4 | `time_of_day` | `float` | `optional` |  |  |
 | 5 | `is_nightstalker_night` | `bool` | `optional` |  |  |
@@ -899,10 +900,10 @@ Expand any message to inspect all fields.
 | 12 | `kills` | `.CMsgDOTARealtimeGameStats.KillDetails` | `repeated` |  |  |
 | 13 | `broadcasters` | `.CMsgDOTARealtimeGameStats.BroadcasterDetails` | `repeated` |  |  |
 | 14 | `game_mode` | `uint32` | `optional` |  |  |
-| 15 | `league_id` | `uint32` | `optional` |  |  |
+| 15 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 16 | `single_team` | `bool` | `optional` |  |  |
 | 17 | `cheers_peak` | `uint32` | `optional` |  |  |
-| 18 | `league_node_id` | `uint32` | `optional` |  |  |
+| 18 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 19 | `game_state` | `uint32` | `optional` |  |  |
 | 20 | `lobby_type` | `uint32` | `optional` |  |  |
 | 21 | `start_timestamp` | `uint32` | `optional` |  |  |
@@ -996,10 +997,10 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `accountid` | `uint32` | `optional` |  |  |
-| 2 | `playerid` | `int32` | `optional` |  | default = -1 |
+| 2 | `playerid` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 3 | `name` | `string` | `optional` |  |  |
 | 4 | `team` | `uint32` | `optional` |  |  |
-| 5 | `heroid` | `int32` | `optional` |  |  |
+| 5 | `heroid` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 6 | `level` | `uint32` | `optional` |  |  |
 | 7 | `kill_count` | `uint32` | `optional` |  |  |
 | 8 | `death_count` | `uint32` | `optional` |  |  |
@@ -1010,8 +1011,8 @@ Expand any message to inspect all fields.
 | 13 | `x` | `float` | `optional` |  |  |
 | 14 | `y` | `float` | `optional` |  |  |
 | 15 | `net_worth` | `uint32` | `optional` |  |  |
-| 16 | `abilities` | `int32` | `repeated` |  |  |
-| 17 | `items` | `int32` | `repeated` |  |  |
+| 16 | `abilities` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
+| 17 | `items` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
 | 18 | `team_slot` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1043,7 +1044,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero` | `int32` | `optional` |  |  |
+| 1 | `hero` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `team` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1057,13 +1058,13 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `server_steam_id` | `fixed64` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 3 | `timestamp` | `uint32` | `optional` |  |  |
 | 4 | `game_time` | `int32` | `optional` |  |  |
 | 6 | `steam_broadcaster_account_ids` | `uint32` | `repeated` |  |  |
 | 7 | `game_mode` | `uint32` | `optional` |  |  |
-| 8 | `league_id` | `uint32` | `optional` |  |  |
-| 9 | `league_node_id` | `uint32` | `optional` |  |  |
+| 8 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
+| 9 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 10 | `game_state` | `uint32` | `optional` |  |  |
 | 11 | `picks` | `.CMsgDOTARealtimeGameStatsTerse.PickBanDetails` | `repeated` |  |  |
 | 12 | `bans` | `.CMsgDOTARealtimeGameStatsTerse.PickBanDetails` | `repeated` |  |  |
@@ -1120,7 +1121,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `game_mode` | `uint32` | `optional` |  |  |
 | 3 | `lobby_type` | `uint32` | `optional` |  |  |
 | 4 | `start_time` | `uint32` | `optional` |  |  |
@@ -1227,7 +1228,7 @@ Expand any message to inspect all fields.
 | 17 | `region` | `.ELeagueRegion` | `optional` |  | default = LEAGUE_REGION_UNSET |
 | 18 | `phases` | `.ELeaguePhase` | `repeated` |  |  |
 | 19 | `reward_event` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
-| 20 | `league_node_id` | `uint32` | `optional` |  |  |
+| 20 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 21 | `reward_event_action` | `string` | `optional` |  |  |
 
 </details>
@@ -1264,7 +1265,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `predictions` | `.CMsgInGamePrediction` | `repeated` |  |  |
 
 </details>
@@ -1289,7 +1290,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `node_id` | `uint32` | `optional` |  |  |
+| 1 | `node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 2 | `game` | `uint32` | `repeated` |  |  |
 
 </details>
@@ -1302,7 +1303,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `series` | `.CMsgLeagueWatchedGames.Series` | `repeated` |  |  |
 
 </details>
@@ -1318,7 +1319,7 @@ Expand any message to inspect all fields.
 | 3 | `duration` | `uint32` | `optional` |  |  |
 | 4 | `starttime` | `fixed32` | `optional` |  |  |
 | 5 | `players` | `.CMsgDOTAMatch.Player` | `repeated` |  |  |
-| 6 | `match_id` | `uint64` | `optional` |  |  |
+| 6 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 8 | `tower_status` | `uint32` | `repeated` |  |  |
 | 9 | `barracks_status` | `uint32` | `repeated` |  |  |
 | 10 | `cluster` | `uint32` | `optional` |  |  |
@@ -1332,7 +1333,7 @@ Expand any message to inspect all fields.
 | 19 | `game_balance` | `float` | `optional` |  |  |
 | 20 | `radiant_team_id` | `uint32` | `optional` |  |  |
 | 21 | `dire_team_id` | `uint32` | `optional` |  |  |
-| 22 | `leagueid` | `uint32` | `optional` |  |  |
+| 22 | `leagueid` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 23 | `radiant_team_name` | `string` | `optional` |  |  |
 | 24 | `dire_team_name` | `string` | `optional` |  |  |
 | 25 | `radiant_team_logo` | `uint64` | `optional` |  |  |
@@ -1375,14 +1376,14 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `player_slot` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
-| 4 | `item_0` | `int32` | `optional` |  | default = -1 |
-| 5 | `item_1` | `int32` | `optional` |  | default = -1 |
-| 6 | `item_2` | `int32` | `optional` |  | default = -1 |
-| 7 | `item_3` | `int32` | `optional` |  | default = -1 |
-| 8 | `item_4` | `int32` | `optional` |  | default = -1 |
-| 9 | `item_5` | `int32` | `optional` |  | default = -1 |
+| 2 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 4 | `item_0` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 5 | `item_1` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 6 | `item_2` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 7 | `item_3` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 8 | `item_4` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 9 | `item_5` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 10 | `expected_team_contribution` | `float` | `optional` |  |  |
 | 11 | `scaled_metric` | `float` | `optional` |  |  |
 | 12 | `previous_rank` | `uint32` | `optional` |  |  |
@@ -1428,9 +1429,9 @@ Expand any message to inspect all fields.
 | 56 | `scaled_hero_healing` | `uint32` | `optional` |  |  |
 | 57 | `permanent_buffs` | `.CMatchPlayerPermanentBuff` | `repeated` |  |  |
 | 58 | `bot_difficulty` | `uint32` | `optional` |  |  |
-| 59 | `item_6` | `int32` | `optional` |  | default = -1 |
-| 60 | `item_7` | `int32` | `optional` |  | default = -1 |
-| 61 | `item_8` | `int32` | `optional` |  | default = -1 |
+| 59 | `item_6` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 60 | `item_7` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 61 | `item_8` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 63 | `hero_pick_order` | `uint32` | `optional` |  |  |
 | 64 | `hero_was_randomed` | `bool` | `optional` |  |  |
 | 67 | `hero_damage_received` | `.CMsgDOTAMatch.Player.HeroDamageReceived` | `repeated` |  |  |
@@ -1441,14 +1442,14 @@ Expand any message to inspect all fields.
 | 73 | `real_name` | `string` | `optional` |  |  |
 | 74 | `mmr_type` | `uint32` | `optional` |  |  |
 | 75 | `lane_selection_flags` | `uint32` | `optional` |  |  |
-| 76 | `item_9` | `int32` | `optional` |  | default = -1 |
+| 76 | `item_9` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 77 | `bounty_runes` | `uint32` | `optional` |  |  |
 | 78 | `outposts_captured` | `uint32` | `optional` |  |  |
 | 79 | `hero_damage_dealt` | `.CMsgDOTAMatch.Player.HeroDamageReceived` | `repeated` |  |  |
 | 80 | `team_number` | `.DOTA_GC_TEAM` | `optional` |  | default = DOTA_GC_TEAM_GOOD_GUYS |
 | 81 | `team_slot` | `uint32` | `optional` |  |  |
-| 82 | `selected_facet` | `uint32` | `optional` |  |  |
-| 83 | `item_10` | `int32` | `optional` |  | default = -1 |
+| 82 | `selected_facet` | `uint32` | `optional` |  | boxed_type = "HeroFacetID_t" |
+| 83 | `item_10` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 84 | `item_10_lvl` | `int32` | `optional` |  |  |
 | 85 | `disable_duration` | `uint32` | `optional` |  |  |
 
@@ -1574,10 +1575,10 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `player_account_id` | `uint32` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 3 | `match_completed` | `bool` | `optional` |  |  |
 | 4 | `team_id` | `uint32` | `optional` |  |  |
-| 5 | `league_id` | `uint32` | `optional` |  |  |
+| 5 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 6 | `delay` | `uint32` | `optional` |  |  |
 | 7 | `series_id` | `uint32` | `optional` |  |  |
 | 8 | `series_type` | `uint32` | `optional` |  |  |
@@ -1647,8 +1648,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_owner_id` | `int32` | `optional` |  | default = -1 |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `player_owner_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `difficulty` | `uint32` | `optional` |  |  |
 | 4 | `power_current` | `uint32` | `optional` |  |  |
 | 5 | `power_max` | `uint32` | `optional` |  |  |
@@ -1672,7 +1673,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `mode_id` | `uint32` | `optional` |  |  |
 | 2 | `desire` | `float` | `optional` |  |  |
-| 3 | `target_entity` | `int32` | `optional` |  | default = -1 |
+| 3 | `target_entity` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 4 | `target_x` | `uint32` | `optional` |  |  |
 | 5 | `target_y` | `uint32` | `optional` |  |  |
 | 6 | `target_z` | `uint32` | `optional` |  |  |
@@ -1700,7 +1701,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `win_percent` | `float` | `optional` |  |  |
 | 3 | `longest_streak` | `uint32` | `optional` |  |  |
 
@@ -1714,13 +1715,13 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `game_mode` | `.DOTA_GameMode` | `optional` |  | default = DOTA_GAMEMODE_NONE |
 | 3 | `kills` | `uint32` | `optional` |  |  |
 | 4 | `deaths` | `uint32` | `optional` |  |  |
 | 5 | `assists` | `uint32` | `optional` |  |  |
 | 6 | `duration` | `uint32` | `optional` |  |  |
-| 7 | `player_slot` | `uint32` | `optional` |  |  |
+| 7 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 8 | `match_outcome` | `.EMatchOutcome` | `optional` |  | default = k_EMatchOutcome_Unknown |
 | 9 | `timestamp` | `uint32` | `optional` |  |  |
 | 10 | `lobby_type` | `uint32` | `optional` |  |  |
@@ -1763,7 +1764,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `start_time` | `fixed32` | `optional` |  |  |
 | 3 | `duration` | `uint32` | `optional` |  |  |
 | 4 | `game_mode` | `.DOTA_GameMode` | `optional` |  | default = DOTA_GAMEMODE_NONE |
@@ -1786,12 +1787,12 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `kills` | `uint32` | `optional` |  |  |
 | 4 | `deaths` | `uint32` | `optional` |  |  |
 | 5 | `assists` | `uint32` | `optional` |  |  |
-| 6 | `items` | `int32` | `repeated` |  |  |
-| 7 | `player_slot` | `uint32` | `optional` |  |  |
+| 6 | `items` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
+| 7 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 8 | `pro_name` | `string` | `optional` |  |  |
 | 9 | `level` | `uint32` | `optional` |  |  |
 | 10 | `team_number` | `.DOTA_GC_TEAM` | `optional` |  | default = DOTA_GC_TEAM_GOOD_GUYS |
@@ -1806,7 +1807,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `radiant_team_id` | `uint32` | `optional` |  |  |
 | 3 | `radiant_team_name` | `string` | `optional` |  |  |
 | 4 | `radiant_team_logo` | `fixed64` | `optional` |  |  |
@@ -1832,7 +1833,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `quantity_change` | `int32` | `optional` |  |  |
 
 </details>
@@ -1934,11 +1935,11 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `timestamp` | `uint32` | `optional` |  |  |
 | 3 | `duration` | `uint32` | `optional` |  |  |
 | 4 | `win` | `bool` | `optional` |  |  |
-| 5 | `hero_id` | `int32` | `optional` |  |  |
+| 5 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 6 | `kills` | `uint32` | `optional` |  |  |
 | 7 | `deaths` | `uint32` | `optional` |  |  |
 | 8 | `assists` | `uint32` | `optional` |  |  |
@@ -2039,7 +2040,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -2065,7 +2066,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `match_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `vote_count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -2139,7 +2140,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `event_id` | `uint32` | `optional` |  |  |
 | 2 | `board_id` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 4 | `action_id` | `uint32` | `optional` |  |  |
 | 5 | `redeemed` | `bool` | `optional` |  |  |
 
@@ -2155,7 +2156,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `board_id` | `uint32` | `optional` |  |  |
 | 2 | `action_id` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -2184,7 +2185,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `slot_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `stars` | `uint32` | `optional` |  |  |
 
 </details>
@@ -2198,7 +2199,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `slot_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `is_special_reward` | `bool` | `optional` |  |  |
 
 </details>
@@ -2303,7 +2304,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `optional` |  | default = -1 |
+| 1 | `id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 5 | `name_loc` | `string` | `optional` |  |  |
 | 6 | `desc_loc` | `string` | `optional` |  |  |
@@ -2366,7 +2367,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `optional` |  |  |
+| 1 | `id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `order_id` | `uint32` | `optional` |  |  |
 | 5 | `name_loc` | `string` | `optional` |  |  |
@@ -2479,7 +2480,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `optional` |  |  |
+| 1 | `id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `name_loc` | `string` | `optional` |  |  |
 | 4 | `name_english_loc` | `string` | `optional` |  |  |
@@ -2508,7 +2509,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `int32` | `optional` |  | default = -1 |
+| 1 | `id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `name_loc` | `string` | `optional` |  |  |
 | 4 | `name_english_loc` | `string` | `optional` |  |  |
@@ -2529,7 +2530,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `items` | `int32` | `repeated` |  |  |
+| 1 | `items` | `int32` | `repeated` |  | boxed_type = "AbilityID_t" |
 
 </details>
 
@@ -2557,8 +2558,8 @@ Expand any message to inspect all fields.
 | 2 | `expiration_date` | `fixed32` | `optional` |  |  |
 | 3 | `bonus` | `float` | `optional` |  | (key_field) = true |
 | 4 | `bonus_count` | `uint32` | `optional` |  |  |
-| 5 | `item_id` | `uint64` | `optional` |  |  |
-| 6 | `def_index` | `uint32` | `optional` |  |  |
+| 5 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 6 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 7 | `seconds_left` | `uint32` | `optional` |  |  |
 | 8 | `booster_type` | `uint32` | `optional` |  | (key_field) = true |
 
@@ -2573,12 +2574,12 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `league_id` | `uint32` | `optional` |  |  |
-| 3 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
+| 3 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 4 | `original_purchaser_id` | `uint32` | `optional` |  |  |
 | 5 | `passports_bought` | `uint32` | `optional` |  |  |
 | 6 | `version` | `uint32` | `optional` |  |  |
-| 7 | `def_index` | `uint32` | `optional` |  |  |
+| 7 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 8 | `reward_flags` | `uint32` | `optional` |  |  |
 
 </details>
@@ -2591,7 +2592,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_id` | `uint32` | `optional` |  |  |
+| 1 | `item_def_id` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `sticker_num` | `uint32` | `optional` |  |  |
 | 3 | `quality` | `uint32` | `optional` |  |  |
 | 4 | `position_x` | `float` | `optional` |  |  |
@@ -2599,7 +2600,7 @@ Expand any message to inspect all fields.
 | 6 | `rotation` | `float` | `optional` |  |  |
 | 7 | `scale` | `float` | `optional` |  |  |
 | 8 | `position_z` | `float` | `optional` |  |  |
-| 9 | `source_item_id` | `uint64` | `optional` |  |  |
+| 9 | `source_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 10 | `depth_bias` | `uint32` | `optional` |  |  |
 
 </details>
@@ -2654,10 +2655,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
-| 2 | `item_def_id` | `uint32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 2 | `item_def_id` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 3 | `quality` | `uint32` | `optional` |  |  |
-| 4 | `source_item_id` | `uint64` | `optional` |  |  |
+| 4 | `source_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -2695,7 +2696,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `role_stats` | `.CMsgHeroRoleStats` | `repeated` |  |  |
 
 </details>
@@ -2770,8 +2771,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `tracked_stat_id` | `uint32` | `optional` |  |  |
-| 2 | `tracked_stat_value` | `int32` | `optional` |  |  |
+| 1 | `tracked_stat_id` | `uint32` | `optional` |  | boxed_type = "TrackedStatID_t" |
+| 2 | `tracked_stat_value` | `int32` | `optional` |  | boxed_type = "TrackedStatValue_t" |
 
 </details>
 
@@ -2797,7 +2798,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `item_category` | `uint32` | `optional` |  |  |
 
 </details>
@@ -2810,7 +2811,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `repeated` |  |  |
+| 1 | `item_def` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -2928,7 +2929,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 3 | `correct` | `bool` | `optional` |  |  |
 | 4 | `predictions` | `.CDotaMsg_PredictionResult.Prediction` | `repeated` |  |  |
 
@@ -2942,11 +2943,11 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `num_correct` | `uint32` | `optional` |  |  |
 | 3 | `num_fails` | `uint32` | `optional` |  |  |
 | 4 | `result` | `.CDotaMsg_PredictionResult.Prediction.EResult` | `optional` |  | default = k_eResult_ItemGranted |
-| 6 | `granted_item_defs` | `uint32` | `repeated` |  |  |
+| 6 | `granted_item_defs` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 

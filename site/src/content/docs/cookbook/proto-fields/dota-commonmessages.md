@@ -3,13 +3,14 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_usermessages.proto`, so Python loads it anyway.
 
 - Module: `dota_commonmessages_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **13** (top-level: 12)
 - Enums: **4** (top-level: 4)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -39,9 +40,9 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `x` | `int32` | `optional` |  |  |
 | 2 | `y` | `int32` | `optional` |  |  |
-| 3 | `target` | `int32` | `optional` |  | default = -1 |
+| 3 | `target` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 4 | `direct_ping` | `bool` | `optional` |  |  |
-| 5 | `type` | `uint32` | `optional` |  | default = 4294967295 |
+| 5 | `type` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "PingWheelMessageID_t", synthetic_default = "4294967295" |
 | 6 | `ping_source` | `.EPingSource` | `optional` |  | default = k_ePingSource_Default |
 | 7 | `waypoint_path` | `.CDOTAMsg_PingWaypointPath` | `optional` |  |  |
 
@@ -57,7 +58,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `x` | `int32` | `optional` |  |  |
 | 2 | `y` | `int32` | `optional` |  |  |
-| 3 | `item_ability_id` | `int32` | `optional` |  | default = -1 |
+| 3 | `item_ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 
 </details>
 
@@ -144,9 +145,9 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 2 | `order_type` | `.dotaunitorder_t` | `optional` |  | default = DOTA_UNIT_ORDER_NONE |
-| 3 | `units` | `int32` | `repeated` |  |  |
-| 4 | `target_index` | `int32` | `optional` |  | default = 0 |
-| 5 | `ability_index` | `int32` | `optional` |  | default = -1 |
+| 3 | `units` | `int32` | `repeated` |  | boxed_type = "CEntityIndex" |
+| 4 | `target_index` | `int32` | `optional` |  | default = 0, boxed_type = "CEntityIndex" |
+| 5 | `ability_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 6 | `position` | `.CMsgVector` | `optional` |  |  |
 | 8 | `sequence_number` | `int32` | `optional` |  |  |
 | 9 | `flags` | `uint32` | `optional` |  |  |
@@ -188,7 +189,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `chat_message_id` | `uint32` | `optional` |  | default = 4294967295 |
+| 1 | `chat_message_id` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295" |
 | 2 | `emoticon_id` | `uint32` | `optional` |  |  |
 
 </details>

@@ -3,13 +3,14 @@
 **Used by gem**: gem decodes messages from this file. See [The Proto Files gem Uses](../proto-files.md) for what it reads and why.
 
 - Module: `gameevents_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **18** (top-level: 15)
 - Enums: **1** (top-level: 1)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -45,7 +46,7 @@ Expand any message to inspect all fields.
 | 7 | `random_seed` | `int32` | `optional` |  |  |
 | 8 | `decal_group_name` | `uint32` | `optional` |  |  |
 | 9 | `size_override` | `float` | `optional` |  |  |
-| 10 | `entityhandle` | `uint32` | `optional` |  | default = 16777215 |
+| 10 | `entityhandle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 11 | `material_id` | `uint64` | `optional` |  |  |
 | 12 | `sequence_name` | `uint32` | `optional` |  |  |
 | 13 | `triangleindex` | `int32` | `optional` |  |  |
@@ -87,7 +88,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `flagstoclear` | `uint32` | `optional` |  |  |
-| 2 | `entityhandle` | `uint32` | `optional` |  | default = 16777215 |
+| 2 | `entityhandle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -188,7 +189,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `soundevent_guid` | `int32` | `optional` |  |  |
 | 2 | `soundevent_hash` | `fixed32` | `optional` |  |  |
-| 3 | `source_entity_index` | `int32` | `optional` |  | default = -1 |
+| 3 | `source_entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 4 | `seed` | `int32` | `optional` |  |  |
 | 5 | `packed_params` | `bytes` | `optional` |  |  |
 | 6 | `start_time` | `float` | `optional` |  |  |
@@ -216,7 +217,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `soundevent_hash` | `fixed32` | `optional` |  |  |
-| 2 | `source_entity_index` | `int32` | `optional` |  | default = -1 |
+| 2 | `source_entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 
 </details>
 
@@ -254,7 +255,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `source_entity_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `source_entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `vertex_set_hash` | `int32` | `optional` |  |  |
 | 3 | `intensity` | `float` | `optional` |  |  |
 | 4 | `length` | `float` | `optional` |  |  |
@@ -271,7 +272,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `source_entity_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `source_entity_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `effect_name_hash` | `int32` | `optional` |  |  |
 | 3 | `operation` | `int32` | `optional` |  |  |
 | 4 | `flags` | `int32` | `optional` |  |  |

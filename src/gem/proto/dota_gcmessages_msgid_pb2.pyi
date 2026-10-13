@@ -562,12 +562,8 @@ class EDOTAGCMsg(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     k_EMsgGCToGCGrantAutographResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgSignOutConsumableUsage: _ClassVar[EDOTAGCMsg]
     k_EMsgLobbyEventGameDetails: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevGrantEventPoints: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevGrantEventPointsResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgDevGrantEventAction: _ClassVar[EDOTAGCMsg]
     k_EMsgDevGrantEventActionResponse: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevResetEventState: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevResetEventStateResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgGCToGCReconcileEventOwnership: _ClassVar[EDOTAGCMsg]
     k_EMsgConsumeEventSupportGrantItem: _ClassVar[EDOTAGCMsg]
     k_EMsgConsumeEventSupportGrantItemResponse: _ClassVar[EDOTAGCMsg]
@@ -598,8 +594,6 @@ class EDOTAGCMsg(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     k_EMsgSQLGCToGCGrantAllHeroProgressVictory: _ClassVar[EDOTAGCMsg]
     k_EMsgDevDeleteEventActions: _ClassVar[EDOTAGCMsg]
     k_EMsgDevDeleteEventActionsResponse: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevReloadAllEvents: _ClassVar[EDOTAGCMsg]
-    k_EMsgDevReloadAllEventsResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgGCToGCGetAllHeroCurrent: _ClassVar[EDOTAGCMsg]
     k_EMsgGCToGCGetAllHeroCurrentResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgGCSubmitPlayerAvoidRequest: _ClassVar[EDOTAGCMsg]
@@ -704,7 +698,6 @@ class EDOTAGCMsg(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     k_EMsgGCToClientGuildMembersDataUpdated: _ClassVar[EDOTAGCMsg]
     k_EMsgSignOutReportActivityMarkers: _ClassVar[EDOTAGCMsg]
     k_EMsgSignOutDiretideCandy: _ClassVar[EDOTAGCMsg]
-    k_EMsgGCToClientPostGameItemAwardNotification: _ClassVar[EDOTAGCMsg]
     k_EMsgClientToGCGetOWMatchDetails: _ClassVar[EDOTAGCMsg]
     k_EMsgClientToGCGetOWMatchDetailsResponse: _ClassVar[EDOTAGCMsg]
     k_EMsgClientToGCSubmitOWConviction: _ClassVar[EDOTAGCMsg]
@@ -1589,12 +1582,8 @@ k_EMsgGCToGCGrantAutograph: EDOTAGCMsg
 k_EMsgGCToGCGrantAutographResponse: EDOTAGCMsg
 k_EMsgSignOutConsumableUsage: EDOTAGCMsg
 k_EMsgLobbyEventGameDetails: EDOTAGCMsg
-k_EMsgDevGrantEventPoints: EDOTAGCMsg
-k_EMsgDevGrantEventPointsResponse: EDOTAGCMsg
 k_EMsgDevGrantEventAction: EDOTAGCMsg
 k_EMsgDevGrantEventActionResponse: EDOTAGCMsg
-k_EMsgDevResetEventState: EDOTAGCMsg
-k_EMsgDevResetEventStateResponse: EDOTAGCMsg
 k_EMsgGCToGCReconcileEventOwnership: EDOTAGCMsg
 k_EMsgConsumeEventSupportGrantItem: EDOTAGCMsg
 k_EMsgConsumeEventSupportGrantItemResponse: EDOTAGCMsg
@@ -1625,8 +1614,6 @@ k_EMsgSQLGCToGCGrantAllHeroProgressAccount: EDOTAGCMsg
 k_EMsgSQLGCToGCGrantAllHeroProgressVictory: EDOTAGCMsg
 k_EMsgDevDeleteEventActions: EDOTAGCMsg
 k_EMsgDevDeleteEventActionsResponse: EDOTAGCMsg
-k_EMsgDevReloadAllEvents: EDOTAGCMsg
-k_EMsgDevReloadAllEventsResponse: EDOTAGCMsg
 k_EMsgGCToGCGetAllHeroCurrent: EDOTAGCMsg
 k_EMsgGCToGCGetAllHeroCurrentResponse: EDOTAGCMsg
 k_EMsgGCSubmitPlayerAvoidRequest: EDOTAGCMsg
@@ -1731,7 +1718,6 @@ k_EMsgLobbyEventGameData: EDOTAGCMsg
 k_EMsgGCToClientGuildMembersDataUpdated: EDOTAGCMsg
 k_EMsgSignOutReportActivityMarkers: EDOTAGCMsg
 k_EMsgSignOutDiretideCandy: EDOTAGCMsg
-k_EMsgGCToClientPostGameItemAwardNotification: EDOTAGCMsg
 k_EMsgClientToGCGetOWMatchDetails: EDOTAGCMsg
 k_EMsgClientToGCGetOWMatchDetailsResponse: EDOTAGCMsg
 k_EMsgClientToGCSubmitOWConviction: EDOTAGCMsg

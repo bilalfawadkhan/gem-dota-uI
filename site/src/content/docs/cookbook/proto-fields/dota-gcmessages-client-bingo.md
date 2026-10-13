@@ -3,8 +3,8 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_bingo_pb2`
-- Imports: **9**
-- Messages: **25** (top-level: 23)
+- Imports: **10**
+- Messages: **23** (top-level: 23)
 - Enums: **10** (top-level: 1)
 
 ## Imports
@@ -18,6 +18,7 @@
 - `econ_gcmessages.proto`
 - `dota_gcmessages_client.proto`
 - `valveextensions.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -31,8 +32,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `stat_id` | `uint32` | `optional` |  |  |
-| 2 | `stat_threshold` | `int32` | `optional` |  |  |
+| 1 | `stat_id` | `uint32` | `optional` |  | boxed_type = "TrackedStatID_t" |
+| 2 | `stat_threshold` | `int32` | `optional` |  | boxed_type = "TrackedStatValue_t" |
 | 3 | `upgrade_level` | `uint32` | `optional` |  |  |
 
 </details>
@@ -62,41 +63,15 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgBingoUserData</code> — fields: 2; oneofs: 0; nested messages: 2; nested enums: 0</summary>
+<summary><code>CMsgBingoUserData</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `bingo_cards` | `.CMsgBingoUserData.BingoCardsEntry` | `repeated` |  |  |
-| 2 | `bingo_tokens` | `.CMsgBingoUserData.BingoTokensEntry` | `repeated` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgBingoUserData.BingoCardsEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgBingoUserData`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgBingoCard` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgBingoUserData.BingoTokensEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgBingoUserData`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgBingoTokens` | `optional` |  |  |
+| 1 | `bingo_cards` | `map<uint32, .CMsgBingoCard>` | `unlabeled` |  | map field |
+| 2 | `bingo_tokens` | `map<uint32, .CMsgBingoTokens>` | `unlabeled` |  | map field |
 
 </details>
 
@@ -133,8 +108,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `stat_id` | `uint32` | `optional` |  |  |
-| 2 | `stat_value` | `int32` | `optional` |  |  |
+| 1 | `stat_id` | `uint32` | `optional` |  | boxed_type = "TrackedStatID_t" |
+| 2 | `stat_value` | `int32` | `optional` |  | boxed_type = "TrackedStatValue_t" |
 
 </details>
 

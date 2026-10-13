@@ -3,6 +3,7 @@ from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
 from . import dota_gcmessages_common_pb2 as _dota_gcmessages_common_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -189,10 +190,10 @@ class CMsgItemBattlerGhostData(_message.Message):
     DAY_FIELD_NUMBER: _ClassVar[int]
     ABILITIES_FIELD_NUMBER: _ClassVar[int]
     player_data: CMsgItemBattlerPlayerData
-    items: _containers.RepeatedCompositeFieldContainer[CMsgItemBattlerGhostData.ItemsEntry]
+    items: _containers.MessageMap[int, CMsgItemBattlerItem]
     day: int
-    abilities: _containers.RepeatedCompositeFieldContainer[CMsgItemBattlerGhostData.AbilitiesEntry]
-    def __init__(self, player_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., items: _Optional[_Iterable[_Union[CMsgItemBattlerGhostData.ItemsEntry, _Mapping]]] = ..., day: _Optional[int] = ..., abilities: _Optional[_Iterable[_Union[CMsgItemBattlerGhostData.AbilitiesEntry, _Mapping]]] = ...) -> None: ...
+    abilities: _containers.MessageMap[int, CMsgItemBattlerItem]
+    def __init__(self, player_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., items: _Optional[_Mapping[int, CMsgItemBattlerItem]] = ..., day: _Optional[int] = ..., abilities: _Optional[_Mapping[int, CMsgItemBattlerItem]] = ...) -> None: ...
 
 class CMsgItemBattlerWorldData(_message.Message):
     __slots__ = ("run_active", "run_id", "game_state", "player_data", "opponent_data", "stash", "encounter", "fight_result", "items", "day", "hour", "encounter_choices", "monster_choices", "conceded")
@@ -225,13 +226,13 @@ class CMsgItemBattlerWorldData(_message.Message):
     stash: CMsgItemBattlerItemContainer
     encounter: CMsgItemBattlerEncounterData
     fight_result: CMsgItemBattlerFightResult
-    items: _containers.RepeatedCompositeFieldContainer[CMsgItemBattlerWorldData.ItemsEntry]
+    items: _containers.MessageMap[int, CMsgItemBattlerItem]
     day: int
     hour: int
     encounter_choices: _containers.RepeatedScalarFieldContainer[int]
     monster_choices: _containers.RepeatedScalarFieldContainer[int]
     conceded: bool
-    def __init__(self, run_active: bool = ..., run_id: _Optional[int] = ..., game_state: _Optional[_Union[EItemBattlerGameState, str]] = ..., player_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., opponent_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., stash: _Optional[_Union[CMsgItemBattlerItemContainer, _Mapping]] = ..., encounter: _Optional[_Union[CMsgItemBattlerEncounterData, _Mapping]] = ..., fight_result: _Optional[_Union[CMsgItemBattlerFightResult, _Mapping]] = ..., items: _Optional[_Iterable[_Union[CMsgItemBattlerWorldData.ItemsEntry, _Mapping]]] = ..., day: _Optional[int] = ..., hour: _Optional[int] = ..., encounter_choices: _Optional[_Iterable[int]] = ..., monster_choices: _Optional[_Iterable[int]] = ..., conceded: bool = ...) -> None: ...
+    def __init__(self, run_active: bool = ..., run_id: _Optional[int] = ..., game_state: _Optional[_Union[EItemBattlerGameState, str]] = ..., player_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., opponent_data: _Optional[_Union[CMsgItemBattlerPlayerData, _Mapping]] = ..., stash: _Optional[_Union[CMsgItemBattlerItemContainer, _Mapping]] = ..., encounter: _Optional[_Union[CMsgItemBattlerEncounterData, _Mapping]] = ..., fight_result: _Optional[_Union[CMsgItemBattlerFightResult, _Mapping]] = ..., items: _Optional[_Mapping[int, CMsgItemBattlerItem]] = ..., day: _Optional[int] = ..., hour: _Optional[int] = ..., encounter_choices: _Optional[_Iterable[int]] = ..., monster_choices: _Optional[_Iterable[int]] = ..., conceded: bool = ...) -> None: ...
 
 class CMsgItemBattlerGameData(_message.Message):
     __slots__ = ("seed", "world_data")

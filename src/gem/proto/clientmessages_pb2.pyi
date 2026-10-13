@@ -1,3 +1,4 @@
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message

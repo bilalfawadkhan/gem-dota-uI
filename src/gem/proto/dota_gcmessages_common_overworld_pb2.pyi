@@ -4,6 +4,7 @@ from . import events_pb2 as _events_pb2
 from . import dota_gcmessages_common_pb2 as _dota_gcmessages_common_pb2
 from . import dota_gcmessages_common_survivors_pb2 as _dota_gcmessages_common_survivors_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -265,11 +266,11 @@ class CMsgOverworldUserData(_message.Message):
     overworld_nodes: _containers.RepeatedCompositeFieldContainer[CMsgOverworldNode]
     overworld_paths: _containers.RepeatedCompositeFieldContainer[CMsgOverworldPath]
     current_node_id: int
-    minigame_data: _containers.RepeatedCompositeFieldContainer[CMsgOverworldUserData.MinigameDataEntry]
+    minigame_data: _containers.MessageMap[int, CMsgOverworldMinigameUserData]
     current_fortune: CMsgOverworldFortune
     last_related_hero_id: int
     overworld_version: int
-    def __init__(self, token_inventory: _Optional[_Union[CMsgOverworldTokenQuantity, _Mapping]] = ..., overworld_nodes: _Optional[_Iterable[_Union[CMsgOverworldNode, _Mapping]]] = ..., overworld_paths: _Optional[_Iterable[_Union[CMsgOverworldPath, _Mapping]]] = ..., current_node_id: _Optional[int] = ..., minigame_data: _Optional[_Iterable[_Union[CMsgOverworldUserData.MinigameDataEntry, _Mapping]]] = ..., current_fortune: _Optional[_Union[CMsgOverworldFortune, _Mapping]] = ..., last_related_hero_id: _Optional[int] = ..., overworld_version: _Optional[int] = ...) -> None: ...
+    def __init__(self, token_inventory: _Optional[_Union[CMsgOverworldTokenQuantity, _Mapping]] = ..., overworld_nodes: _Optional[_Iterable[_Union[CMsgOverworldNode, _Mapping]]] = ..., overworld_paths: _Optional[_Iterable[_Union[CMsgOverworldPath, _Mapping]]] = ..., current_node_id: _Optional[int] = ..., minigame_data: _Optional[_Mapping[int, CMsgOverworldMinigameUserData]] = ..., current_fortune: _Optional[_Union[CMsgOverworldFortune, _Mapping]] = ..., last_related_hero_id: _Optional[int] = ..., overworld_version: _Optional[int] = ...) -> None: ...
 
 class CMsgOverworldMatchRewards(_message.Message):
     __slots__ = ("players",)

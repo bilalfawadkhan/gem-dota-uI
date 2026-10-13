@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `steammessages_int_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **87** (top-level: 66)
 - Enums: **3** (top-level: 0)
 
 ## Imports
 
 - `steammessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -663,7 +664,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `master_dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `master_dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 2 | `dir` | `.CMsgGCMsgMasterSetDirectory.SubGC` | `repeated` |  |  |
 
 </details>
@@ -676,7 +677,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 2 | `name` | `string` | `optional` |  |  |
 | 3 | `box` | `string` | `optional` |  |  |
 | 4 | `command_line` | `string` | `optional` |  |  |
@@ -705,7 +706,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 
 </details>
 
@@ -760,7 +761,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `repeated` |  |  |
+| 1 | `dir_index` | `int32` | `repeated` |  | boxed_type = "GCSDK::GCDirIndex_t" |
 | 2 | `method` | `.CMsgGCRoutingInfo.RoutingMethod` | `optional` |  | default = RANDOM |
 | 3 | `fallback` | `.CMsgGCRoutingInfo.RoutingMethod` | `optional` |  | default = DISCARD |
 | 4 | `protobuf_field` | `uint32` | `optional` |  |  |

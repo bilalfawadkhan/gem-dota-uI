@@ -32,23 +32,25 @@ from . import dota_gcmessages_common_pb2 as dota__gcmessages__common__pb2
 from . import gcsdk_gcmessages_pb2 as gcsdk__gcmessages__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n&dota_gcmessages_common_survivors.proto\x1a\x13steammessages.proto\x1a\x17\x64ota_shared_enums.proto\x1a\x1c\x64ota_gcmessages_common.proto\x1a\x16gcsdk_gcmessages.proto\"\xaf\x01\n\x15\x43MsgSurvivorsUserData\x12\x45\n\x10\x61ttribute_levels\x18\x01 \x03(\x0b\x32+.CMsgSurvivorsUserData.AttributeLevelsEntry\x12\x1b\n\x13unlocked_difficulty\x18\x02 \x01(\r\x1a\x32\n\x14\x41ttributeLevelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\r\"\xb2\x01\n+CMsgClientToGCSurvivorsPowerUpTelemetryData\x12\x12\n\npowerup_id\x18\x01 \x01(\r\x12\r\n\x05level\x18\x02 \x01(\r\x12\x15\n\rtime_received\x18\x03 \x01(\r\x12\x11\n\ttime_held\x18\x04 \x01(\r\x12\x14\n\x0ctotal_damage\x18\x05 \x01(\x04\x12\x0b\n\x03\x64ps\x18\x06 \x01(\r\x12\x13\n\x0bhas_scepter\x18\x07 \x01(\r\"\xf4\x01\n(CMsgClientToGCSurvivorsGameTelemetryData\x12\x15\n\rtime_survived\x18\x01 \x01(\r\x12\x14\n\x0cplayer_level\x18\x02 \x01(\r\x12\x13\n\x0bgame_result\x18\x03 \x01(\r\x12\x13\n\x0bgold_earned\x18\x04 \x01(\r\x12>\n\x08powerups\x18\x05 \x03(\x0b\x32,.CMsgClientToGCSurvivorsPowerUpTelemetryData\x12\x12\n\ndifficulty\x18\x06 \x01(\r\x12\x1d\n\x15metaprogression_level\x18\x07 \x01(\r\"\x9f\x02\n0CMsgClientToGCSurvivorsGameTelemetryDataResponse\x12_\n\x08response\x18\x01 \x01(\x0e\x32;.CMsgClientToGCSurvivorsGameTelemetryDataResponse.EResponse:\x10k_eInternalError\"\x89\x01\n\tEResponse\x12\x14\n\x10k_eInternalError\x10\x00\x12\x0e\n\nk_eSuccess\x10\x01\x12\x0e\n\nk_eTooBusy\x10\x02\x12\x0f\n\x0bk_eDisabled\x10\x03\x12\x0e\n\nk_eTimeout\x10\x04\x12\x11\n\rk_eNotAllowed\x10\x05\x12\x12\n\x0ek_eInvalidItem\x10\x06')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n&dota_gcmessages_common_survivors.proto\x1a\x13steammessages.proto\x1a\x17\x64ota_shared_enums.proto\x1a\x1c\x64ota_gcmessages_common.proto\x1a\x16gcsdk_gcmessages.proto\"\xb3\x01\n\x15\x43MsgSurvivorsUserData\x12\x45\n\x10\x61ttribute_levels\x18\x01 \x03(\x0b\x32+.CMsgSurvivorsUserData.AttributeLevelsEntry\x12\x1b\n\x13unlocked_difficulty\x18\x02 \x01(\r\x1a\x36\n\x14\x41ttributeLevelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"\xb2\x01\n+CMsgClientToGCSurvivorsPowerUpTelemetryData\x12\x12\n\npowerup_id\x18\x01 \x01(\r\x12\r\n\x05level\x18\x02 \x01(\r\x12\x15\n\rtime_received\x18\x03 \x01(\r\x12\x11\n\ttime_held\x18\x04 \x01(\r\x12\x14\n\x0ctotal_damage\x18\x05 \x01(\x04\x12\x0b\n\x03\x64ps\x18\x06 \x01(\r\x12\x13\n\x0bhas_scepter\x18\x07 \x01(\r\"\xf4\x01\n(CMsgClientToGCSurvivorsGameTelemetryData\x12\x15\n\rtime_survived\x18\x01 \x01(\r\x12\x14\n\x0cplayer_level\x18\x02 \x01(\r\x12\x13\n\x0bgame_result\x18\x03 \x01(\r\x12\x13\n\x0bgold_earned\x18\x04 \x01(\r\x12>\n\x08powerups\x18\x05 \x03(\x0b\x32,.CMsgClientToGCSurvivorsPowerUpTelemetryData\x12\x12\n\ndifficulty\x18\x06 \x01(\r\x12\x1d\n\x15metaprogression_level\x18\x07 \x01(\r\"\x9f\x02\n0CMsgClientToGCSurvivorsGameTelemetryDataResponse\x12_\n\x08response\x18\x01 \x01(\x0e\x32;.CMsgClientToGCSurvivorsGameTelemetryDataResponse.EResponse:\x10k_eInternalError\"\x89\x01\n\tEResponse\x12\x14\n\x10k_eInternalError\x10\x00\x12\x0e\n\nk_eSuccess\x10\x01\x12\x0e\n\nk_eTooBusy\x10\x02\x12\x0f\n\x0bk_eDisabled\x10\x03\x12\x0e\n\nk_eTimeout\x10\x04\x12\x11\n\rk_eNotAllowed\x10\x05\x12\x12\n\x0ek_eInvalidItem\x10\x06')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'dota_gcmessages_common_survivors_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
+  _globals['_CMSGSURVIVORSUSERDATA_ATTRIBUTELEVELSENTRY']._loaded_options = None
+  _globals['_CMSGSURVIVORSUSERDATA_ATTRIBUTELEVELSENTRY']._serialized_options = b'8\001'
   _globals['_CMSGSURVIVORSUSERDATA']._serialized_start=143
-  _globals['_CMSGSURVIVORSUSERDATA']._serialized_end=318
+  _globals['_CMSGSURVIVORSUSERDATA']._serialized_end=322
   _globals['_CMSGSURVIVORSUSERDATA_ATTRIBUTELEVELSENTRY']._serialized_start=268
-  _globals['_CMSGSURVIVORSUSERDATA_ATTRIBUTELEVELSENTRY']._serialized_end=318
-  _globals['_CMSGCLIENTTOGCSURVIVORSPOWERUPTELEMETRYDATA']._serialized_start=321
-  _globals['_CMSGCLIENTTOGCSURVIVORSPOWERUPTELEMETRYDATA']._serialized_end=499
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATA']._serialized_start=502
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATA']._serialized_end=746
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE']._serialized_start=749
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE']._serialized_end=1036
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE_ERESPONSE']._serialized_start=899
-  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE_ERESPONSE']._serialized_end=1036
+  _globals['_CMSGSURVIVORSUSERDATA_ATTRIBUTELEVELSENTRY']._serialized_end=322
+  _globals['_CMSGCLIENTTOGCSURVIVORSPOWERUPTELEMETRYDATA']._serialized_start=325
+  _globals['_CMSGCLIENTTOGCSURVIVORSPOWERUPTELEMETRYDATA']._serialized_end=503
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATA']._serialized_start=506
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATA']._serialized_end=750
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE']._serialized_start=753
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE']._serialized_end=1040
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE_ERESPONSE']._serialized_start=903
+  _globals['_CMSGCLIENTTOGCSURVIVORSGAMETELEMETRYDATARESPONSE_ERESPONSE']._serialized_end=1040
 # @@protoc_insertion_point(module_scope)

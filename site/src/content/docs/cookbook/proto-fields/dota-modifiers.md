@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_modifiers_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **2** (top-level: 2)
 - Enums: **1** (top-level: 1)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -24,16 +25,16 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `entry_type` | `.DOTA_MODIFIER_ENTRY_TYPE` | `optional` |  | default = DOTA_MODIFIER_ENTRY_TYPE_ACTIVE |
-| 2 | `parent` | `uint32` | `optional` |  | default = 16777215 |
+| 2 | `parent` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 3 | `index` | `int32` | `optional` |  |  |
 | 4 | `serial_num` | `int32` | `optional` |  |  |
 | 5 | `modifier_class` | `int32` | `optional` |  |  |
 | 6 | `ability_level` | `int32` | `optional` |  |  |
 | 7 | `stack_count` | `int32` | `optional` |  |  |
-| 8 | `creation_time` | `float` | `optional` |  |  |
+| 8 | `creation_time` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 9 | `duration` | `float` | `optional` |  | default = -1 |
-| 10 | `caster` | `uint32` | `optional` |  | default = 16777215 |
-| 11 | `ability` | `uint32` | `optional` |  | default = 16777215 |
+| 10 | `caster` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
+| 11 | `ability` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 12 | `armor` | `int32` | `optional` |  |  |
 | 13 | `fade_time` | `float` | `optional` |  |  |
 | 14 | `subtle` | `bool` | `optional` |  |  |
@@ -50,17 +51,17 @@ Expand any message to inspect all fields.
 | 25 | `damage` | `int32` | `optional` |  |  |
 | 26 | `range` | `int32` | `optional` |  |  |
 | 27 | `dd_modifier_index` | `int32` | `optional` |  |  |
-| 28 | `dd_ability_id` | `int32` | `optional` |  | default = -1 |
+| 28 | `dd_ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 29 | `illusion_label` | `string` | `optional` |  |  |
 | 30 | `active` | `bool` | `optional` |  |  |
 | 31 | `player_ids` | `string` | `optional` |  |  |
 | 32 | `lua_name` | `string` | `optional` |  |  |
 | 33 | `attack_speed` | `int32` | `optional` |  |  |
-| 34 | `aura_owner` | `uint32` | `optional` |  | default = 16777215 |
+| 34 | `aura_owner` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 35 | `bonus_all_stats` | `int32` | `optional` |  |  |
 | 36 | `bonus_health` | `int32` | `optional` |  |  |
 | 37 | `bonus_mana` | `int32` | `optional` |  |  |
-| 38 | `custom_entity` | `uint32` | `optional` |  | default = 16777215 |
+| 38 | `custom_entity` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 39 | `aura_within_range` | `bool` | `optional` |  |  |
 | 40 | `move_slow` | `float` | `optional` |  |  |
 | 41 | `has_scepter` | `bool` | `optional` |  |  |

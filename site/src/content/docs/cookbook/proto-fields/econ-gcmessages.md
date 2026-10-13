@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `econ_gcmessages_pb2`
-- Imports: **4**
+- Imports: **5**
 - Messages: **143** (top-level: 121)
 - Enums: **16** (top-level: 2)
 
@@ -13,6 +13,7 @@
 - `econ_shared_enums.proto`
 - `gcsdk_gcmessages.proto`
 - `base_gcmessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -26,8 +27,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `autograph_item_id` | `uint64` | `optional` |  |  |
-| 2 | `item_item_id` | `uint64` | `optional` |  |  |
+| 1 | `autograph_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -39,10 +40,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `new_class` | `uint32` | `optional` |  |  |
 | 3 | `new_slot` | `uint32` | `optional` |  |  |
-| 4 | `style_index` | `uint32` | `optional` |  | default = 255 |
+| 4 | `style_index` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
 
 </details>
 
@@ -69,7 +70,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `event_type` | `uint32` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 3 | `adjustment` | `uint32` | `optional` |  |  |
 
 </details>
@@ -82,7 +83,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_ids` | `uint64` | `repeated` |  |  |
+| 1 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -121,7 +122,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `price` | `uint32` | `optional` |  |  |
 
 </details>
@@ -258,7 +259,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `crate_item_def` | `uint32` | `optional` |  |  |
+| 1 | `crate_item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -271,8 +272,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `response` | `uint32` | `optional` |  |  |
-| 2 | `item_defs` | `uint32` | `repeated` |  |  |
-| 3 | `peek_item_defs` | `uint32` | `repeated` |  |  |
+| 2 | `item_defs` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
+| 3 | `peek_item_defs` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 | 4 | `peek_items` | `.CSOEconItem` | `repeated` |  |  |
 
 </details>
@@ -285,12 +286,12 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `crate_item_def` | `uint32` | `optional` |  |  |
+| 1 | `crate_item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
 <details>
-<summary><code>CMsgRequestCrateEscalationLevelResponse</code> — fields: 5; oneofs: 0; nested messages: 0; nested enums: 1</summary>
+<summary><code>CMsgRequestCrateEscalationLevelResponse</code> — fields: 6; oneofs: 0; nested messages: 0; nested enums: 1</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -302,6 +303,7 @@ Expand any message to inspect all fields.
 | 3 | `escalation_level1` | `uint32` | `optional` |  |  |
 | 4 | `escalation_level2` | `uint32` | `optional` |  |  |
 | 5 | `escalation_level3` | `uint32` | `optional` |  |  |
+| 6 | `escalation_level4` | `uint32` | `optional` |  |  |
 
 </details>
 
@@ -316,7 +318,7 @@ Expand any message to inspect all fields.
 | 1 | `account_id` | `uint32` | `optional` |  |  |
 | 2 | `drop_rate_bonus` | `float` | `optional` |  |  |
 | 3 | `booster_type` | `uint32` | `optional` |  |  |
-| 4 | `exclusive_item_def` | `uint32` | `optional` |  |  |
+| 4 | `exclusive_item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 5 | `allow_equal_rate` | `bool` | `optional` |  |  |
 
 </details>
@@ -330,8 +332,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
-| 3 | `item_def` | `uint32` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 3 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 4 | `drop_rate_bonus` | `float` | `optional` |  |  |
 | 5 | `booster_type` | `uint32` | `optional` |  |  |
 | 6 | `seconds_duration` | `uint32` | `optional` |  |  |
@@ -348,7 +350,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `item_def` | `uint32` | `optional` |  |  |
+| 2 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 3 | `bonus_to_add` | `float` | `optional` |  |  |
 | 4 | `booster_type` | `uint32` | `optional` |  |  |
 
@@ -376,7 +378,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `matching_subscription_def_indexes` | `uint32` | `repeated` |  |  |
+| 2 | `matching_subscription_def_indexes` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 | 3 | `additional_seconds` | `uint32` | `optional` |  |  |
 
 </details>
@@ -404,7 +406,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `loot_lists` | `string` | `repeated` |  |  |
 | 3 | `ignore_limit` | `bool` | `optional` |  |  |
 | 4 | `origin` | `uint32` | `optional` |  |  |
@@ -453,8 +455,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `item_ids` | `uint64` | `repeated` |  |  |
-| 3 | `item_defs` | `uint32` | `repeated` |  |  |
+| 2 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
+| 3 | `item_defs` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -466,7 +468,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_index` | `uint32` | `optional` |  |  |
+| 1 | `item_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `accountid` | `uint32` | `optional` |  |  |
 
 </details>
@@ -480,8 +482,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `crate_item_id` | `uint64` | `optional` |  |  |
-| 3 | `key_item_id` | `uint64` | `optional` |  |  |
+| 2 | `crate_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 3 | `key_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -493,7 +495,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `target_steam_id` | `fixed64` | `optional` |  |  |
 | 3 | `gift__potential_targets` | `uint32` | `repeated` |  |  |
 | 4 | `duel__class_lock` | `uint32` | `optional` |  |  |
@@ -523,7 +525,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_ids` | `uint64` | `repeated` |  |  |
+| 1 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -535,7 +537,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_id` | `uint32` | `optional` |  |  |
+| 1 | `item_def_id` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `quantity` | `uint32` | `optional` |  |  |
 
 </details>
@@ -549,7 +551,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `deleted_item_id` | `uint64` | `optional` |  |  |
+| 2 | `deleted_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 3 | `old_audit_action` | `uint32` | `optional` |  |  |
 | 4 | `new_audit_action` | `uint32` | `optional` |  |  |
 | 5 | `expected_audit_action` | `uint32` | `optional` |  |  |
@@ -568,7 +570,7 @@ Expand any message to inspect all fields.
 | 2 | `sequencename` | `string` | `optional` |  |  |
 | 3 | `cycle` | `float` | `optional` |  |  |
 | 4 | `description` | `string` | `optional` |  |  |
-| 5 | `pedestal_itemdef` | `uint32` | `optional` |  |  |
+| 5 | `pedestal_itemdef` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 6 | `toolid` | `uint64` | `optional` |  |  |
 
 </details>
@@ -594,7 +596,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `response` | `uint32` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -634,7 +636,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -670,7 +672,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `def_index` | `uint32` | `optional` |  |  |
+| 1 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -698,7 +700,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `give_to_account_id` | `uint32` | `optional` |  |  |
 | 3 | `gift_message` | `string` | `optional` |  |  |
 
@@ -713,7 +715,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 4 | `sent_item_id` | `uint64` | `optional` |  |  |
+| 4 | `sent_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -743,7 +745,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -797,7 +799,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -809,9 +811,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `unpacked_item_ids` | `uint64` | `repeated` |  |  |
+| 1 | `unpacked_item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 | 2 | `response` | `.CMsgClientToGCUnpackBundleResponse.EUnpackBundle` | `optional` |  | default = k_UnpackBundle_Succeeded |
-| 3 | `unpacked_item_def_indexes` | `uint32` | `repeated` |  |  |
+| 3 | `unpacked_item_def_indexes` | `uint32` | `repeated` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -850,7 +852,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `txn_id` | `uint64` | `optional` |  |  |
-| 2 | `item_ids` | `uint64` | `repeated` |  |  |
+| 2 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -886,8 +888,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
-| 2 | `style_index` | `uint32` | `optional` |  | default = 255 |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `style_index` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
 
 </details>
 
@@ -911,9 +913,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_to_unlock` | `uint64` | `optional` |  |  |
-| 2 | `style_index` | `uint32` | `optional` |  | default = 255 |
-| 3 | `consumable_item_ids` | `uint64` | `repeated` |  |  |
+| 1 | `item_to_unlock` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `style_index` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
+| 3 | `consumable_item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -926,9 +928,9 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `response` | `.CMsgClientToGCUnlockItemStyleResponse.EUnlockStyle` | `optional` |  | default = k_UnlockStyle_Succeeded |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
-| 3 | `style_index` | `uint32` | `optional` |  | default = 255 |
-| 4 | `style_prereq` | `uint32` | `optional` |  | default = 255 |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 3 | `style_index` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
+| 4 | `style_prereq` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
 
 </details>
 
@@ -940,7 +942,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_ids` | `uint64` | `repeated` |  |  |
+| 1 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 | 2 | `set_to_value` | `uint32` | `optional` |  |  |
 | 3 | `remove_categories` | `uint32` | `optional` |  |  |
 | 4 | `add_categories` | `uint32` | `optional` |  |  |
@@ -955,8 +957,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `crate_item_id` | `uint64` | `optional` |  |  |
-| 2 | `key_item_id` | `uint64` | `optional` |  |  |
+| 1 | `crate_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `key_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -981,8 +983,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
-| 2 | `def_index` | `uint32` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -994,7 +996,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -1007,7 +1009,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `response` | `.CMsgClientToGCRemoveItemAttributeResponse.ERemoveItemAttribute` | `optional` |  | default = k_RemoveItemAttribute_Succeeded |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -1019,8 +1021,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `subject_item_id` | `uint64` | `optional` |  |  |
-| 2 | `tool_item_id` | `uint64` | `optional` |  |  |
+| 1 | `subject_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `tool_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 3 | `name` | `string` | `optional` |  |  |
 
 </details>
@@ -1034,7 +1036,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `response` | `.CMsgClientToGCNameItemResponse.ENameItem` | `optional` |  | default = k_NameItem_Succeeded |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -1046,7 +1048,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `new_position` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1059,7 +1061,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `item_quality` | `uint32` | `optional` |  |  |
 | 3 | `item_flags` | `uint32` | `optional` |  |  |
 | 4 | `attributes_string` | `string` | `optional` |  |  |
@@ -1067,8 +1069,8 @@ Expand any message to inspect all fields.
 | 6 | `items_fulfilled` | `uint32` | `optional` |  |  |
 | 7 | `item_rarity` | `uint32` | `optional` |  |  |
 | 8 | `lootlist` | `string` | `optional` |  |  |
-| 9 | `fulfilled_item_id` | `uint64` | `optional` |  |  |
-| 10 | `associated_item_def` | `uint32` | `optional` |  |  |
+| 9 | `fulfilled_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 10 | `associated_item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -1080,11 +1082,11 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `attr_def_index` | `uint32` | `optional` |  |  |
 | 3 | `required_type` | `uint32` | `optional` |  |  |
 | 4 | `required_hero` | `string` | `optional` |  |  |
-| 5 | `gem_def_index` | `uint32` | `optional` |  |  |
+| 5 | `gem_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 6 | `not_tradable` | `bool` | `optional` |  |  |
 | 7 | `required_item_slot` | `string` | `optional` |  |  |
 
@@ -1372,7 +1374,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `items` | `.CMsgClientToGCCreateStaticRecipe.Item` | `repeated` |  |  |
-| 2 | `recipe_def_index` | `uint32` | `optional` |  |  |
+| 2 | `recipe_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -1384,7 +1386,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `slot_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1412,8 +1414,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `def_index` | `uint32` | `optional` |  |  |
-| 2 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
+| 2 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 3 | `slot_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1445,7 +1447,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgProcessTransactionOrder</code> — fields: 9; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgProcessTransactionOrder</code> — fields: 8; oneofs: 0; nested messages: 1; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -1454,7 +1456,6 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `txn_id` | `uint64` | `optional` |  |  |
 | 2 | `steam_txn_id` | `uint64` | `optional` |  |  |
-| 3 | `partner_txn_id` | `uint64` | `optional` |  |  |
 | 4 | `steam_id` | `fixed64` | `optional` |  |  |
 | 5 | `time_stamp` | `uint32` | `optional` |  |  |
 | 6 | `watermark` | `uint64` | `optional` |  |  |
@@ -1465,14 +1466,14 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgProcessTransactionOrder.Item</code> — fields: 10; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CMsgProcessTransactionOrder.Item</code> — fields: 9; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: `CMsgProcessTransactionOrder`
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_index` | `uint32` | `optional` |  |  |
+| 1 | `item_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `item_price` | `uint32` | `optional` |  |  |
 | 3 | `quantity` | `uint32` | `optional` |  |  |
 | 4 | `category_desc` | `string` | `optional` |  |  |
@@ -1480,7 +1481,6 @@ Expand any message to inspect all fields.
 | 6 | `source_reference_id` | `uint64` | `optional` |  |  |
 | 7 | `parent_stack_index` | `int32` | `optional` |  |  |
 | 8 | `default_price` | `bool` | `optional` |  |  |
-| 9 | `is_user_facing` | `bool` | `optional` |  |  |
 | 11 | `price_index` | `int32` | `optional` |  |  |
 
 </details>
@@ -1545,7 +1545,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `con_command` | `string` | `optional` |  |  |
 | 2 | `report_output` | `bool` | `optional` |  |  |
-| 3 | `sending_gc` | `int32` | `optional` |  | default = -1 |
+| 3 | `sending_gc` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 4 | `output_initiator` | `string` | `optional` |  |  |
 | 5 | `sender_source` | `string` | `optional` |  |  |
 
@@ -1560,7 +1560,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `initiator` | `string` | `optional` |  |  |
-| 2 | `sending_gc` | `int32` | `optional` |  | default = -1 |
+| 2 | `sending_gc` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 3 | `msgs` | `.CMsgGCToGCConsoleOutput.OutputLine` | `repeated` |  |  |
 | 4 | `is_last_for_source_job` | `bool` | `optional` |  |  |
 
@@ -1600,7 +1600,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `timestamp` | `uint32` | `optional` |  |  |
-| 2 | `max_item_id` | `uint64` | `optional` |  |  |
+| 2 | `max_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -1612,7 +1612,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `sending_gc` | `int32` | `optional` |  | default = -1 |
+| 1 | `sending_gc` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 2 | `sender_id` | `fixed64` | `optional` |  |  |
 | 3 | `context` | `uint32` | `optional` |  |  |
 | 4 | `message_id` | `uint32` | `optional` |  |  |
@@ -1790,7 +1790,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -1815,7 +1815,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -1853,7 +1853,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_index` | `uint32` | `optional` |  |  |
+| 1 | `item_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `quantity` | `uint32` | `optional` |  |  |
 | 3 | `source_reference_id` | `uint64` | `optional` |  |  |
 | 4 | `price_index` | `int32` | `optional` |  |  |
@@ -1869,7 +1869,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgClientToGCPurchaseChargeCostItemsResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `item_ids` | `uint64` | `repeated` |  |  |
+| 2 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -1893,7 +1893,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `charges_in_flight` | `uint32` | `optional` |  |  |
 
 </details>
@@ -1956,9 +1956,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `slot_id` | `uint32` | `optional` |  |  |
-| 3 | `recipe_def_index` | `uint32` | `optional` |  |  |
+| 3 | `recipe_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 

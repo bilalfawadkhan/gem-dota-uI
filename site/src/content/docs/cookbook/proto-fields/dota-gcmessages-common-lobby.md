@@ -3,7 +3,7 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `dota_gcmessages_common_lobby_pb2`
-- Imports: **3**
+- Imports: **4**
 - Messages: **32** (top-level: 26)
 - Enums: **5** (top-level: 3)
 
@@ -12,6 +12,7 @@
 - `steammessages.proto`
 - `dota_shared_enums.proto`
 - `gcsdk_gcmessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -51,7 +52,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `hero_badge_xp` | `uint32` | `optional` |  |  |
 
 </details>
@@ -77,7 +78,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `periodic_resource_id` | `uint32` | `optional` |  |  |
+| 1 | `periodic_resource_id` | `uint32` | `optional` |  | boxed_type = "PeriodicResourceID_t" |
 | 2 | `remaining` | `uint32` | `optional` |  |  |
 | 3 | `max` | `uint32` | `optional` |  |  |
 
@@ -113,7 +114,7 @@ Expand any message to inspect all fields.
 | 23 | `wager_streak` | `uint32` | `optional` |  |  |
 | 25 | `event_game_custom_actions` | `.CMsgEventActionData` | `repeated` |  |  |
 | 26 | `tip_amount_index` | `uint32` | `optional` |  |  |
-| 27 | `active_event_season_id` | `uint32` | `optional` |  |  |
+| 27 | `active_event_season_id` | `uint32` | `optional` |  | boxed_type = "EventSeasonID_t" |
 | 28 | `teleport_fx_level` | `uint32` | `optional` |  |  |
 | 30 | `networked_event_actions` | `.CMsgEventActionData` | `repeated` |  |  |
 | 31 | `periodic_resources` | `.CMsgPeriodicResourceData` | `repeated` |  |  |
@@ -175,7 +176,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `id` | `fixed64` | `optional` |  | (key_field) = true |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `team` | `.DOTA_GC_TEAM` | `optional` |  | default = DOTA_GC_TEAM_GOOD_GUYS |
 | 7 | `slot` | `uint32` | `optional` |  |  |
 | 16 | `leaver_status` | `.DOTALeaverStatus_t` | `optional` |  | default = DOTA_LEAVER_NONE |
@@ -239,11 +240,11 @@ Expand any message to inspect all fields.
 | 12 | `favorite_team_packed` | `uint64` | `optional` |  |  |
 | 13 | `is_steam_china` | `bool` | `optional` |  |  |
 | 14 | `title` | `uint32` | `optional` |  |  |
-| 15 | `guild_id` | `uint32` | `optional` |  |  |
+| 15 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 16 | `disabled_random_hero_bits` | `fixed32` | `repeated` |  |  |
-| 17 | `disabled_hero_id` | `int32` | `repeated` |  |  |
-| 18 | `enabled_hero_id` | `int32` | `repeated` |  |  |
-| 19 | `banned_hero_ids` | `int32` | `repeated` |  |  |
+| 17 | `disabled_hero_id` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
+| 18 | `enabled_hero_id` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
+| 19 | `banned_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -280,7 +281,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_primary_color` | `uint32` | `optional` |  |  |
 | 3 | `guild_secondary_color` | `uint32` | `optional` |  |  |
 | 4 | `guild_pattern` | `uint32` | `optional` |  |  |
@@ -302,7 +303,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 2 | `item_def_index` | `uint32` | `optional` |  |  |
+| 2 | `item_def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 3 | `is_supply_crate` | `bool` | `optional` |  |  |
 | 4 | `is_timed_drop` | `bool` | `optional` |  |  |
 | 5 | `account_id` | `uint32` | `optional` |  |  |
@@ -333,7 +334,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 3 | `challenge_instance_id` | `uint32` | `optional` |  |  |
 | 4 | `challenge_parameter` | `uint32` | `optional` |  |  |
@@ -386,11 +387,11 @@ Expand any message to inspect all fields.
 | 23 | `num_spectators` | `uint32` | `optional` |  |  |
 | 25 | `matchgroup` | `uint32` | `optional` |  |  |
 | 28 | `cm_pick` | `.DOTA_CM_PICK` | `optional` |  | default = DOTA_CM_RANDOM |
-| 30 | `match_id` | `uint64` | `optional` |  |  |
+| 30 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 31 | `allow_spectating` | `bool` | `optional` |  | default = true |
 | 36 | `bot_difficulty_radiant` | `.DOTABotDifficulty` | `optional` |  | default = BOT_DIFFICULTY_HARD |
 | 39 | `pass_key` | `string` | `optional` |  |  |
-| 42 | `leagueid` | `uint32` | `optional` |  |  |
+| 42 | `leagueid` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 43 | `penalty_level_radiant` | `uint32` | `optional` |  | default = 0 |
 | 44 | `penalty_level_dire` | `uint32` | `optional` |  | default = 0 |
 | 46 | `series_type` | `uint32` | `optional` |  |  |
@@ -417,8 +418,8 @@ Expand any message to inspect all fields.
 | 76 | `custom_game_crc` | `fixed64` | `optional` |  |  |
 | 77 | `custom_game_auto_created_lobby` | `bool` | `optional` |  |  |
 | 80 | `custom_game_timestamp` | `fixed32` | `optional` |  |  |
-| 81 | `previous_series_matches` | `uint64` | `repeated` |  |  |
-| 82 | `previous_match_override` | `uint64` | `optional` |  |  |
+| 81 | `previous_series_matches` | `uint64` | `repeated` |  | boxed_type = "MatchID_t" |
+| 82 | `previous_match_override` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 87 | `game_start_time` | `uint32` | `optional` |  |  |
 | 88 | `pause_setting` | `.LobbyDotaPauseSetting` | `optional` |  | default = LobbyDotaPauseSetting_Unlimited |
 | 90 | `weekend_tourney_division_id` | `uint32` | `optional` |  |  |
@@ -436,11 +437,11 @@ Expand any message to inspect all fields.
 | 102 | `series_current_selection_priority_used_coin_toss` | `bool` | `optional` |  |  |
 | 103 | `current_primary_event` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 104 | `current_primary_event_for_display` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
-| 105 | `emergency_disabled_hero_ids` | `int32` | `repeated` |  |  |
+| 105 | `emergency_disabled_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 | 106 | `custom_game_private_key` | `fixed64` | `optional` |  |  |
 | 107 | `custom_game_penalties` | `bool` | `optional` |  |  |
 | 109 | `lan_host_ping_location` | `string` | `optional` |  |  |
-| 110 | `league_node_id` | `uint32` | `optional` |  |  |
+| 110 | `league_node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 111 | `match_duration` | `uint32` | `optional` |  |  |
 | 113 | `league_phase` | `uint32` | `optional` |  |  |
 | 116 | `experimental_gameplay_enabled` | `bool` | `optional` |  |  |
@@ -450,7 +451,7 @@ Expand any message to inspect all fields.
 | 121 | `member_indices` | `uint32` | `repeated` |  |  |
 | 122 | `left_member_indices` | `uint32` | `repeated` |  |  |
 | 123 | `free_member_indices` | `uint32` | `repeated` |  |  |
-| 124 | `requested_hero_ids` | `int32` | `repeated` |  |  |
+| 124 | `requested_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 | 125 | `coach_friend_requests` | `.CMsgLobbyCoachFriendRequest` | `repeated` |  |  |
 | 126 | `is_in_steam_china` | `bool` | `optional` |  |  |
 | 127 | `with_scenario_save` | `bool` | `optional` |  |  |
@@ -540,8 +541,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `message_id_start` | `uint32` | `optional` |  | default = 4294967295 |
-| 2 | `message_id_end` | `uint32` | `optional` |  | default = 4294967295 |
+| 1 | `message_id_start` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295" |
+| 2 | `message_id_end` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295" |
 
 </details>
 
@@ -553,8 +554,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `message_id_start` | `uint32` | `optional` |  | default = 4294967295 |
-| 2 | `message_id_end` | `uint32` | `optional` |  | default = 4294967295 |
+| 1 | `message_id_start` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "PingWheelMessageID_t", synthetic_default = "4294967295" |
+| 2 | `message_id_end` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "PingWheelMessageID_t", synthetic_default = "4294967295" |
 
 </details>
 
@@ -590,7 +591,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 3 | `guild_points` | `uint32` | `optional` |  |  |
 | 4 | `guild_logo` | `uint64` | `optional` |  |  |

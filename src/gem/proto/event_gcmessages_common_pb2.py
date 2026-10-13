@@ -22,17 +22,24 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x65vent_gcmessages_common.proto\"@\n\x0f\x43MsgEventAction\x12\x11\n\taction_id\x18\x01 \x01(\r\x12\x1a\n\x0ftimes_completed\x18\x02 \x01(\r:\x01\x31\"\xed\x01\n\x13\x43MsgUserEventPoints\x12\x12\n\naccount_id\x18\x01 \x01(\r\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\r\x12\x14\n\x0ctotal_points\x18\x03 \x01(\r\x12\x1c\n\x14total_premium_points\x18\x04 \x01(\r\x12\x0e\n\x06points\x18\x05 \x01(\r\x12\x16\n\x0epremium_points\x18\x06 \x01(\r\x12+\n\x11\x63ompleted_actions\x18\x07 \x03(\x0b\x32\x10.CMsgEventAction\x12\r\n\x05owned\x18\x08 \x01(\x08\x12\x18\n\x10\x61\x63tive_season_id\x18\t \x01(\r')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x65vent_gcmessages_common.proto\x1a google/protobuf/descriptor.proto\"@\n\x0f\x43MsgEventAction\x12\x11\n\taction_id\x18\x01 \x01(\r\x12\x1a\n\x0ftimes_completed\x18\x02 \x01(\r:\x01\x31\"\xed\x01\n\x13\x43MsgUserEventPoints\x12\x12\n\naccount_id\x18\x01 \x01(\r\x12\x10\n\x08\x65vent_id\x18\x02 \x01(\r\x12\x14\n\x0ctotal_points\x18\x03 \x01(\r\x12\x1c\n\x14total_premium_points\x18\x04 \x01(\r\x12\x0e\n\x06points\x18\x05 \x01(\r\x12\x16\n\x0epremium_points\x18\x06 \x01(\r\x12+\n\x11\x63ompleted_actions\x18\x07 \x03(\x0b\x32\x10.CMsgEventAction\x12\r\n\x05owned\x18\x08 \x01(\x08\x12\x18\n\x10\x61\x63tive_season_id\x18\t \x01(\r\"^\n\x17\x43MsgPeriodicResourceKey\x12\x12\n\naccount_id\x18\x01 \x01(\r\x12\x1c\n\x14periodic_resource_id\x18\x02 \x01(\r\x12\x11\n\ttimestamp\x18\x03 \x01(\r\"Z\n\x19\x43MsgPeriodicResourceValue\x12\x1d\n\x15periodic_resource_max\x18\x01 \x01(\r\x12\x1e\n\x16periodic_resource_used\x18\x02 \x01(\r*Y\n\x15\x45\x45ventActionScoreMode\x12\x1f\n\x1bk_eEventActionScoreMode_Add\x10\x00\x12\x1f\n\x1bk_eEventActionScoreMode_Min\x10\x01')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'event_gcmessages_common_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_CMSGEVENTACTION']._serialized_start=33
-  _globals['_CMSGEVENTACTION']._serialized_end=97
-  _globals['_CMSGUSEREVENTPOINTS']._serialized_start=100
-  _globals['_CMSGUSEREVENTPOINTS']._serialized_end=337
+  _globals['_EEVENTACTIONSCOREMODE']._serialized_start=561
+  _globals['_EEVENTACTIONSCOREMODE']._serialized_end=650
+  _globals['_CMSGEVENTACTION']._serialized_start=67
+  _globals['_CMSGEVENTACTION']._serialized_end=131
+  _globals['_CMSGUSEREVENTPOINTS']._serialized_start=134
+  _globals['_CMSGUSEREVENTPOINTS']._serialized_end=371
+  _globals['_CMSGPERIODICRESOURCEKEY']._serialized_start=373
+  _globals['_CMSGPERIODICRESOURCEKEY']._serialized_end=467
+  _globals['_CMSGPERIODICRESOURCEVALUE']._serialized_start=469
+  _globals['_CMSGPERIODICRESOURCEVALUE']._serialized_end=559
 # @@protoc_insertion_point(module_scope)

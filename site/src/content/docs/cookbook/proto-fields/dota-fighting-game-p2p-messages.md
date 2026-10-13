@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_fighting_game_p2p_messages_pb2`
-- Imports: **2**
+- Imports: **3**
 - Messages: **6** (top-level: 4)
 - Enums: **1** (top-level: 0)
 
@@ -11,6 +11,7 @@
 
 - `netmessages.proto`
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -56,7 +57,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `cursor_index` | `uint32` | `optional` |  |  |
-| 2 | `selected_hero_id` | `int32` | `optional` |  |  |
+| 2 | `selected_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `selected_style` | `uint32` | `optional` |  |  |
 | 4 | `econ_item_refs` | `.CMsgFightingGame_GameData_CharacterSelect.Item` | `repeated` |  |  |
 | 5 | `message_ack` | `int64` | `optional` |  |  |
@@ -72,8 +73,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
-| 2 | `style_index` | `uint32` | `optional` |  | default = 255 |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
+| 2 | `style_index` | `uint32` | `optional` |  | default = 255, boxed_type = "style_index_t", synthetic_default = "255" |
 
 </details>
 

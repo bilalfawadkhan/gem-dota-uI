@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_scenariomessages_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **23** (top-level: 7)
 - Enums: **0** (top-level: 0)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -52,7 +53,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `team_number` | `int32` | `optional` |  |  |
-| 2 | `owner_player_id` | `int32` | `optional` |  | default = -1 |
+| 2 | `owner_player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 3 | `cooldown` | `float` | `optional` |  | default = -1 |
 
 </details>
@@ -83,7 +84,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `owner_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `owner_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `team_id` | `int32` | `optional` |  |  |
 
 </details>
@@ -128,7 +129,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `neutral_stash_id` | `int32` | `optional` |  | default = -1 |
 | 3 | `entity_idx` | `int32` | `optional` |  | default = -1 |
 | 4 | `roshan` | `bool` | `optional` |  | default = false |
@@ -144,10 +145,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_id` | `uint64` | `optional` |  |  |
+| 1 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 2 | `game_mode` | `int32` | `optional` |  |  |
 | 3 | `clock_time` | `float` | `optional` |  |  |
-| 4 | `internal_time` | `float` | `optional` |  |  |
+| 4 | `internal_time` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 5 | `roshan` | `.CScenarioGame_RoshanSpawner` | `optional` |  |  |
 
 </details>
@@ -192,7 +193,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `value` | `int32` | `optional` |  |  |
 
 </details>
@@ -205,7 +206,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `value` | `float` | `optional` |  |  |
 
 </details>
@@ -278,7 +279,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `steam_id` | `fixed64` | `optional` |  |  |
-| 2 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 2 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 3 | `team_id` | `int32` | `optional` |  |  |
 | 4 | `hero` | `string` | `optional` |  |  |
 | 5 | `total_xp` | `int32` | `optional` |  |  |
@@ -307,8 +308,8 @@ Expand any message to inspect all fields.
 | 34 | `claimed_deny_count` | `int32` | `optional` |  |  |
 | 35 | `claimed_miss_count` | `int32` | `optional` |  |  |
 | 36 | `miss_count` | `int32` | `optional` |  |  |
-| 40 | `buyback_cooldown_time` | `float` | `optional` |  |  |
-| 41 | `buyback_gold_limit_time` | `float` | `optional` |  |  |
+| 40 | `buyback_cooldown_time` | `float` | `optional` |  | boxed_type = "GameTime_t" |
+| 41 | `buyback_gold_limit_time` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 44 | `stun_duration` | `float` | `optional` |  |  |
 | 45 | `healing` | `float` | `optional` |  |  |
 | 46 | `tower_kills` | `int32` | `optional` |  |  |
@@ -340,7 +341,7 @@ Expand any message to inspect all fields.
 | 150 | `enemy_kills` | `.CMsgDotaScenario.HeroHeroInt` | `repeated` |  |  |
 | 151 | `damage_stats` | `.CMsgDotaScenario.DamageStatsByType` | `repeated` |  |  |
 | 152 | `abilities` | `.CMsgDotaScenario.HeroAbility` | `repeated` |  |  |
-| 153 | `hero_facet` | `uint32` | `optional` |  |  |
+| 153 | `hero_facet` | `uint32` | `optional` |  | boxed_type = "HeroFacetID_t" |
 | 154 | `total_madstone` | `uint32` | `optional` |  |  |
 | 155 | `current_madstone` | `uint32` | `optional` |  |  |
 | 156 | `neutral_tiers` | `.CMsgDotaScenario.HeroNeutralTier` | `repeated` |  |  |
@@ -360,7 +361,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
 | 2 | `team_number` | `int32` | `optional` |  | default = -1 |
-| 3 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 3 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 4 | `current_stock` | `int32` | `optional` |  |  |
 | 5 | `cooldown` | `float` | `optional` |  |  |
 | 6 | `bonus_stock` | `int32` | `optional` |  |  |
@@ -408,7 +409,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
 | 2 | `location` | `.CMsgDotaScenario.EntityRef` | `optional` |  |  |
-| 3 | `owner_id` | `int32` | `optional` |  | default = -1 |
+| 3 | `owner_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 4 | `item_slot` | `int32` | `optional` |  |  |
 | 5 | `neutral_drop_team` | `int32` | `optional` |  |  |
 | 6 | `charges` | `int32` | `optional` |  |  |

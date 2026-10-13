@@ -1,5 +1,6 @@
 from . import networkbasetypes_pb2 as _networkbasetypes_pb2
 from . import source2_steam_stats_pb2 as _source2_steam_stats_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -59,6 +60,8 @@ class SVC_Messages(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     svc_HltvFixupOperatorStatus: _ClassVar[SVC_Messages]
     svc_UserCmds: _ClassVar[SVC_Messages]
     svc_NextMsgPredicted: _ClassVar[SVC_Messages]
+    svc_EncryptedData: _ClassVar[SVC_Messages]
+    svc_UserCmdKeyframe: _ClassVar[SVC_Messages]
 
 class VoiceDataFormat_t(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -159,6 +162,8 @@ svc_Broadcast_Command: SVC_Messages
 svc_HltvFixupOperatorStatus: SVC_Messages
 svc_UserCmds: SVC_Messages
 svc_NextMsgPredicted: SVC_Messages
+svc_EncryptedData: SVC_Messages
+svc_UserCmdKeyframe: SVC_Messages
 VOICEDATA_FORMAT_STEAM: VoiceDataFormat_t
 VOICEDATA_FORMAT_ENGINE: VoiceDataFormat_t
 VOICEDATA_FORMAT_OPUS: VoiceDataFormat_t
@@ -323,8 +328,8 @@ class CCLCMsg_Diagnostic(_message.Message):
     vprof_report: _source2_steam_stats_pb2.CMsgSource2VProfLiteReport
     downstream_flow: _source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality
     upstream_flow: _source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality
-    perf_samples: _containers.RepeatedCompositeFieldContainer[_source2_steam_stats_pb2.CMsgSource2PerfIntervalSample]
-    def __init__(self, system_specs: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2SystemSpecs, _Mapping]] = ..., vprof_report: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2VProfLiteReport, _Mapping]] = ..., downstream_flow: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality, _Mapping]] = ..., upstream_flow: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality, _Mapping]] = ..., perf_samples: _Optional[_Iterable[_Union[_source2_steam_stats_pb2.CMsgSource2PerfIntervalSample, _Mapping]]] = ...) -> None: ...
+    perf_samples: _containers.RepeatedCompositeFieldContainer[_source2_steam_stats_pb2.CMsgSource2FramePerfSample]
+    def __init__(self, system_specs: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2SystemSpecs, _Mapping]] = ..., vprof_report: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2VProfLiteReport, _Mapping]] = ..., downstream_flow: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality, _Mapping]] = ..., upstream_flow: _Optional[_Union[_source2_steam_stats_pb2.CMsgSource2NetworkFlowQuality, _Mapping]] = ..., perf_samples: _Optional[_Iterable[_Union[_source2_steam_stats_pb2.CMsgSource2FramePerfSample, _Mapping]]] = ...) -> None: ...
 
 class CSVCMsg_ServerInfo(_message.Message):
     __slots__ = ("protocol", "server_count", "is_dedicated", "is_hltv", "c_os", "max_clients", "max_classes", "player_slot", "tick_interval", "game_dir", "map_name", "sky_name", "host_name", "addon_name", "game_session_config", "game_session_manifest")
@@ -697,7 +702,7 @@ class CSVCMsg_UpdateStringTable(_message.Message):
     def __init__(self, table_id: _Optional[int] = ..., num_changed_entries: _Optional[int] = ..., string_data: _Optional[bytes] = ...) -> None: ...
 
 class CSVCMsg_VoiceData(_message.Message):
-    __slots__ = ("audio", "client_deprecated", "proximity", "xuid", "audible_mask", "tick", "passthrough", "entity")
+    __slots__ = ("audio", "client_deprecated", "proximity", "xuid", "audible_mask", "tick", "passthrough", "entity", "caster")
     AUDIO_FIELD_NUMBER: _ClassVar[int]
     CLIENT_DEPRECATED_FIELD_NUMBER: _ClassVar[int]
     PROXIMITY_FIELD_NUMBER: _ClassVar[int]
@@ -706,6 +711,7 @@ class CSVCMsg_VoiceData(_message.Message):
     TICK_FIELD_NUMBER: _ClassVar[int]
     PASSTHROUGH_FIELD_NUMBER: _ClassVar[int]
     ENTITY_FIELD_NUMBER: _ClassVar[int]
+    CASTER_FIELD_NUMBER: _ClassVar[int]
     audio: CMsgVoiceAudio
     client_deprecated: int
     proximity: bool
@@ -714,7 +720,16 @@ class CSVCMsg_VoiceData(_message.Message):
     tick: int
     passthrough: int
     entity: int
-    def __init__(self, audio: _Optional[_Union[CMsgVoiceAudio, _Mapping]] = ..., client_deprecated: _Optional[int] = ..., proximity: bool = ..., xuid: _Optional[int] = ..., audible_mask: _Optional[int] = ..., tick: _Optional[int] = ..., passthrough: _Optional[int] = ..., entity: _Optional[int] = ...) -> None: ...
+    caster: bool
+    def __init__(self, audio: _Optional[_Union[CMsgVoiceAudio, _Mapping]] = ..., client_deprecated: _Optional[int] = ..., proximity: bool = ..., xuid: _Optional[int] = ..., audible_mask: _Optional[int] = ..., tick: _Optional[int] = ..., passthrough: _Optional[int] = ..., entity: _Optional[int] = ..., caster: bool = ...) -> None: ...
+
+class CSVCMsg_EncryptedData(_message.Message):
+    __slots__ = ("encrypted", "key_type")
+    ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
+    KEY_TYPE_FIELD_NUMBER: _ClassVar[int]
+    encrypted: bytes
+    key_type: int
+    def __init__(self, encrypted: _Optional[bytes] = ..., key_type: _Optional[int] = ...) -> None: ...
 
 class CSVCMsg_PacketReliable(_message.Message):
     __slots__ = ("tick", "messagessize", "state")
@@ -809,7 +824,7 @@ class CSVCMsg_ClearAllStringTables(_message.Message):
     def __init__(self, mapname: _Optional[str] = ..., create_tables_skipped: bool = ...) -> None: ...
 
 class ProtoFlattenedSerializerField_t(_message.Message):
-    __slots__ = ("var_type_sym", "var_name_sym", "bit_count", "low_value", "high_value", "encode_flags", "field_serializer_name_sym", "field_serializer_version", "send_node_sym", "var_encoder_sym", "polymorphic_types", "var_serializer_sym")
+    __slots__ = ("var_type_sym", "var_name_sym", "bit_count", "low_value", "high_value", "encode_flags", "field_serializer_name_sym", "field_serializer_version", "send_node_sym", "var_encoder_sym", "polymorphic_types", "var_serializer_sym", "var_enum_info")
     class polymorphic_field_t(_message.Message):
         __slots__ = ("polymorphic_field_serializer_name_sym", "polymorphic_field_serializer_version")
         POLYMORPHIC_FIELD_SERIALIZER_NAME_SYM_FIELD_NUMBER: _ClassVar[int]
@@ -817,6 +832,11 @@ class ProtoFlattenedSerializerField_t(_message.Message):
         polymorphic_field_serializer_name_sym: int
         polymorphic_field_serializer_version: int
         def __init__(self, polymorphic_field_serializer_name_sym: _Optional[int] = ..., polymorphic_field_serializer_version: _Optional[int] = ...) -> None: ...
+    class proto_enum_info_t(_message.Message):
+        __slots__ = ("is_signed_enum",)
+        IS_SIGNED_ENUM_FIELD_NUMBER: _ClassVar[int]
+        is_signed_enum: bool
+        def __init__(self, is_signed_enum: bool = ...) -> None: ...
     VAR_TYPE_SYM_FIELD_NUMBER: _ClassVar[int]
     VAR_NAME_SYM_FIELD_NUMBER: _ClassVar[int]
     BIT_COUNT_FIELD_NUMBER: _ClassVar[int]
@@ -829,6 +849,7 @@ class ProtoFlattenedSerializerField_t(_message.Message):
     VAR_ENCODER_SYM_FIELD_NUMBER: _ClassVar[int]
     POLYMORPHIC_TYPES_FIELD_NUMBER: _ClassVar[int]
     VAR_SERIALIZER_SYM_FIELD_NUMBER: _ClassVar[int]
+    VAR_ENUM_INFO_FIELD_NUMBER: _ClassVar[int]
     var_type_sym: int
     var_name_sym: int
     bit_count: int
@@ -841,7 +862,8 @@ class ProtoFlattenedSerializerField_t(_message.Message):
     var_encoder_sym: int
     polymorphic_types: _containers.RepeatedCompositeFieldContainer[ProtoFlattenedSerializerField_t.polymorphic_field_t]
     var_serializer_sym: int
-    def __init__(self, var_type_sym: _Optional[int] = ..., var_name_sym: _Optional[int] = ..., bit_count: _Optional[int] = ..., low_value: _Optional[float] = ..., high_value: _Optional[float] = ..., encode_flags: _Optional[int] = ..., field_serializer_name_sym: _Optional[int] = ..., field_serializer_version: _Optional[int] = ..., send_node_sym: _Optional[int] = ..., var_encoder_sym: _Optional[int] = ..., polymorphic_types: _Optional[_Iterable[_Union[ProtoFlattenedSerializerField_t.polymorphic_field_t, _Mapping]]] = ..., var_serializer_sym: _Optional[int] = ...) -> None: ...
+    var_enum_info: ProtoFlattenedSerializerField_t.proto_enum_info_t
+    def __init__(self, var_type_sym: _Optional[int] = ..., var_name_sym: _Optional[int] = ..., bit_count: _Optional[int] = ..., low_value: _Optional[float] = ..., high_value: _Optional[float] = ..., encode_flags: _Optional[int] = ..., field_serializer_name_sym: _Optional[int] = ..., field_serializer_version: _Optional[int] = ..., send_node_sym: _Optional[int] = ..., var_encoder_sym: _Optional[int] = ..., polymorphic_types: _Optional[_Iterable[_Union[ProtoFlattenedSerializerField_t.polymorphic_field_t, _Mapping]]] = ..., var_serializer_sym: _Optional[int] = ..., var_enum_info: _Optional[_Union[ProtoFlattenedSerializerField_t.proto_enum_info_t, _Mapping]] = ...) -> None: ...
 
 class ProtoFlattenedSerializer_t(_message.Message):
     __slots__ = ("serializer_name_sym", "serializer_version", "fields_index")
@@ -853,15 +875,33 @@ class ProtoFlattenedSerializer_t(_message.Message):
     fields_index: _containers.RepeatedScalarFieldContainer[int]
     def __init__(self, serializer_name_sym: _Optional[int] = ..., serializer_version: _Optional[int] = ..., fields_index: _Optional[_Iterable[int]] = ...) -> None: ...
 
+class ProtoCoordSizeParams_t(_message.Message):
+    __slots__ = ("coord_integer_bits", "coord_fractional_bits", "coord_integer_bits_mp", "coord_fractional_bits_mp", "normal_fractional_bits", "angle_bits")
+    COORD_INTEGER_BITS_FIELD_NUMBER: _ClassVar[int]
+    COORD_FRACTIONAL_BITS_FIELD_NUMBER: _ClassVar[int]
+    COORD_INTEGER_BITS_MP_FIELD_NUMBER: _ClassVar[int]
+    COORD_FRACTIONAL_BITS_MP_FIELD_NUMBER: _ClassVar[int]
+    NORMAL_FRACTIONAL_BITS_FIELD_NUMBER: _ClassVar[int]
+    ANGLE_BITS_FIELD_NUMBER: _ClassVar[int]
+    coord_integer_bits: int
+    coord_fractional_bits: int
+    coord_integer_bits_mp: int
+    coord_fractional_bits_mp: int
+    normal_fractional_bits: int
+    angle_bits: int
+    def __init__(self, coord_integer_bits: _Optional[int] = ..., coord_fractional_bits: _Optional[int] = ..., coord_integer_bits_mp: _Optional[int] = ..., coord_fractional_bits_mp: _Optional[int] = ..., normal_fractional_bits: _Optional[int] = ..., angle_bits: _Optional[int] = ...) -> None: ...
+
 class CSVCMsg_FlattenedSerializer(_message.Message):
-    __slots__ = ("serializers", "symbols", "fields")
+    __slots__ = ("serializers", "symbols", "fields", "coord_size_params")
     SERIALIZERS_FIELD_NUMBER: _ClassVar[int]
     SYMBOLS_FIELD_NUMBER: _ClassVar[int]
     FIELDS_FIELD_NUMBER: _ClassVar[int]
+    COORD_SIZE_PARAMS_FIELD_NUMBER: _ClassVar[int]
     serializers: _containers.RepeatedCompositeFieldContainer[ProtoFlattenedSerializer_t]
     symbols: _containers.RepeatedScalarFieldContainer[str]
     fields: _containers.RepeatedCompositeFieldContainer[ProtoFlattenedSerializerField_t]
-    def __init__(self, serializers: _Optional[_Iterable[_Union[ProtoFlattenedSerializer_t, _Mapping]]] = ..., symbols: _Optional[_Iterable[str]] = ..., fields: _Optional[_Iterable[_Union[ProtoFlattenedSerializerField_t, _Mapping]]] = ...) -> None: ...
+    coord_size_params: ProtoCoordSizeParams_t
+    def __init__(self, serializers: _Optional[_Iterable[_Union[ProtoFlattenedSerializer_t, _Mapping]]] = ..., symbols: _Optional[_Iterable[str]] = ..., fields: _Optional[_Iterable[_Union[ProtoFlattenedSerializerField_t, _Mapping]]] = ..., coord_size_params: _Optional[_Union[ProtoCoordSizeParams_t, _Mapping]] = ...) -> None: ...
 
 class CSVCMsg_StopSound(_message.Message):
     __slots__ = ("guid",)
@@ -1054,20 +1094,22 @@ class CSVCMsg_HltvFixupOperatorStatus(_message.Message):
     def __init__(self, mode: _Optional[int] = ..., override_operator_name: _Optional[str] = ...) -> None: ...
 
 class CMsgServerUserCmd(_message.Message):
-    __slots__ = ("data", "cmd_number", "player_slot", "server_tick_executed", "client_tick", "delta_data")
+    __slots__ = ("data", "cmd_number", "player_slot", "server_tick_executed", "client_tick", "delta_data", "delta_processed")
     DATA_FIELD_NUMBER: _ClassVar[int]
     CMD_NUMBER_FIELD_NUMBER: _ClassVar[int]
     PLAYER_SLOT_FIELD_NUMBER: _ClassVar[int]
     SERVER_TICK_EXECUTED_FIELD_NUMBER: _ClassVar[int]
     CLIENT_TICK_FIELD_NUMBER: _ClassVar[int]
     DELTA_DATA_FIELD_NUMBER: _ClassVar[int]
+    DELTA_PROCESSED_FIELD_NUMBER: _ClassVar[int]
     data: bytes
     cmd_number: int
     player_slot: int
     server_tick_executed: int
     client_tick: int
     delta_data: bytes
-    def __init__(self, data: _Optional[bytes] = ..., cmd_number: _Optional[int] = ..., player_slot: _Optional[int] = ..., server_tick_executed: _Optional[int] = ..., client_tick: _Optional[int] = ..., delta_data: _Optional[bytes] = ...) -> None: ...
+    delta_processed: bool
+    def __init__(self, data: _Optional[bytes] = ..., cmd_number: _Optional[int] = ..., player_slot: _Optional[int] = ..., server_tick_executed: _Optional[int] = ..., client_tick: _Optional[int] = ..., delta_data: _Optional[bytes] = ..., delta_processed: bool = ...) -> None: ...
 
 class CSVCMsg_UserCommands(_message.Message):
     __slots__ = ("commands",)

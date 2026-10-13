@@ -144,20 +144,24 @@ class CMsgRGBA(_message.Message):
     def __init__(self, r: _Optional[int] = ..., g: _Optional[int] = ..., b: _Optional[int] = ..., a: _Optional[int] = ...) -> None: ...
 
 class CMsgPlayerInfo(_message.Message):
-    __slots__ = ("name", "xuid", "userid", "steamid", "fakeplayer", "ishltv")
+    __slots__ = ("name", "xuid", "userid", "steamid", "fakeplayer", "ishltv", "clan_member", "clan_officer")
     NAME_FIELD_NUMBER: _ClassVar[int]
     XUID_FIELD_NUMBER: _ClassVar[int]
     USERID_FIELD_NUMBER: _ClassVar[int]
     STEAMID_FIELD_NUMBER: _ClassVar[int]
     FAKEPLAYER_FIELD_NUMBER: _ClassVar[int]
     ISHLTV_FIELD_NUMBER: _ClassVar[int]
+    CLAN_MEMBER_FIELD_NUMBER: _ClassVar[int]
+    CLAN_OFFICER_FIELD_NUMBER: _ClassVar[int]
     name: str
     xuid: int
     userid: int
     steamid: int
     fakeplayer: bool
     ishltv: bool
-    def __init__(self, name: _Optional[str] = ..., xuid: _Optional[int] = ..., userid: _Optional[int] = ..., steamid: _Optional[int] = ..., fakeplayer: bool = ..., ishltv: bool = ...) -> None: ...
+    clan_member: bool
+    clan_officer: bool
+    def __init__(self, name: _Optional[str] = ..., xuid: _Optional[int] = ..., userid: _Optional[int] = ..., steamid: _Optional[int] = ..., fakeplayer: bool = ..., ishltv: bool = ..., clan_member: bool = ..., clan_officer: bool = ...) -> None: ...
 
 class CEntityMsg(_message.Message):
     __slots__ = ("target_entity",)
@@ -364,8 +368,24 @@ class CNETMsg_SpawnGroup_LoadCompleted(_message.Message):
     spawngrouphandle: int
     def __init__(self, spawngrouphandle: _Optional[int] = ...) -> None: ...
 
+class QuantizedFloatEncoderAlias_t(_message.Message):
+    __slots__ = ("name", "bit_count", "encode_flags", "min_value", "max_value", "validate")
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    BIT_COUNT_FIELD_NUMBER: _ClassVar[int]
+    ENCODE_FLAGS_FIELD_NUMBER: _ClassVar[int]
+    MIN_VALUE_FIELD_NUMBER: _ClassVar[int]
+    MAX_VALUE_FIELD_NUMBER: _ClassVar[int]
+    VALIDATE_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    bit_count: int
+    encode_flags: int
+    min_value: float
+    max_value: float
+    validate: bool
+    def __init__(self, name: _Optional[str] = ..., bit_count: _Optional[int] = ..., encode_flags: _Optional[int] = ..., min_value: _Optional[float] = ..., max_value: _Optional[float] = ..., validate: bool = ...) -> None: ...
+
 class CSVCMsg_GameSessionConfiguration(_message.Message):
-    __slots__ = ("is_multiplayer", "is_loadsavegame", "is_background_map", "is_headless", "min_client_limit", "max_client_limit", "max_clients", "tick_interval", "hostname", "savegamename", "s1_mapname", "gamemode", "server_ip_address", "data", "is_localonly", "no_steam_server", "is_transition", "previouslevel", "landmarkname")
+    __slots__ = ("is_multiplayer", "is_loadsavegame", "is_background_map", "is_headless", "min_client_limit", "max_client_limit", "max_clients", "tick_interval", "hostname", "savegamename", "s1_mapname", "gamemode", "server_ip_address", "data", "is_localonly", "no_steam_server", "is_transition", "previouslevel", "landmarkname", "quantized_float_encoder_aliases", "max_coord")
     IS_MULTIPLAYER_FIELD_NUMBER: _ClassVar[int]
     IS_LOADSAVEGAME_FIELD_NUMBER: _ClassVar[int]
     IS_BACKGROUND_MAP_FIELD_NUMBER: _ClassVar[int]
@@ -385,6 +405,8 @@ class CSVCMsg_GameSessionConfiguration(_message.Message):
     IS_TRANSITION_FIELD_NUMBER: _ClassVar[int]
     PREVIOUSLEVEL_FIELD_NUMBER: _ClassVar[int]
     LANDMARKNAME_FIELD_NUMBER: _ClassVar[int]
+    QUANTIZED_FLOAT_ENCODER_ALIASES_FIELD_NUMBER: _ClassVar[int]
+    MAX_COORD_FIELD_NUMBER: _ClassVar[int]
     is_multiplayer: bool
     is_loadsavegame: bool
     is_background_map: bool
@@ -404,7 +426,9 @@ class CSVCMsg_GameSessionConfiguration(_message.Message):
     is_transition: bool
     previouslevel: str
     landmarkname: str
-    def __init__(self, is_multiplayer: bool = ..., is_loadsavegame: bool = ..., is_background_map: bool = ..., is_headless: bool = ..., min_client_limit: _Optional[int] = ..., max_client_limit: _Optional[int] = ..., max_clients: _Optional[int] = ..., tick_interval: _Optional[int] = ..., hostname: _Optional[str] = ..., savegamename: _Optional[str] = ..., s1_mapname: _Optional[str] = ..., gamemode: _Optional[str] = ..., server_ip_address: _Optional[str] = ..., data: _Optional[bytes] = ..., is_localonly: bool = ..., no_steam_server: bool = ..., is_transition: bool = ..., previouslevel: _Optional[str] = ..., landmarkname: _Optional[str] = ...) -> None: ...
+    quantized_float_encoder_aliases: _containers.RepeatedCompositeFieldContainer[QuantizedFloatEncoderAlias_t]
+    max_coord: float
+    def __init__(self, is_multiplayer: bool = ..., is_loadsavegame: bool = ..., is_background_map: bool = ..., is_headless: bool = ..., min_client_limit: _Optional[int] = ..., max_client_limit: _Optional[int] = ..., max_clients: _Optional[int] = ..., tick_interval: _Optional[int] = ..., hostname: _Optional[str] = ..., savegamename: _Optional[str] = ..., s1_mapname: _Optional[str] = ..., gamemode: _Optional[str] = ..., server_ip_address: _Optional[str] = ..., data: _Optional[bytes] = ..., is_localonly: bool = ..., no_steam_server: bool = ..., is_transition: bool = ..., previouslevel: _Optional[str] = ..., landmarkname: _Optional[str] = ..., quantized_float_encoder_aliases: _Optional[_Iterable[_Union[QuantizedFloatEncoderAlias_t, _Mapping]]] = ..., max_coord: _Optional[float] = ...) -> None: ...
 
 class CNETMsg_DebugOverlay(_message.Message):
     __slots__ = ("etype", "vectors", "colors", "dimensions", "times", "bools", "uint64s", "strings")
