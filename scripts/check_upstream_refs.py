@@ -36,6 +36,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_LOCK_PATH = REPO_ROOT / "upstream-refs.lock.json"
 ISSUE_LABEL = "upstream"
 MAX_FILES_SHOWN = 6
+FILES_PER_PAGE = 100
+MAX_FILE_PAGES = 30  # GitHub lists at most 3,000 files of a commit
 # GitHub rejects issue bodies over 65,536 characters; leave room for the footer.
 MAX_ROWS_CHARS = 55_000
 _SHA_RE = re.compile(r"[0-9a-f]{40}")
@@ -391,11 +393,14 @@ def sync_issue(report: Report, github: GitHub, issues_repo: str, *, dry_run: boo
         github.ensure_label(issues_repo, ISSUE_LABEL)
         number = github.create_issue(issues_repo, title, body, ISSUE_LABEL)
         return f"{repository}: opened #{number} with {len(report.commits)} commits"
+    # Notify before rewriting the body: the body's marker records what was
+    # reported, so it only advances once the comment is posted. If the comment
+    # fails, the next run sends it again (at worst twice, never not at all).
+    if fresh and not dry_run:
+        github.comment(issues_repo, issue.number, render_comment(report, fresh))
     if not dry_run and issue.body != body:
         github.update_issue(issues_repo, issue.number, title, body)
     if fresh:
-        if not dry_run:
-            github.comment(issues_repo, issue.number, render_comment(report, fresh))
         return f"{prefix}{repository}: {len(fresh)} new commits on #{issue.number}"
     return f"{prefix}{repository}: no new commits on #{issue.number}"
 
@@ -443,10 +448,19 @@ class RestGitHub:
             page += 1
 
     def commit_files(self, repository: str, sha: str) -> list[str]:
-        return [
-            f["filename"]
-            for f in self._request("GET", f"/repos/{repository}/commits/{sha}")["files"]
-        ]
+        # A commit's file list is paginated (GitHub serves up to 3,000 files), and a
+        # rename counts on both sides: moving a watched file away is a change too.
+        names: list[str] = []
+        for page in range(1, MAX_FILE_PAGES + 1):
+            query = urlencode({"per_page": FILES_PER_PAGE, "page": page})
+            files = self._request("GET", f"/repos/{repository}/commits/{sha}?{query}")["files"]
+            for f in files:
+                names.append(f["filename"])
+                if f.get("previous_filename"):
+                    names.append(f["previous_filename"])
+            if len(files) < FILES_PER_PAGE:
+                break
+        return names
 
     def open_issues(self, repository: str, label: str) -> list[Issue]:
         query = urlencode({"labels": label, "state": "open", "per_page": 100})

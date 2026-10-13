@@ -239,3 +239,41 @@ def test_long_reports_stay_under_githubs_body_limit() -> None:
     report = watch.Report(REF, _sha(1999), 1999, commits, tuple(c.sha for c in commits))
     body = watch.render_body(report)
     assert len(body) < 65_536 and "more commits; see the compare link" in body
+
+
+def test_failed_comment_keeps_the_marker_so_the_next_run_retries() -> None:
+    gh = FakeGitHub([(_sha(1), ["field.go"])])
+    _run(gh)
+    gh.history.append((_sha(2), ["entity.go"]))
+
+    def fail(*args: object) -> None:
+        raise watch.UpstreamWatchError("HTTP 502")
+
+    real_comment = gh.comment
+    gh.comment = fail  # type: ignore[method-assign]
+    with pytest.raises(watch.UpstreamWatchError):
+        _run(gh)
+    assert f"last={_sha(1)}" in gh.issues[1]["body"]
+
+    gh.comment = real_comment  # type: ignore[method-assign]
+    assert "1 new commits on #1" in _run(gh)
+    assert len(gh.comments) == 1 and _listed(gh.comments[0][1], _sha(2))
+    assert f"last={_sha(2)}" in gh.issues[1]["body"]
+
+
+def test_rest_commit_files_follows_pages_and_renames(monkeypatch: pytest.MonkeyPatch) -> None:
+    page_one = [{"filename": f"docs/{n}.md"} for n in range(watch.FILES_PER_PAGE)]
+    page_two = [{"filename": "src/new/field.go", "previous_filename": "field.go"}]
+    requested: list[str] = []
+
+    def fake_request(
+        self: watch.RestGitHub, method: str, path: str, payload: object = None
+    ) -> dict:
+        requested.append(path)
+        return {"files": page_one if path.endswith("&page=1") else page_two}
+
+    monkeypatch.setattr(watch.RestGitHub, "_request", fake_request)
+    files = watch.RestGitHub(None).commit_files("dotabuff/manta", _sha(1))
+    assert len(requested) == 2
+    assert "src/new/field.go" in files and "field.go" in files
+    assert watch.watched_files(REF, files) == ("src/new/field.go", "field.go")
