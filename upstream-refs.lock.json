@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "references": [
+    {
+      "repository": "dotabuff/manta",
+      "branch": "master",
+      "commit": "096933cf157ace54902463ff0599ea46a6673f98",
+      "role": "Primary reference for binary parsing logic",
+      "watch": [
+        "*.go"
+      ],
+      "ignore": [
+        "*_test.go",
+        "callbacks.go"
+      ]
+    },
+    {
+      "repository": "skadistats/clarity",
+      "branch": "master",
+      "commit": "7fb3f1d07564a12efa99194d45cfbf5762ba5910",
+      "role": "Correctness authority for edge cases and combat-log ingestion",
+      "watch": [
+        "src/main/java/skadistats/clarity/io/s2/**",
+        "src/main/java/skadistats/clarity/io/decoder/**",
+        "src/main/java/skadistats/clarity/io/bitstream/**",
+        "src/main/java/skadistats/clarity/processor/entities/**",
+        "src/main/java/skadistats/clarity/processor/gameevents/**",
+        "src/main/java/skadistats/clarity/processor/sendtables/**",
+        "src/main/java/skadistats/clarity/processor/stringtables/**"
+      ],
+      "ignore": []
+    },
+    {
+      "repository": "odota/parser",
+      "branch": "master",
+      "commit": "e58a668f72866531b9a4e0293387163e8a927f5b",
+      "role": "Output-schema authority",
+      "watch": [
+        "src/main/java/opendota/CreateParsedDataBlob.java",
+        "src/main/java/opendota/Parse.java",
+        "src/main/java/opendota/Entry.java",
+        "src/main/java/opendota/processors/**"
+      ],
+      "ignore": []
+    }
+  ]
+}

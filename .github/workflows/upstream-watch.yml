@@ -1,0 +1,54 @@
+name: Watch upstream references
+
+# gem follows dotabuff/manta, skadistats/clarity and odota/parser at the pins in
+# upstream-refs.lock.json. This keeps one issue labelled `upstream` per
+# repository with the commits since its pin that touch a path gem follows
+# (scripts/check_upstream_refs.py), so upstream fixes are not missed (HY-183).
+
+on:
+  schedule:
+    - cron: "41 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: upstream-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    name: Report upstream commits since the pins
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # Standard library only, so the runner's Python is enough.
+      - name: Update the upstream issues
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/check_upstream_refs.py --issues-repo "$GITHUB_REPOSITORY"
+
+  alert:
+    name: Report upstream-watch health
+    needs: [watch]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Open, update or close the upstream-watch alert issue
+        uses: ./.github/actions/workflow-alert
+        with:
+          label: upstream-watch
+          title: "upstream-watch: the upstream reference check is failing"
+          failed: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
