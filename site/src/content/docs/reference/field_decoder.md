@@ -20,19 +20,19 @@ def find_decoder(field: _FieldLike) -> FieldDecoder
 
 Return the appropriate decoder for the given field.
 
-Source: [src/gem/schema/field_decoder/type_resolver.py:127](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/schema/field_decoder/type_resolver.py#L127)
+Source: [src/gem/schema/field_decoder/type_resolver.py:149](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/schema/field_decoder/type_resolver.py#L149)
 
 ## `gem.schema.field_decoder.find_decoder_by_base_type`
 
 ### `find_decoder_by_base_type`
 
 ```python
-def find_decoder_by_base_type(base_type: str) -> FieldDecoder
+def find_decoder_by_base_type(base_type: str, encoder: str = '') -> FieldDecoder
 ```
 
 Return a decoder for a base type string without field context.
 
-Source: [src/gem/schema/field_decoder/type_resolver.py:158](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/schema/field_decoder/type_resolver.py#L158)
+Source: [src/gem/schema/field_decoder/type_resolver.py:185](https://github.com/whanyu1212/gem-dota/blob/main/src/gem/schema/field_decoder/type_resolver.py#L185)
 
 ## `gem.schema.field_decoder.QuantizedFloatDecoder`
 
