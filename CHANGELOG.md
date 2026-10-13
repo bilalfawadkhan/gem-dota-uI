@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-10-13
+
+Current replays parse again. Since Dota build 6951 (early October 2026), 0.12.0
+stops a few minutes into every replay with a `BufferReadError`; this release
+reads the new `fixed8` field encoding (#301). The interpretation layer
+deprecated in 0.12 is removed: gem presents facts, and the new Recipes pages on
+the docs site answer questions from them. New facts: every rune
+(`ParsedMatch.runes`), hero HP and mana over time, and an experimental fight
+timeline. `gem.analyze` is about 20 times faster, and the docs site is rebuilt.
+
+Upgrading from 0.12: the names that warned in 0.12 are gone (see Removed), and
+so are the 0.10 `teamfights` aliases; use `fights`, `gem.find_fights` and
+`SmokeAnalysis.first_fight`. JSON output is `schema_version` 4, without the
+removed analysis fields; schema 3 files still load. The HTML report
+(`gem.reports`) and `VisionSource` now warn and are removed in 0.14, and
+`import gem` no longer imports the report. Raw `Entity.get` values of
+`AbilityID_t` fields are now signed, half what 0.12 returned. Python 3.10+
+support is preserved.
+
 ### Added
 
 - **`ParsedMatch.runes` and `gem.Rune`** (HY-151): every power, bounty and
@@ -238,8 +257,9 @@ of answering questions from them, see the Recipes docs.
 - **Replays from Dota build 6951 on parse to the end** (HY-177, #301).
   Since build 6951 the send tables mark 90 field definitions (about 25,000
   serializer slots) with the `fixed8` var encoder (`uint8`, `int8`, enums such
-  as `MoveType_t`, `uint8` vectors): the server writes 8 raw bits. gem chose decoders by type name only and read them
-  as varints, which agree only below 128. The first 255, in the
+  as `MoveType_t`, `uint8` vectors): the server writes 8 raw bits. gem chose
+  decoders by type name only and read them as varints, which agree only below
+  128. The first 255, in the
   `CParticleSystem` instance baseline, shifted every later field, so every
   recent replay stopped minutes in with `BufferReadError` and a near-empty
   `ParsedMatch`. `int8` fields such as these were misread as well (41 came out -21).
@@ -2130,7 +2150,8 @@ combat-log layers. The supported top-level API (`gem.parse`, `gem.ParsedMatch`,
 - CLI and example scripts, including HTML match report.
 - Validation, fuzzing, and parser robustness foundations.
 
-[Unreleased]: https://github.com/whanyu1212/gem-dota/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/whanyu1212/gem-dota/compare/v0.13.0...HEAD
+[0.13.0]: https://github.com/whanyu1212/gem-dota/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/whanyu1212/gem-dota/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/whanyu1212/gem-dota/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/whanyu1212/gem-dota/compare/v0.9.0...v0.10.0
