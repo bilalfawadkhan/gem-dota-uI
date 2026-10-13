@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_common_battle_report_pb2`
-- Imports: **7**
+- Imports: **8**
 - Messages: **23** (top-level: 18)
 - Enums: **13** (top-level: 8)
 
@@ -16,6 +16,7 @@
 - `base_gcmessages.proto`
 - `econ_gcmessages.proto`
 - `valveextensions.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -43,7 +44,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `kills` | `uint32` | `optional` |  |  |
 | 3 | `deaths` | `uint32` | `optional` |  |  |
 | 4 | `assists` | `uint32` | `optional` |  |  |
@@ -55,7 +56,7 @@ Expand any message to inspect all fields.
 | 10 | `outcome` | `.CMsgBattleReport_EOutcome` | `optional` |  | default = k_eWin |
 | 11 | `lane_outcome` | `.CMsgBattleReport_ELaneOutcome` | `optional` |  | default = k_eUnknownLaneOutcome |
 | 12 | `ranked` | `bool` | `optional` |  |  |
-| 13 | `match_id` | `uint64` | `optional` |  |  |
+| 13 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 14 | `lane_selection_flags` | `uint32` | `optional` |  |  |
 | 15 | `predicted_position` | `uint32` | `optional` |  |  |
 | 16 | `seconds_dead` | `uint32` | `optional` |  |  |
@@ -69,7 +70,7 @@ Expand any message to inspect all fields.
 | 25 | `time_enemy_t1_tower_destroyed` | `uint32` | `optional` |  |  |
 | 26 | `time_friendly_t1_tower_destroyed` | `uint32` | `optional` |  |  |
 | 27 | `enemy_roshan_kills` | `uint32` | `optional` |  |  |
-| 28 | `player_slot` | `uint32` | `optional` |  |  |
+| 28 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 29 | `teleports_used` | `uint32` | `optional` |  |  |
 | 30 | `dewards` | `uint32` | `optional` |  |  |
 | 31 | `camps_stacked` | `uint32` | `optional` |  |  |
@@ -86,13 +87,13 @@ Expand any message to inspect all fields.
 | 42 | `lobby_type` | `uint32` | `optional` |  |  |
 | 43 | `time_purchased_shard` | `float` | `optional` |  |  |
 | 44 | `time_purchased_scepter` | `float` | `optional` |  |  |
-| 45 | `item0` | `int32` | `optional` |  | default = -1 |
-| 46 | `item1` | `int32` | `optional` |  | default = -1 |
-| 47 | `item2` | `int32` | `optional` |  | default = -1 |
-| 48 | `item3` | `int32` | `optional` |  | default = -1 |
-| 49 | `item4` | `int32` | `optional` |  | default = -1 |
-| 50 | `item5` | `int32` | `optional` |  | default = -1 |
-| 51 | `selected_facet` | `uint32` | `optional` |  |  |
+| 45 | `item0` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 46 | `item1` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 47 | `item2` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 48 | `item3` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 49 | `item4` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 50 | `item5` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
+| 51 | `selected_facet` | `uint32` | `optional` |  | boxed_type = "HeroFacetID_t" |
 
 </details>
 
@@ -150,7 +151,7 @@ Expand any message to inspect all fields.
 | 4 | `rarity` | `.CMsgBattleReport_HighlightRarity` | `optional` |  | default = k_eHighlightCommon |
 | 5 | `score` | `float` | `optional` |  |  |
 | 6 | `confidence` | `float` | `optional` |  |  |
-| 7 | `hero_id` | `int32` | `optional` |  |  |
+| 7 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 8 | `role` | `.CMsgBattleReport_Role` | `optional` |  | default = k_eUnknownRole |
 | 9 | `comparison_delta_value` | `float` | `optional` |  |  |
 | 10 | `context` | `.CMsgBattleReport_CompareContext` | `optional` |  | default = k_eCompareContextInvalid |
@@ -168,7 +169,7 @@ Expand any message to inspect all fields.
 | 1 | `timestamp` | `uint32` | `optional` |  |  |
 | 2 | `duration` | `uint32` | `optional` |  |  |
 | 3 | `acknowledged` | `bool` | `optional` |  |  |
-| 4 | `featured_hero_id` | `int32` | `optional` |  |  |
+| 4 | `featured_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 5 | `featured_position` | `uint32` | `optional` |  |  |
 | 6 | `games_played` | `uint32` | `optional` |  |  |
 | 7 | `medal_counts` | `uint32` | `repeated` |  |  |
@@ -232,7 +233,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `predicted_position` | `uint32` | `optional` |  |  |
 | 3 | `game_count` | `uint32` | `optional` |  |  |
 | 4 | `win_count` | `uint32` | `optional` |  |  |
@@ -316,7 +317,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `predicted_position` | `uint32` | `optional` |  |  |
 
 </details>

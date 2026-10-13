@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_guild_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **61** (top-level: 59)
 - Enums: **26** (top-level: 2)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -82,10 +83,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `role_id` | `uint32` | `optional` |  |  |
+| 1 | `role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 | 2 | `role_name` | `string` | `optional` |  |  |
 | 3 | `role_flags` | `uint32` | `optional` |  |  |
-| 4 | `role_order` | `uint32` | `optional` |  |  |
+| 4 | `role_order` | `uint32` | `optional` |  | boxed_type = "GuildRoleOrder_t" |
 
 </details>
 
@@ -98,7 +99,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `member_account_id` | `uint32` | `optional` |  |  |
-| 2 | `member_role_id` | `uint32` | `optional` |  |  |
+| 2 | `member_role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 | 3 | `member_joined_timestamp` | `uint32` | `optional` |  |  |
 | 4 | `member_last_active_timestamp` | `uint32` | `optional` |  |  |
 
@@ -126,7 +127,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_info` | `.CMsgGuildInfo` | `optional` |  |  |
 | 3 | `guild_roles` | `.CMsgGuildRole` | `repeated` |  |  |
 | 4 | `guild_members` | `.CMsgGuildMember` | `repeated` |  |  |
@@ -142,7 +143,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `requester_account_id` | `uint32` | `optional` |  |  |
 | 3 | `timestamp_sent` | `uint32` | `optional` |  |  |
 
@@ -156,7 +157,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_ids` | `uint32` | `repeated` |  |  |
+| 1 | `guild_ids` | `uint32` | `repeated` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_invites` | `.CMsgAccountGuildInvite` | `repeated` |  |  |
 
 </details>
@@ -169,7 +170,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_tag` | `string` | `optional` |  |  |
 | 3 | `guild_flags` | `uint32` | `optional` |  |  |
 
@@ -226,7 +227,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgClientToGCCreateGuildResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `guild_id` | `uint32` | `optional` |  |  |
+| 2 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -238,7 +239,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_info` | `.CMsgGuildInfo` | `optional` |  |  |
 | 3 | `guild_chat_type` | `.EGuildChatType` | `optional` |  | default = k_EGuildChatType_Unspecified |
 
@@ -264,7 +265,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -302,7 +303,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `members_data` | `.CMsgGuildMember` | `repeated` |  |  |
 
 </details>
@@ -352,7 +353,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -376,7 +377,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -400,7 +401,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `target_account_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -425,9 +426,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `target_account_id` | `uint32` | `optional` |  |  |
-| 3 | `target_role_id` | `uint32` | `optional` |  |  |
+| 3 | `target_role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 
 </details>
 
@@ -451,7 +452,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `target_account_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -476,7 +477,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -500,7 +501,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -524,7 +525,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `target_account_id` | `uint32` | `optional` |  |  |
 
 </details>
@@ -549,7 +550,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `role_name` | `string` | `optional` |  |  |
 | 3 | `role_flags` | `uint32` | `optional` |  |  |
 
@@ -564,7 +565,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgClientToGCAddGuildRoleResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `role_id` | `uint32` | `optional` |  |  |
+| 2 | `role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 
 </details>
 
@@ -576,8 +577,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
-| 2 | `role_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
+| 2 | `role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 | 3 | `role_name` | `string` | `optional` |  |  |
 | 4 | `role_flags` | `uint32` | `optional` |  |  |
 
@@ -603,8 +604,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
-| 2 | `role_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
+| 2 | `role_id` | `uint32` | `optional` |  | boxed_type = "GuildRoleID_t" |
 
 </details>
 
@@ -628,9 +629,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
-| 2 | `requested_role_ids` | `uint32` | `repeated` |  |  |
-| 3 | `previous_role_ids` | `uint32` | `repeated` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
+| 2 | `requested_role_ids` | `uint32` | `repeated` |  | boxed_type = "GuildRoleID_t" |
+| 3 | `previous_role_ids` | `uint32` | `repeated` |  | boxed_type = "GuildRoleID_t" |
 
 </details>
 
@@ -643,7 +644,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgClientToGCSetGuildRoleOrderResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `confirmed_role_ids` | `uint32` | `repeated` |  |  |
+| 2 | `confirmed_role_ids` | `uint32` | `repeated` |  | boxed_type = "GuildRoleID_t" |
 
 </details>
 
@@ -655,7 +656,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `last_seen_id` | `uint64` | `optional` |  |  |
 
 </details>
@@ -669,7 +670,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgClientToGCRequestGuildFeedResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `guild_id` | `uint32` | `optional` |  |  |
+| 2 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 3 | `feed_events` | `.CMsgGuildFeedEvent` | `repeated` |  |  |
 
 </details>
@@ -682,7 +683,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -694,7 +695,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 
 </details>
 
@@ -719,7 +720,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `.CMsgFindGuildByTagResponse.EResponse` | `optional` |  | default = k_eInternalError |
-| 2 | `guild_id` | `uint32` | `optional` |  |  |
+| 2 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 3 | `guild_summary` | `.CMsgGuildSummary` | `optional` |  |  |
 
 </details>
@@ -746,7 +747,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_summary` | `.CMsgGuildSummary` | `optional` |  |  |
 
 </details>
@@ -759,7 +760,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `guild_content_flags` | `uint32` | `optional` |  |  |
 
 </details>

@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_chat_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **27** (top-level: 20)
 - Enums: **2** (top-level: 0)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -154,7 +155,7 @@ Expand any message to inspect all fields.
 | 10 | `event_id` | `uint32` | `optional` |  |  |
 | 11 | `suggest_invite_to_lobby` | `bool` | `optional` |  |  |
 | 13 | `coin_flip` | `bool` | `optional` |  |  |
-| 14 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 14 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 15 | `share_profile_account_id` | `uint32` | `optional` |  |  |
 | 16 | `channel_user_id` | `uint32` | `optional` |  |  |
 | 17 | `dice_roll` | `.CMsgDOTAChatMessage.DiceRoll` | `optional` |  |  |
@@ -166,24 +167,24 @@ Expand any message to inspect all fields.
 | 23 | `status` | `uint32` | `optional` |  |  |
 | 24 | `legacy_battle_cup_victory` | `bool` | `optional` |  |  |
 | 25 | `badge_level` | `uint32` | `optional` |  |  |
-| 26 | `suggest_pick_hero_id` | `int32` | `optional` |  |  |
+| 26 | `suggest_pick_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 27 | `suggest_pick_hero_role` | `string` | `optional` |  |  |
 | 29 | `battle_cup_streak` | `uint32` | `optional` |  |  |
-| 30 | `suggest_ban_hero_id` | `int32` | `optional` |  |  |
+| 30 | `suggest_ban_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 32 | `trivia_answer` | `.CMsgDOTAChatMessage.TriviaAnswered` | `optional` |  |  |
-| 33 | `requested_ability_id` | `int32` | `optional` |  | default = -1 |
+| 33 | `requested_ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 34 | `chat_flags` | `uint32` | `optional` |  |  |
 | 35 | `started_finding_match` | `bool` | `optional` |  |  |
 | 36 | `ctrl_is_down` | `bool` | `optional` |  |  |
 | 37 | `favorite_team_id` | `uint32` | `optional` |  |  |
 | 38 | `favorite_team_quality` | `uint32` | `optional` |  |  |
-| 39 | `suggest_player_draft_pick` | `int32` | `optional` |  | default = -1 |
+| 39 | `suggest_player_draft_pick` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 40 | `player_draft_pick` | `.CMsgDOTAChatMessage.PlayerDraftPick` | `optional` |  |  |
 | 41 | `chat_wheel_message` | `.CMsgDOTAChatMessage.ChatWheelMessage` | `optional` |  |  |
 | 42 | `event_level` | `uint32` | `optional` |  |  |
-| 43 | `suggest_pick_hero_facet` | `uint32` | `optional` |  |  |
-| 44 | `requested_hero_id` | `int32` | `optional` |  |  |
-| 45 | `requested_hero_facet_key` | `uint64` | `optional` |  |  |
+| 43 | `suggest_pick_hero_facet` | `uint32` | `optional` |  | boxed_type = "HeroFacetID_t" |
+| 44 | `requested_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 45 | `requested_hero_facet_key` | `uint64` | `optional` |  | boxed_type = "HeroFacetKey_t" |
 
 </details>
 
@@ -225,7 +226,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `player_id` | `int32` | `optional` |  | default = -1, boxed_type = "PlayerID_t", synthetic_default = "-1" |
 | 2 | `team` | `int32` | `optional` |  |  |
 
 </details>
@@ -238,7 +239,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `message_id` | `uint32` | `optional` |  | default = 4294967295 |
+| 1 | `message_id` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295" |
 | 2 | `emoticon_id` | `uint32` | `optional` |  |  |
 | 3 | `message_text` | `string` | `optional` |  |  |
 | 4 | `hero_badge_tier` | `uint32` | `optional` |  |  |

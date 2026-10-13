@@ -23,9 +23,9 @@ class CMsgSurvivorsUserData(_message.Message):
         def __init__(self, key: _Optional[int] = ..., value: _Optional[int] = ...) -> None: ...
     ATTRIBUTE_LEVELS_FIELD_NUMBER: _ClassVar[int]
     UNLOCKED_DIFFICULTY_FIELD_NUMBER: _ClassVar[int]
-    attribute_levels: _containers.RepeatedCompositeFieldContainer[CMsgSurvivorsUserData.AttributeLevelsEntry]
+    attribute_levels: _containers.ScalarMap[int, int]
     unlocked_difficulty: int
-    def __init__(self, attribute_levels: _Optional[_Iterable[_Union[CMsgSurvivorsUserData.AttributeLevelsEntry, _Mapping]]] = ..., unlocked_difficulty: _Optional[int] = ...) -> None: ...
+    def __init__(self, attribute_levels: _Optional[_Mapping[int, int]] = ..., unlocked_difficulty: _Optional[int] = ...) -> None: ...
 
 class CMsgClientToGCSurvivorsPowerUpTelemetryData(_message.Message):
     __slots__ = ("powerup_id", "level", "time_received", "time_held", "total_damage", "dps", "has_scepter")

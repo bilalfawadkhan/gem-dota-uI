@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_candy_shop_pb2`
-- Imports: **9**
+- Imports: **10**
 - Messages: **34** (top-level: 34)
 - Enums: **9** (top-level: 2)
 
@@ -18,6 +18,7 @@
 - `econ_gcmessages.proto`
 - `dota_gcmessages_client.proto`
 - `valveextensions.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -31,7 +32,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_type` | `uint32` | `optional` |  |  |
+| 1 | `candy_type` | `uint32` | `optional` |  | boxed_type = "CandyShopCandyTypeID_t" |
 | 2 | `candy_count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -56,7 +57,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `recipe_id` | `uint32` | `optional` |  |  |
+| 1 | `recipe_id` | `uint32` | `optional` |  | boxed_type = "CandyShopRecipeID_t" |
 | 2 | `input` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 | 3 | `output` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 
@@ -70,7 +71,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def` | `uint32` | `optional` |  |  |
+| 1 | `item_def` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 
 </details>
 
@@ -108,8 +109,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `reward_id` | `uint32` | `optional` |  |  |
-| 2 | `reward_option_id` | `uint32` | `optional` |  |  |
+| 1 | `reward_id` | `uint32` | `optional` |  | boxed_type = "CandyShopRewardID_t" |
+| 2 | `reward_option_id` | `uint32` | `optional` |  | boxed_type = "CandyShopRewardOptionID_t" |
 | 3 | `price` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 | 4 | `reward_type` | `.ECandyShopRewardType` | `optional` |  | default = k_eCandyShopRewardType_None |
 | 5 | `item_data` | `.CMsgCandyShopRewardData_Item` | `optional` |  |  |
@@ -146,7 +147,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 
 </details>
 
@@ -171,7 +172,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `user_data` | `.CMsgCandyShopUserData` | `optional` |  |  |
 
 </details>
@@ -184,8 +185,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
-| 2 | `reward_id` | `uint64` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
+| 2 | `reward_id` | `uint64` | `optional` |  | boxed_type = "CandyShopRewardID_t" |
 
 </details>
 
@@ -209,7 +210,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `bag_count` | `uint32` | `optional` |  |  |
 
 </details>
@@ -234,8 +235,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
-| 2 | `recipe_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
+| 2 | `recipe_id` | `uint32` | `optional` |  | boxed_type = "CandyShopRecipeID_t" |
 
 </details>
 
@@ -259,7 +260,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `input` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 | 3 | `output` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 
@@ -285,7 +286,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 
 </details>
 
@@ -321,7 +322,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `candy_quantity` | `.CMsgCandyShopCandyQuantity` | `optional` |  |  |
 
 </details>
@@ -346,7 +347,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 
 </details>
 
@@ -370,7 +371,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `quantity` | `uint32` | `optional` |  |  |
 
 </details>
@@ -395,7 +396,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 
 </details>
 
@@ -419,7 +420,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 | 2 | `reroll_charges` | `uint32` | `optional` |  |  |
 
 </details>
@@ -444,7 +445,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `candy_shop_id` | `uint32` | `optional` |  |  |
+| 1 | `candy_shop_id` | `uint32` | `optional` |  | boxed_type = "CandyShopID_t" |
 
 </details>
 

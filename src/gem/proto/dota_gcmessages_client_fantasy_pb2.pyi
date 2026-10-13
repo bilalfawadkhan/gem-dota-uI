@@ -1,5 +1,6 @@
 from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -647,8 +648,8 @@ class CMsgDotaFantasyCraftingTabletData(_message.Message):
         value: CMsgDotaFantasyCraftingTabletPeriodData
         def __init__(self, key: _Optional[int] = ..., value: _Optional[_Union[CMsgDotaFantasyCraftingTabletPeriodData, _Mapping]] = ...) -> None: ...
     TABLET_PERIOD_DATA_FIELD_NUMBER: _ClassVar[int]
-    tablet_period_data: _containers.RepeatedCompositeFieldContainer[CMsgDotaFantasyCraftingTabletData.TabletPeriodDataEntry]
-    def __init__(self, tablet_period_data: _Optional[_Iterable[_Union[CMsgDotaFantasyCraftingTabletData.TabletPeriodDataEntry, _Mapping]]] = ...) -> None: ...
+    tablet_period_data: _containers.MessageMap[int, CMsgDotaFantasyCraftingTabletPeriodData]
+    def __init__(self, tablet_period_data: _Optional[_Mapping[int, CMsgDotaFantasyCraftingTabletPeriodData]] = ...) -> None: ...
 
 class CMsgDotaFantasyCraftingUserData(_message.Message):
     __slots__ = ("available_rolls", "period_roll_tokens", "period_scores")
@@ -677,9 +678,9 @@ class CMsgDotaFantasyCraftingUserData(_message.Message):
     PERIOD_ROLL_TOKENS_FIELD_NUMBER: _ClassVar[int]
     PERIOD_SCORES_FIELD_NUMBER: _ClassVar[int]
     available_rolls: _containers.RepeatedScalarFieldContainer[int]
-    period_roll_tokens: _containers.RepeatedCompositeFieldContainer[CMsgDotaFantasyCraftingUserData.PeriodRollTokensEntry]
-    period_scores: _containers.RepeatedCompositeFieldContainer[CMsgDotaFantasyCraftingUserData.PeriodScoresEntry]
-    def __init__(self, available_rolls: _Optional[_Iterable[int]] = ..., period_roll_tokens: _Optional[_Iterable[_Union[CMsgDotaFantasyCraftingUserData.PeriodRollTokensEntry, _Mapping]]] = ..., period_scores: _Optional[_Iterable[_Union[CMsgDotaFantasyCraftingUserData.PeriodScoresEntry, _Mapping]]] = ...) -> None: ...
+    period_roll_tokens: _containers.ScalarMap[int, int]
+    period_scores: _containers.MessageMap[int, CMsgDotaFantasyCraftingUserData.PeriodScore]
+    def __init__(self, available_rolls: _Optional[_Iterable[int]] = ..., period_roll_tokens: _Optional[_Mapping[int, int]] = ..., period_scores: _Optional[_Mapping[int, CMsgDotaFantasyCraftingUserData.PeriodScore]] = ...) -> None: ...
 
 class CMsgDotaFantasyCraftingDataCache(_message.Message):
     __slots__ = ("cache_entries",)

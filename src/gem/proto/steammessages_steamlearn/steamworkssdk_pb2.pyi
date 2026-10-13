@@ -475,9 +475,9 @@ class CMsgSteamLearn_InferenceMetadata_Response(_message.Message):
         MAP_VALUES_FIELD_NUMBER: _ClassVar[int]
         MAP_MAPPINGS_FIELD_NUMBER: _ClassVar[int]
         name: str
-        map_values: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapValuesEntry]
-        map_mappings: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapMappingsEntry]
-        def __init__(self, name: _Optional[str] = ..., map_values: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapValuesEntry, _Mapping]]] = ..., map_mappings: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapMappingsEntry, _Mapping]]] = ...) -> None: ...
+        map_values: _containers.MessageMap[int, CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry]
+        map_mappings: _containers.MessageMap[int, CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry]
+        def __init__(self, name: _Optional[str] = ..., map_values: _Optional[_Mapping[int, CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry]] = ..., map_mappings: _Optional[_Mapping[int, CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry]] = ...) -> None: ...
     class SequenceTable(_message.Message):
         __slots__ = ("name", "map_values", "map_mappings", "total_count")
         class Entry(_message.Message):
@@ -508,10 +508,10 @@ class CMsgSteamLearn_InferenceMetadata_Response(_message.Message):
         MAP_MAPPINGS_FIELD_NUMBER: _ClassVar[int]
         TOTAL_COUNT_FIELD_NUMBER: _ClassVar[int]
         name: str
-        map_values: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapValuesEntry]
-        map_mappings: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapMappingsEntry]
+        map_values: _containers.MessageMap[int, CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry]
+        map_mappings: _containers.MessageMap[str, CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry]
         total_count: int
-        def __init__(self, name: _Optional[str] = ..., map_values: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapValuesEntry, _Mapping]]] = ..., map_mappings: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapMappingsEntry, _Mapping]]] = ..., total_count: _Optional[int] = ...) -> None: ...
+        def __init__(self, name: _Optional[str] = ..., map_values: _Optional[_Mapping[int, CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry]] = ..., map_mappings: _Optional[_Mapping[str, CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry]] = ..., total_count: _Optional[int] = ...) -> None: ...
     class KMeans(_message.Message):
         __slots__ = ("name", "clusters")
         class Cluster(_message.Message):
@@ -585,9 +585,9 @@ class CMsgSteamLearn_InferenceMetadata_Response(_message.Message):
     compact_tables: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.CompactTable]
     sequence_tables: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable]
     kmeans: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.KMeans]
-    app_info: _containers.RepeatedCompositeFieldContainer[CMsgSteamLearn_InferenceMetadata_Response.AppInfoEntry]
+    app_info: _containers.MessageMap[int, CMsgSteamLearn_InferenceMetadata_Response.AppInfo]
     snapshot_histogram: CMsgSteamLearn_InferenceMetadata_Response.SnapshotHistogram
-    def __init__(self, inference_metadata_result: _Optional[_Union[ESteamLearnInferenceMetadataResult, str]] = ..., row_range: _Optional[_Union[CMsgSteamLearn_InferenceMetadata_Response.RowRange, _Mapping]] = ..., ranges: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.Range, _Mapping]]] = ..., std_devs: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.StdDev, _Mapping]]] = ..., compact_tables: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.CompactTable, _Mapping]]] = ..., sequence_tables: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable, _Mapping]]] = ..., kmeans: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.KMeans, _Mapping]]] = ..., app_info: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.AppInfoEntry, _Mapping]]] = ..., snapshot_histogram: _Optional[_Union[CMsgSteamLearn_InferenceMetadata_Response.SnapshotHistogram, _Mapping]] = ...) -> None: ...
+    def __init__(self, inference_metadata_result: _Optional[_Union[ESteamLearnInferenceMetadataResult, str]] = ..., row_range: _Optional[_Union[CMsgSteamLearn_InferenceMetadata_Response.RowRange, _Mapping]] = ..., ranges: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.Range, _Mapping]]] = ..., std_devs: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.StdDev, _Mapping]]] = ..., compact_tables: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.CompactTable, _Mapping]]] = ..., sequence_tables: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.SequenceTable, _Mapping]]] = ..., kmeans: _Optional[_Iterable[_Union[CMsgSteamLearn_InferenceMetadata_Response.KMeans, _Mapping]]] = ..., app_info: _Optional[_Mapping[int, CMsgSteamLearn_InferenceMetadata_Response.AppInfo]] = ..., snapshot_histogram: _Optional[_Union[CMsgSteamLearn_InferenceMetadata_Response.SnapshotHistogram, _Mapping]] = ...) -> None: ...
 
 class CMsgSteamLearn_InferenceBackend_Response(_message.Message):
     __slots__ = ("outputs",)

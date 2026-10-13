@@ -2,6 +2,7 @@ from . import networkbasetypes_pb2 as _networkbasetypes_pb2
 from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
 from . import dota_commonmessages_pb2 as _dota_commonmessages_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -182,6 +183,8 @@ class EDotaUserMessages(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     DOTA_UM_TormentorTimer: _ClassVar[EDotaUserMessages]
     DOTA_UM_KillEffect: _ClassVar[EDotaUserMessages]
     DOTA_UM_GiveItem: _ClassVar[EDotaUserMessages]
+    DOTA_UM_TidehunterArcanaProgress_Ravages: _ClassVar[EDotaUserMessages]
+    DOTA_UM_TidehunterArcanaProgress_Fish: _ClassVar[EDotaUserMessages]
 
 class DOTA_CHAT_MESSAGE(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -641,6 +644,8 @@ DOTA_UM_MonsterHunter_HuntAlert: EDotaUserMessages
 DOTA_UM_TormentorTimer: EDotaUserMessages
 DOTA_UM_KillEffect: EDotaUserMessages
 DOTA_UM_GiveItem: EDotaUserMessages
+DOTA_UM_TidehunterArcanaProgress_Ravages: EDotaUserMessages
+DOTA_UM_TidehunterArcanaProgress_Fish: EDotaUserMessages
 CHAT_MESSAGE_INVALID: DOTA_CHAT_MESSAGE
 CHAT_MESSAGE_HERO_KILL: DOTA_CHAT_MESSAGE
 CHAT_MESSAGE_HERO_DENY: DOTA_CHAT_MESSAGE
@@ -1467,7 +1472,7 @@ class CDOTAUserMsg_UnitEvent(_message.Message):
         range: float
         def __init__(self, start: _Optional[float] = ..., range: _Optional[float] = ...) -> None: ...
     class Speech(_message.Message):
-        __slots__ = ("speech_concept", "response", "recipient_type", "muteable", "predelay", "flags", "response_type")
+        __slots__ = ("speech_concept", "response", "recipient_type", "muteable", "predelay", "flags", "response_type", "speech_target_entity_index")
         SPEECH_CONCEPT_FIELD_NUMBER: _ClassVar[int]
         RESPONSE_FIELD_NUMBER: _ClassVar[int]
         RECIPIENT_TYPE_FIELD_NUMBER: _ClassVar[int]
@@ -1475,6 +1480,7 @@ class CDOTAUserMsg_UnitEvent(_message.Message):
         PREDELAY_FIELD_NUMBER: _ClassVar[int]
         FLAGS_FIELD_NUMBER: _ClassVar[int]
         RESPONSE_TYPE_FIELD_NUMBER: _ClassVar[int]
+        SPEECH_TARGET_ENTITY_INDEX_FIELD_NUMBER: _ClassVar[int]
         speech_concept: int
         response: str
         recipient_type: int
@@ -1482,7 +1488,8 @@ class CDOTAUserMsg_UnitEvent(_message.Message):
         predelay: CDOTAUserMsg_UnitEvent.Interval
         flags: int
         response_type: int
-        def __init__(self, speech_concept: _Optional[int] = ..., response: _Optional[str] = ..., recipient_type: _Optional[int] = ..., muteable: bool = ..., predelay: _Optional[_Union[CDOTAUserMsg_UnitEvent.Interval, _Mapping]] = ..., flags: _Optional[int] = ..., response_type: _Optional[int] = ...) -> None: ...
+        speech_target_entity_index: int
+        def __init__(self, speech_concept: _Optional[int] = ..., response: _Optional[str] = ..., recipient_type: _Optional[int] = ..., muteable: bool = ..., predelay: _Optional[_Union[CDOTAUserMsg_UnitEvent.Interval, _Mapping]] = ..., flags: _Optional[int] = ..., response_type: _Optional[int] = ..., speech_target_entity_index: _Optional[int] = ...) -> None: ...
     class SpeechMute(_message.Message):
         __slots__ = ("delay",)
         DELAY_FIELD_NUMBER: _ClassVar[int]
@@ -3082,3 +3089,11 @@ class CDOTAUserMsg_GiveItem(_message.Message):
     give_status: CDOTAUserMsg_GiveItem.EGiveStatus
     id: int
     def __init__(self, giver_ent_index: _Optional[int] = ..., receiver_ent_index: _Optional[int] = ..., item_ent_index: _Optional[int] = ..., give_status: _Optional[_Union[CDOTAUserMsg_GiveItem.EGiveStatus, str]] = ..., id: _Optional[int] = ...) -> None: ...
+
+class CDOTAUserMsg_TidehunterArcanaProgress_Ravages(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class CDOTAUserMsg_TidehunterArcanaProgress_Fish(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...

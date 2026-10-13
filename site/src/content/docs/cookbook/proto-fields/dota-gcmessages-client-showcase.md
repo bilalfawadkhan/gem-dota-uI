@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_showcase_pb2`
-- Imports: **9**
+- Imports: **10**
 - Messages: **60** (top-level: 49)
 - Enums: **20** (top-level: 6)
 
@@ -18,6 +18,7 @@
 - `econ_gcmessages.proto`
 - `dota_gcmessages_client.proto`
 - `valveextensions.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -31,9 +32,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `uint64` | `optional` |  |  |
-| 2 | `original_id` | `uint64` | `optional` |  |  |
-| 3 | `definition_index` | `uint32` | `optional` |  |  |
+| 1 | `id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `original_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 3 | `definition_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 4 | `equipment_slot_index` | `int32` | `optional` |  | default = -1 |
 
 </details>
@@ -109,7 +110,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `data` | `.CMsgShowcaseItem_Hero.Data` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `econ_item_refs` | `.CMsgShowcaseEconItemReference` | `repeated` |  |  |
 | 4 | `rotation` | `uint32` | `optional` |  |  |
 | 5 | `flags` | `uint32` | `optional` |  |  |
@@ -132,7 +133,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `econ_items` | `.CSOEconItem` | `repeated` |  |  |
-| 2 | `actual_hero_id` | `int32` | `optional` |  |  |
+| 2 | `actual_hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `plus_hero_xp` | `uint32` | `optional` |  |  |
 
 </details>
@@ -146,7 +147,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `data` | `.CMsgShowcaseItem_HeroIcon.Data` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `econ_item_ref` | `.CMsgShowcaseEconItemReference` | `optional` |  |  |
 
 </details>
@@ -172,8 +173,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `data` | `.CMsgShowcaseItem_PlayerMatch.Data` | `optional` |  |  |
-| 2 | `match_id` | `uint64` | `optional` |  |  |
-| 3 | `player_slot` | `uint32` | `optional` |  |  |
+| 2 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
+| 3 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 
 </details>
 
@@ -185,7 +186,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `timestamp` | `uint32` | `optional` |  |  |
 | 3 | `duration` | `uint32` | `optional` |  |  |
 | 4 | `game_mode` | `.DOTA_GameMode` | `optional` |  | default = DOTA_GAMEMODE_NONE |
@@ -205,7 +206,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `data` | `.CMsgShowcaseItem_ChatWheel.Data` | `optional` |  |  |
-| 2 | `chat_wheel_message_id` | `uint32` | `optional` |  | default = 4294967295 |
+| 2 | `chat_wheel_message_id` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "ChatWheelMessageID_t", synthetic_default = "4294967295" |
 
 </details>
 
@@ -392,8 +393,8 @@ Expand any message to inspect all fields.
 | 4 | `width` | `uint32` | `optional` |  |  |
 | 5 | `height` | `uint32` | `optional` |  |  |
 | 6 | `rotation` | `uint32` | `optional` |  |  |
-| 7 | `parent_id` | `uint32` | `optional` |  |  |
-| 8 | `parent_attachment_point_id` | `uint32` | `optional` |  |  |
+| 7 | `parent_id` | `uint32` | `optional` |  | boxed_type = "ShowcaseItemID_t" |
+| 8 | `parent_attachment_point_id` | `uint32` | `optional` |  | boxed_type = "ShowcaseAttachmentPointID_t" |
 | 9 | `attachment_anchor_x` | `uint32` | `optional` |  |  |
 | 10 | `attachment_anchor_y` | `uint32` | `optional` |  |  |
 
@@ -407,7 +408,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `showcase_item_id` | `uint32` | `optional` |  |  |
+| 1 | `showcase_item_id` | `uint32` | `optional` |  | boxed_type = "ShowcaseItemID_t" |
 | 2 | `item_position` | `.CMsgShowcaseItemPosition` | `optional` |  |  |
 | 3 | `item_data` | `.CMsgShowcaseItemData` | `optional` |  |  |
 | 4 | `state` | `.EShowcaseItemState` | `optional` |  | default = k_eShowcaseItemState_Ok |
@@ -517,7 +518,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `rollup_id` | `uint32` | `optional` |  |  |
+| 1 | `rollup_id` | `uint32` | `optional` |  | boxed_type = "ShowcaseReportsRollupID_t" |
 | 2 | `start_timestamp` | `uint32` | `optional` |  |  |
 | 3 | `end_timestamp` | `uint32` | `optional` |  |  |
 
@@ -595,7 +596,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `rollup_id` | `uint32` | `optional` |  |  |
+| 1 | `rollup_id` | `uint32` | `optional` |  | boxed_type = "ShowcaseReportsRollupID_t" |
 
 </details>
 

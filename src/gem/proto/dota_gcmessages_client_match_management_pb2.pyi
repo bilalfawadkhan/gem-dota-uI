@@ -4,6 +4,7 @@ from . import events_pb2 as _events_pb2
 from . import dota_client_enums_pb2 as _dota_client_enums_pb2
 from . import base_gcmessages_pb2 as _base_gcmessages_pb2
 from . import dota_gcmessages_common_lobby_pb2 as _dota_gcmessages_common_lobby_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -378,10 +379,12 @@ class CMsgPracticeLobbyLeave(_message.Message):
     def __init__(self) -> None: ...
 
 class CMsgPracticeLobbyLaunch(_message.Message):
-    __slots__ = ("client_version",)
+    __slots__ = ("client_version", "nonce")
     CLIENT_VERSION_FIELD_NUMBER: _ClassVar[int]
+    NONCE_FIELD_NUMBER: _ClassVar[int]
     client_version: int
-    def __init__(self, client_version: _Optional[int] = ...) -> None: ...
+    nonce: int
+    def __init__(self, client_version: _Optional[int] = ..., nonce: _Optional[int] = ...) -> None: ...
 
 class CMsgApplyTeamToPracticeLobby(_message.Message):
     __slots__ = ("team_id",)

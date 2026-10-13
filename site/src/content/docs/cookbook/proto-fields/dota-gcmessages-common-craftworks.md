@@ -3,8 +3,8 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `dota_gcmessages_common_craftworks_pb2`
-- Imports: **3**
-- Messages: **3** (top-level: 2)
+- Imports: **4**
+- Messages: **2** (top-level: 2)
 - Enums: **1** (top-level: 1)
 
 ## Imports
@@ -12,33 +12,21 @@
 - `steammessages.proto`
 - `dota_shared_enums.proto`
 - `gcsdk_gcmessages.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
 Expand any message to inspect all fields.
 
 <details>
-<summary><code>CMsgCraftworksComponents</code> — fields: 1; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgCraftworksComponents</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `component_quantities` | `.CMsgCraftworksComponents.ComponentQuantitiesEntry` | `repeated` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgCraftworksComponents.ComponentQuantitiesEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgCraftworksComponents`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `uint32` | `optional` |  |  |
+| 1 | `component_quantities` | `map<uint32, uint32>` | `unlabeled` |  | map field |
 
 </details>
 
@@ -50,7 +38,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `quest_id` | `uint32` | `optional` |  |  |
+| 1 | `quest_id` | `uint32` | `optional` |  | boxed_type = "CraftworksQuestID_t" |
 | 2 | `reward_components` | `.CMsgCraftworksComponents` | `optional` |  |  |
 | 3 | `stat_value` | `uint32` | `optional` |  |  |
 

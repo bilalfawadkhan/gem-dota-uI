@@ -2,11 +2,12 @@ from . import steammessages_pb2 as _steammessages_pb2
 from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from collections.abc import Iterable as _Iterable, Mapping as _Mapping
+from collections.abc import Mapping as _Mapping
 from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
@@ -32,8 +33,8 @@ class CMsgCraftworksComponents(_message.Message):
         value: int
         def __init__(self, key: _Optional[int] = ..., value: _Optional[int] = ...) -> None: ...
     COMPONENT_QUANTITIES_FIELD_NUMBER: _ClassVar[int]
-    component_quantities: _containers.RepeatedCompositeFieldContainer[CMsgCraftworksComponents.ComponentQuantitiesEntry]
-    def __init__(self, component_quantities: _Optional[_Iterable[_Union[CMsgCraftworksComponents.ComponentQuantitiesEntry, _Mapping]]] = ...) -> None: ...
+    component_quantities: _containers.ScalarMap[int, int]
+    def __init__(self, component_quantities: _Optional[_Mapping[int, int]] = ...) -> None: ...
 
 class CMsgCraftworksQuestReward(_message.Message):
     __slots__ = ("quest_id", "reward_components", "stat_value")

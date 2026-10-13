@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_webapi_pb2`
-- Imports: **5**
+- Imports: **6**
 - Messages: **39** (top-level: 19)
 - Enums: **15** (top-level: 6)
 
@@ -14,6 +14,7 @@
 - `dota_shared_enums.proto`
 - `dota_gcmessages_common.proto`
 - `dota_match_metadata.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -47,8 +48,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `match_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id_0` | `int32` | `optional` |  |  |
-| 3 | `hero_id_1` | `int32` | `optional` |  |  |
+| 2 | `hero_id_0` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 3 | `hero_id_1` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 4 | `hero_seeding_0` | `uint32` | `optional` |  |  |
 | 5 | `hero_seeding_1` | `uint32` | `optional` |  |  |
 | 6 | `vote_count_0` | `uint32` | `optional` |  |  |
@@ -83,11 +84,11 @@ Expand any message to inspect all fields.
 | 1 | `type` | `.CMsgDOTADPCFeed.EFeedElementType` | `optional` |  | default = FEED_SERIES_RESULT |
 | 2 | `timestamp` | `uint32` | `optional` |  |  |
 | 3 | `series_id` | `uint32` | `optional` |  |  |
-| 4 | `match_id` | `uint64` | `optional` |  |  |
+| 4 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 5 | `team_id` | `uint32` | `optional` |  |  |
 | 6 | `account_id` | `uint32` | `optional` |  |  |
-| 7 | `league_id` | `uint32` | `optional` |  |  |
-| 8 | `node_id` | `uint32` | `optional` |  |  |
+| 7 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
+| 8 | `node_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeID_t" |
 | 9 | `data_1` | `uint32` | `optional` |  |  |
 | 10 | `data_2` | `uint32` | `optional` |  |  |
 | 11 | `data_3` | `uint32` | `optional` |  |  |
@@ -135,7 +136,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `role` | `uint32` | `optional` |  |  |
 
 </details>
@@ -166,7 +167,7 @@ Expand any message to inspect all fields.
 | 3 | `match_hero_info` | `.CMsgDraftTrivia.DraftTriviaMatchInfo` | `optional` |  |  |
 | 4 | `match_rank_tier` | `uint32` | `optional` |  |  |
 | 5 | `end_time` | `uint32` | `optional` |  |  |
-| 6 | `match_id` | `uint64` | `optional` |  |  |
+| 6 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 
 </details>
 
@@ -370,7 +371,7 @@ Expand any message to inspect all fields.
 | 5 | `is_event_upcoming` | `bool` | `optional` |  |  |
 | 6 | `is_event_completed` | `bool` | `optional` |  |  |
 | 7 | `event_name` | `string` | `optional` |  |  |
-| 8 | `multicast_league_id` | `uint32` | `optional` |  |  |
+| 8 | `multicast_league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 9 | `multicast_streams` | `uint32` | `repeated` |  |  |
 | 10 | `tour` | `.CMsgDPCEvent.ETour` | `optional` |  | default = TOUR_NONE |
 | 12 | `timestamp_drop_lock` | `uint32` | `optional` |  |  |
@@ -390,7 +391,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `phase` | `.CMsgDPCEvent.ELeagueEventPhase` | `optional` |  | default = PHASE_INVALID |
-| 2 | `node_group_id` | `uint32` | `optional` |  |  |
+| 2 | `node_group_id` | `uint32` | `optional` |  | boxed_type = "LeagueNodeGroupID_t" |
 
 </details>
 
@@ -404,7 +405,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `region` | `.ELeagueRegion` | `optional` |  | default = LEAGUE_REGION_UNSET |
 | 2 | `division` | `.ELeagueDivision` | `optional` |  | default = LEAGUE_DIVISION_UNSET |
-| 3 | `league_id` | `uint32` | `optional` |  |  |
+| 3 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 4 | `phases` | `.CMsgDPCEvent.PhaseInfo` | `repeated` |  |  |
 
 </details>
@@ -462,7 +463,7 @@ Expand any message to inspect all fields.
 | 6 | `bonuses` | `.CMsgDOTAFantasyCardLineup.CardBonus` | `repeated` |  |  |
 | 7 | `score` | `float` | `optional` |  |  |
 | 8 | `finalized` | `bool` | `optional` |  |  |
-| 9 | `item_id` | `uint64` | `optional` |  |  |
+| 9 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -474,7 +475,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `cards` | `.CMsgDOTAFantasyCardLineup.Card` | `repeated` |  |  |
 | 3 | `score` | `float` | `optional` |  |  |
 
@@ -488,7 +489,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `fantasy_period` | `uint32` | `optional` |  | default = 4294967295 |
+| 1 | `fantasy_period` | `uint32` | `optional` |  | default = 4294967295, boxed_type = "FantasyPeriod_t", synthetic_default = "4294967295" |
 | 2 | `timestamp_start` | `uint32` | `optional` |  |  |
 | 3 | `timestamp_end` | `uint32` | `optional` |  |  |
 | 4 | `leagues` | `.CMsgDOTAFantasyCardLineup.League` | `repeated` |  |  |
@@ -534,7 +535,7 @@ Expand any message to inspect all fields.
 | 4 | `team_name` | `string` | `optional` |  |  |
 | 5 | `role` | `uint32` | `optional` |  |  |
 | 6 | `bonuses` | `.CMsgDOTAFantasyCardList.CardBonus` | `repeated` |  |  |
-| 8 | `item_id` | `uint64` | `optional` |  |  |
+| 8 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 

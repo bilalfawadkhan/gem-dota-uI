@@ -1,6 +1,7 @@
 from . import steammessages_pb2 as _steammessages_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
 from .steammessages_steamlearn import steamworkssdk_pb2 as _steamworkssdk_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -219,10 +220,12 @@ class CMsgServerAvailable(_message.Message):
     def __init__(self, custom_game_install_status: _Optional[_Union[CMsgCustomGameInstallStatus, _Mapping]] = ...) -> None: ...
 
 class CMsgLANServerAvailable(_message.Message):
-    __slots__ = ("lobby_id",)
+    __slots__ = ("lobby_id", "nonce")
     LOBBY_ID_FIELD_NUMBER: _ClassVar[int]
+    NONCE_FIELD_NUMBER: _ClassVar[int]
     lobby_id: int
-    def __init__(self, lobby_id: _Optional[int] = ...) -> None: ...
+    nonce: int
+    def __init__(self, lobby_id: _Optional[int] = ..., nonce: _Optional[int] = ...) -> None: ...
 
 class CSOEconGameAccountClient(_message.Message):
     __slots__ = ("additional_backpack_slots", "trial_account", "eligible_for_online_play", "need_to_choose_most_helpful_friend", "in_coaches_list", "trade_ban_expiration", "duel_ban_expiration", "made_first_purchase")

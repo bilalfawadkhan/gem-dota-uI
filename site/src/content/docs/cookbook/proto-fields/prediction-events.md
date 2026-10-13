@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `prediction_events_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **3** (top-level: 3)
 - Enums: **1** (top-level: 1)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 

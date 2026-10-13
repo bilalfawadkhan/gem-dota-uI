@@ -3,7 +3,7 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `base_gcmessages_pb2`
-- Imports: **3**
+- Imports: **4**
 - Messages: **62** (top-level: 58)
 - Enums: **6** (top-level: 2)
 
@@ -12,6 +12,7 @@
 - `steammessages.proto`
 - `gcsdk_gcmessages.proto`
 - `steammessages_steamlearn.steamworkssdk.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -25,7 +26,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_def_id` | `uint32` | `optional` |  |  |
+| 1 | `item_def_id` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 2 | `quantity` | `uint32` | `optional` |  |  |
 | 3 | `cost_in_local_currency` | `uint32` | `optional` |  |  |
 | 4 | `purchase_type` | `uint32` | `optional` |  |  |
@@ -203,7 +204,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgLANServerAvailable</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CMsgLANServerAvailable</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -211,6 +212,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `lobby_id` | `fixed64` | `optional` |  |  |
+| 2 | `nonce` | `fixed64` | `optional` |  |  |
 
 </details>
 
@@ -241,8 +243,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `strange_part_item_id` | `uint64` | `optional` |  |  |
-| 2 | `item_item_id` | `uint64` | `optional` |  |  |
+| 1 | `strange_part_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -254,8 +256,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `upgrade_item_id` | `uint64` | `optional` |  |  |
-| 2 | `pennant_item_id` | `uint64` | `optional` |  |  |
+| 1 | `upgrade_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `pennant_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -267,8 +269,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `essence_item_id` | `uint64` | `optional` |  |  |
-| 2 | `egg_item_id` | `uint64` | `optional` |  |  |
+| 1 | `essence_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `egg_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -280,7 +282,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `def_index` | `uint32` | `optional` |  | default = 65535 |
+| 1 | `def_index` | `uint32` | `optional` |  | default = 65535, boxed_type = "attrib_definition_index_t", synthetic_default = "65535" |
 | 2 | `value` | `uint32` | `optional` |  |  |
 | 3 | `value_bytes` | `bytes` | `optional` |  |  |
 
@@ -307,10 +309,10 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `id` | `uint64` | `optional` |  |  |
+| 1 | `id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `account_id` | `uint32` | `optional` |  |  |
 | 3 | `inventory` | `uint32` | `optional` |  |  |
-| 4 | `def_index` | `uint32` | `optional` |  |  |
+| 4 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 5 | `quantity` | `uint32` | `optional` |  | default = 1 |
 | 6 | `level` | `uint32` | `optional` |  | default = 1 |
 | 7 | `quality` | `uint32` | `optional` |  | default = 4 |
@@ -318,8 +320,8 @@ Expand any message to inspect all fields.
 | 9 | `origin` | `uint32` | `optional` |  | default = 0 |
 | 12 | `attribute` | `.CSOEconItemAttribute` | `repeated` |  |  |
 | 13 | `interior_item` | `.CSOEconItem` | `optional` |  |  |
-| 15 | `style` | `uint32` | `optional` |  | default = 0 |
-| 16 | `original_id` | `uint64` | `optional` |  |  |
+| 15 | `style` | `uint32` | `optional` |  | default = 0, boxed_type = "style_index_t" |
+| 16 | `original_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 18 | `equipped_state` | `.CSOEconItemEquipped` | `repeated` |  |  |
 
 </details>
@@ -346,7 +348,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
 | 2 | `inventory` | `uint32` | `optional` |  |  |
-| 3 | `def_index` | `uint32` | `optional` |  |  |
+| 3 | `def_index` | `uint32` | `optional` |  | boxed_type = "item_definition_index_t" |
 | 4 | `quality` | `uint32` | `optional` |  |  |
 | 5 | `rarity` | `uint32` | `optional` |  |  |
 | 6 | `origin` | `uint32` | `optional` |  |  |
@@ -373,7 +375,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `position` | `uint32` | `optional` |  |  |
 
 </details>
@@ -423,7 +425,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `result` | `uint32` | `optional` |  |  |
-| 2 | `item_ids` | `uint64` | `repeated` |  |  |
+| 2 | `item_ids` | `uint64` | `repeated` |  | boxed_type = "itemid_t" |
 
 </details>
 
@@ -520,9 +522,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `tool_item_id` | `uint64` | `optional` |  |  |
-| 2 | `item_item_id` | `uint64` | `optional` |  |  |
-| 3 | `item_socket_id` | `uint32` | `optional` |  | default = 65535 |
+| 1 | `tool_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 3 | `item_socket_id` | `uint32` | `optional` |  | default = 65535, boxed_type = "attrib_definition_index_t", synthetic_default = "65535" |
 
 </details>
 
@@ -534,7 +536,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `response` | `.CMsgExtractGemsResponse.EExtractGems` | `optional` |  | default = k_ExtractGems_Succeeded |
 
 </details>
@@ -547,8 +549,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `tool_item_id` | `uint64` | `optional` |  |  |
-| 2 | `item_item_id` | `uint64` | `optional` |  |  |
+| 1 | `tool_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 3 | `unusual` | `bool` | `optional` |  |  |
 
 </details>
@@ -561,8 +563,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `uint64` | `optional` |  |  |
-| 2 | `updated_socket_index` | `uint32` | `repeated` |  |  |
+| 1 | `item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `updated_socket_index` | `uint32` | `repeated` |  | boxed_type = "attrib_definition_index_t" |
 | 3 | `response` | `.CMsgAddSocketResponse.EAddSocket` | `optional` |  | default = k_AddSocket_Succeeded |
 
 </details>
@@ -575,8 +577,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `gem_item_id` | `uint64` | `optional` |  |  |
-| 2 | `socket_index` | `uint32` | `optional` |  | default = 65535 |
+| 1 | `gem_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `socket_index` | `uint32` | `optional` |  | default = 65535, boxed_type = "attrib_definition_index_t", synthetic_default = "65535" |
 
 </details>
 
@@ -588,7 +590,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_item_id` | `uint64` | `optional` |  |  |
+| 1 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
 | 2 | `gems_to_socket` | `.CMsgAddItemToSocketData` | `repeated` |  |  |
 
 </details>
@@ -601,8 +603,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_item_id` | `uint64` | `optional` |  |  |
-| 2 | `updated_socket_index` | `uint32` | `repeated` |  |  |
+| 1 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `updated_socket_index` | `uint32` | `repeated` |  | boxed_type = "attrib_definition_index_t" |
 | 3 | `response` | `.CMsgAddItemToSocketResponse.EAddGem` | `optional` |  | default = k_AddGem_Succeeded |
 
 </details>
@@ -615,8 +617,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_item_id` | `uint64` | `optional` |  |  |
-| 2 | `socket_index` | `uint32` | `optional` |  | default = 65535 |
+| 1 | `item_item_id` | `uint64` | `optional` |  | boxed_type = "itemid_t" |
+| 2 | `socket_index` | `uint32` | `optional` |  | default = 65535, boxed_type = "attrib_definition_index_t", synthetic_default = "65535" |
 
 </details>
 
@@ -682,7 +684,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `success` | `bool` | `optional` |  |  |
-| 2 | `source_gc` | `int32` | `optional` |  | default = -1 |
+| 2 | `source_gc` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 
 </details>
 

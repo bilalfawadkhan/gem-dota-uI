@@ -4,7 +4,7 @@
 
 - Module: `dota_gcmessages_common_survivors_pb2`
 - Imports: **4**
-- Messages: **5** (top-level: 4)
+- Messages: **4** (top-level: 4)
 - Enums: **1** (top-level: 0)
 
 ## Imports
@@ -19,28 +19,15 @@
 Expand any message to inspect all fields.
 
 <details>
-<summary><code>CMsgSurvivorsUserData</code> — fields: 2; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgSurvivorsUserData</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `attribute_levels` | `.CMsgSurvivorsUserData.AttributeLevelsEntry` | `repeated` |  |  |
+| 1 | `attribute_levels` | `map<int32, uint32>` | `unlabeled` |  | map field |
 | 2 | `unlocked_difficulty` | `uint32` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSurvivorsUserData.AttributeLevelsEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSurvivorsUserData`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `int32` | `optional` |  |  |
-| 2 | `value` | `uint32` | `optional` |  |  |
 
 </details>
 

@@ -3,20 +3,21 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `usermessages_pb2`
-- Imports: **1**
-- Messages: **107** (top-level: 54)
-- Enums: **5** (top-level: 5)
+- Imports: **2**
+- Messages: **109** (top-level: 56)
+- Enums: **7** (top-level: 5)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
 Expand any message to inspect all fields.
 
 <details>
-<summary><code>CUserMessageAchievementEvent</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CUserMessageAchievementEvent</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -24,6 +25,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `achievement` | `uint32` | `optional` |  |  |
+| 2 | `count` | `int32` | `optional` |  | default = 1 |
 
 </details>
 
@@ -38,7 +40,7 @@ Expand any message to inspect all fields.
 | 1 | `string` | `string` | `optional` |  |  |
 | 2 | `duration` | `float` | `optional` |  |  |
 | 3 | `from_player` | `bool` | `optional` |  |  |
-| 4 | `ent_index` | `int32` | `optional` |  | default = -1 |
+| 4 | `ent_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 
 </details>
 
@@ -144,34 +146,36 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CUserMessageSayText</code> — fields: 3; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CUserMessageSayText</code> — fields: 4; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `playerindex` | `int32` | `optional` |  | default = -1 |
+| 1 | `playerindex` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `text` | `string` | `optional` |  |  |
 | 3 | `chat` | `bool` | `optional` |  |  |
+| 4 | `textallchat` | `bool` | `optional` |  |  |
 
 </details>
 
 <details>
-<summary><code>CUserMessageSayText2</code> — fields: 7; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CUserMessageSayText2</code> — fields: 8; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `entityindex` | `int32` | `optional` |  | default = -1 |
+| 1 | `entityindex` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `chat` | `bool` | `optional` |  |  |
 | 3 | `messagename` | `string` | `optional` |  |  |
 | 4 | `param1` | `string` | `optional` |  |  |
 | 5 | `param2` | `string` | `optional` |  |  |
 | 6 | `param3` | `string` | `optional` |  |  |
 | 7 | `param4` | `string` | `optional` |  |  |
+| 8 | `textallchat` | `bool` | `optional` |  |  |
 
 </details>
 
@@ -263,8 +267,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `parameter_type` | `uint32` | `optional` |  |  |
-| 2 | `name_hash_code` | `uint32` | `optional` |  |  |
+| 1 | `parameter_type` | `uint32` | `optional` |  | boxed_type = "CUtlStringToken" |
+| 2 | `name_hash_code` | `uint32` | `optional` |  | boxed_type = "CUtlStringToken" |
 | 3 | `value` | `float` | `optional` |  |  |
 | 4 | `int_value` | `uint32` | `optional` |  |  |
 
@@ -335,7 +339,7 @@ Expand any message to inspect all fields.
 | 1 | `color` | `uint32` | `optional` |  |  |
 | 2 | `text` | `string` | `optional` |  |  |
 | 3 | `reset` | `bool` | `optional` |  |  |
-| 4 | `context_player_slot` | `int32` | `optional` |  | default = -1 |
+| 4 | `context_player_slot` | `int32` | `optional` |  | default = -1, boxed_type = "CPlayerSlot", synthetic_default = "-1" |
 | 5 | `context_value` | `int32` | `optional` |  |  |
 | 6 | `context_team_id` | `int32` | `optional` |  |  |
 
@@ -440,7 +444,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `origin` | `.CMsgVector` | `optional` |  |  |
-| 2 | `entityindex` | `int32` | `optional` |  | default = -1 |
+| 2 | `entityindex` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 3 | `radius` | `float` | `optional` |  |  |
 | 4 | `color` | `fixed32` | `optional` |  |  |
 | 5 | `beams` | `uint32` | `optional` |  |  |
@@ -487,7 +491,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `filename` | `string` | `optional` |  |  |
-| 2 | `attach_ent_index` | `int32` | `optional` |  | default = -1 |
+| 2 | `attach_ent_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 3 | `duration` | `float` | `optional` |  |  |
 
 </details>
@@ -568,8 +572,8 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `particle_name_index` | `fixed64` | `optional` |  |  |
 | 2 | `attach_type` | `int32` | `optional` |  |  |
-| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
-| 4 | `entity_handle_for_modifiers` | `uint32` | `optional` |  | default = 16777215 |
+| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
+| 4 | `entity_handle_for_modifiers` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 5 | `apply_voice_ban_rules` | `bool` | `optional` |  |  |
 | 6 | `team_behavior` | `int32` | `optional` |  |  |
 | 7 | `control_point_configuration` | `string` | `optional` |  |  |
@@ -600,7 +604,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `destroy_immediately` | `bool` | `optional` |  |  |
-| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -613,7 +617,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `particle_name_index` | `fixed64` | `optional` |  |  |
-| 2 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 2 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 3 | `destroy_immediately` | `bool` | `optional` |  |  |
 | 4 | `play_endcap` | `bool` | `optional` |  |  |
 
@@ -712,7 +716,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `control_point` | `int32` | `optional` |  |  |
-| 2 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 2 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 3 | `attach_type` | `int32` | `optional` |  |  |
 | 4 | `attachment` | `int32` | `optional` |  |  |
 | 5 | `fallback_position` | `.CMsgVector` | `optional` |  |  |
@@ -757,7 +761,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `attachment_old` | `int32` | `optional` |  |  |
 | 2 | `attachment_new` | `int32` | `optional` |  |  |
-| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -769,7 +773,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 1 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 2 | `position` | `.CMsgVector` | `optional` |  |  |
 
 </details>
@@ -935,7 +939,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `set_frozen` | `bool` | `optional` |  |  |
 | 2 | `transition_duration` | `float` | `optional` |  |  |
-| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 3 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -1029,7 +1033,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `value_name_hash` | `uint32` | `optional` |  |  |
-| 2 | `ent_index` | `uint32` | `optional` |  | default = 16777215 |
+| 2 | `ent_index` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -1120,7 +1124,7 @@ Expand any message to inspect all fields.
 | 14 | `cone_start_radius` | `float` | `optional` |  |  |
 | 15 | `cone_end_radius` | `float` | `optional` |  |  |
 | 16 | `cone_length` | `float` | `optional` |  |  |
-| 17 | `entity_handle` | `uint32` | `optional` |  | default = 16777215 |
+| 17 | `entity_handle` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 18 | `attachment_name` | `string` | `optional` |  |  |
 
 </details>
@@ -1217,7 +1221,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `hand_id` | `int32` | `optional` |  |  |
-| 2 | `effect_name_hash_code` | `uint32` | `optional` |  |  |
+| 2 | `effect_name_hash_code` | `uint32` | `optional` |  | boxed_type = "CUtlStringToken" |
 | 3 | `effect_scale` | `float` | `optional` |  |  |
 
 </details>
@@ -1551,7 +1555,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `ent_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `ent_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `rule_name` | `string` | `optional` |  |  |
 | 3 | `response_value` | `string` | `optional` |  |  |
 | 4 | `response_concept` | `string` | `optional` |  |  |
@@ -1587,8 +1591,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `ent_index` | `int32` | `optional` |  | default = -1 |
-| 2 | `player_slots` | `int32` | `repeated` |  |  |
+| 1 | `ent_index` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
+| 2 | `player_slots` | `int32` | `repeated` |  | boxed_type = "CPlayerSlot" |
 | 3 | `response` | `string` | `optional` |  |  |
 | 4 | `ent_origin` | `.CMsgVector` | `optional` |  |  |
 | 5 | `pre_delay` | `float` | `optional` |  |  |
@@ -1608,12 +1612,42 @@ Expand any message to inspect all fields.
 
 </details>
 
+<details>
+<summary><code>CUserMessage_RemoteServerCommand</code> — fields: 5; oneofs: 0; nested messages: 0; nested enums: 1</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `ecommand` | `.CUserMessage_RemoteServerCommand.ECommand` | `optional` |  | default = ECommandChangeConVar |
+| 2 | `convar` | `string` | `optional` |  |  |
+| 3 | `value` | `string` | `optional` |  |  |
+| 4 | `command_str` | `string` | `optional` |  |  |
+| 5 | `command_args` | `string` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>CUserMessageRemoteServerResponse</code> — fields: 3; oneofs: 0; nested messages: 0; nested enums: 1</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `command_result` | `.CUserMessageRemoteServerResponse.ECommandResult` | `optional` |  | default = EResultSuccess |
+| 2 | `request` | `string` | `optional` |  |  |
+| 3 | `results` | `string` | `optional` |  |  |
+
+</details>
+
 ## Enums
 
 Expand any enum to inspect all values.
 
 <details>
-<summary><code>EBaseUserMessages</code> — values: 51</summary>
+<summary><code>EBaseUserMessages</code> — values: 53</summary>
 
 - Parent: *(top-level)*
 
@@ -1669,6 +1703,8 @@ Expand any enum to inspect all values.
 | `UM_PlayResponseConditional` | 166 |
 | `UM_UserSentBugBug` | 167 |
 | `UM_UsageReport` | 168 |
+| `UM_RemoteServerCommand` | 169 |
+| `UM_RemoteServerResponse` | 170 |
 | `UM_MAX_BASE` | 200 |
 
 </details>
@@ -1765,5 +1801,32 @@ Expand any enum to inspect all values.
 | `VR_HAND_HAPTIC_PULSE_LIGHT` | 0 |
 | `VR_HAND_HAPTIC_PULSE_MEDIUM` | 1 |
 | `VR_HAND_HAPTIC_PULSE_STRONG` | 2 |
+
+</details>
+
+<details>
+<summary><code>CUserMessage_RemoteServerCommand.ECommand</code> — values: 2</summary>
+
+- Parent: `CUserMessage_RemoteServerCommand`
+
+| Name | Number |
+|---|---:|
+| `ECommandChangeConVar` | 1 |
+| `ECommandRunCommand` | 2 |
+
+</details>
+
+<details>
+<summary><code>CUserMessageRemoteServerResponse.ECommandResult</code> — values: 5</summary>
+
+- Parent: `CUserMessageRemoteServerResponse`
+
+| Name | Number |
+|---|---:|
+| `EResultSuccess` | 1 |
+| `EResultServerDoesntAllow` | 2 |
+| `EResultClientNotAuthenticated` | 3 |
+| `EResultClientNotAllowed` | 4 |
+| `EResultCommandNotAllowed` | 5 |
 
 </details>

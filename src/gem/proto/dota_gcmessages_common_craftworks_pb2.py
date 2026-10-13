@@ -29,21 +29,24 @@ try:
 except AttributeError:
   events__pb2 = dota__shared__enums__pb2.events_pb2
 from . import gcsdk_gcmessages_pb2 as gcsdk__gcmessages__pb2
+from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'dota_gcmessages_common_craftworks.proto\x1a\x13steammessages.proto\x1a\x17\x64ota_shared_enums.proto\x1a\x16gcsdk_gcmessages.proto\"\xa4\x01\n\x18\x43MsgCraftworksComponents\x12P\n\x14\x63omponent_quantities\x18\x01 \x03(\x0b\x32\x32.CMsgCraftworksComponents.ComponentQuantitiesEntry\x1a\x36\n\x18\x43omponentQuantitiesEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r\"w\n\x19\x43MsgCraftworksQuestReward\x12\x10\n\x08quest_id\x18\x01 \x01(\r\x12\x34\n\x11reward_components\x18\x02 \x01(\x0b\x32\x19.CMsgCraftworksComponents\x12\x12\n\nstat_value\x18\x03 \x01(\r*m\n\x16\x45\x43raftworksAuditAction\x12\x0e\n\nk_eInvalid\x10\x00\x12\x14\n\x10k_eRecipeCrafted\x10\x01\x12\x13\n\x0fk_eMatchRewards\x10\x02\x12\x18\n\x14k_eMatchRewardsTurbo\x10\x03')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'dota_gcmessages_common_craftworks.proto\x1a\x13steammessages.proto\x1a\x17\x64ota_shared_enums.proto\x1a\x16gcsdk_gcmessages.proto\x1a google/protobuf/descriptor.proto\"\xa8\x01\n\x18\x43MsgCraftworksComponents\x12P\n\x14\x63omponent_quantities\x18\x01 \x03(\x0b\x32\x32.CMsgCraftworksComponents.ComponentQuantitiesEntry\x1a:\n\x18\x43omponentQuantitiesEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\r:\x02\x38\x01\"w\n\x19\x43MsgCraftworksQuestReward\x12\x10\n\x08quest_id\x18\x01 \x01(\r\x12\x34\n\x11reward_components\x18\x02 \x01(\x0b\x32\x19.CMsgCraftworksComponents\x12\x12\n\nstat_value\x18\x03 \x01(\r*m\n\x16\x45\x43raftworksAuditAction\x12\x0e\n\nk_eInvalid\x10\x00\x12\x14\n\x10k_eRecipeCrafted\x10\x01\x12\x13\n\x0fk_eMatchRewards\x10\x02\x12\x18\n\x14k_eMatchRewardsTurbo\x10\x03')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'dota_gcmessages_common_craftworks_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_ECRAFTWORKSAUDITACTION']._serialized_start=401
-  _globals['_ECRAFTWORKSAUDITACTION']._serialized_end=510
-  _globals['_CMSGCRAFTWORKSCOMPONENTS']._serialized_start=114
-  _globals['_CMSGCRAFTWORKSCOMPONENTS']._serialized_end=278
-  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._serialized_start=224
-  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._serialized_end=278
-  _globals['_CMSGCRAFTWORKSQUESTREWARD']._serialized_start=280
-  _globals['_CMSGCRAFTWORKSQUESTREWARD']._serialized_end=399
+  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._loaded_options = None
+  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._serialized_options = b'8\001'
+  _globals['_ECRAFTWORKSAUDITACTION']._serialized_start=439
+  _globals['_ECRAFTWORKSAUDITACTION']._serialized_end=548
+  _globals['_CMSGCRAFTWORKSCOMPONENTS']._serialized_start=148
+  _globals['_CMSGCRAFTWORKSCOMPONENTS']._serialized_end=316
+  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._serialized_start=258
+  _globals['_CMSGCRAFTWORKSCOMPONENTS_COMPONENTQUANTITIESENTRY']._serialized_end=316
+  _globals['_CMSGCRAFTWORKSQUESTREWARD']._serialized_start=318
+  _globals['_CMSGCRAFTWORKSQUESTREWARD']._serialized_end=437
 # @@protoc_insertion_point(module_scope)

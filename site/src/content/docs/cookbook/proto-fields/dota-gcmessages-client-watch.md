@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_watch_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **23** (top-level: 19)
 - Enums: **2** (top-level: 0)
 
 ## Imports
 
 - `dota_gcmessages_common.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -27,14 +28,14 @@ Expand any message to inspect all fields.
 | 2 | `deactivate_time` | `uint32` | `optional` |  |  |
 | 3 | `server_steam_id` | `uint64` | `optional` |  |  |
 | 4 | `lobby_id` | `uint64` | `optional` |  |  |
-| 5 | `league_id` | `uint32` | `optional` |  |  |
+| 5 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 6 | `lobby_type` | `uint32` | `optional` |  |  |
 | 7 | `game_time` | `int32` | `optional` |  |  |
 | 8 | `delay` | `uint32` | `optional` |  |  |
 | 9 | `spectators` | `uint32` | `optional` |  |  |
 | 10 | `game_mode` | `uint32` | `optional` |  |  |
 | 11 | `average_mmr` | `uint32` | `optional` |  |  |
-| 12 | `match_id` | `uint64` | `optional` |  |  |
+| 12 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 | 13 | `series_id` | `uint32` | `optional` |  |  |
 | 15 | `team_name_radiant` | `string` | `optional` |  |  |
 | 16 | `team_name_dire` | `string` | `optional` |  |  |
@@ -68,7 +69,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `account_id` | `uint32` | `optional` |  |  |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `team_slot` | `uint32` | `optional` |  |  |
 | 4 | `team` | `uint32` | `optional` |  |  |
 
@@ -83,8 +84,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `search_key` | `string` | `optional` |  |  |
-| 2 | `league_id` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 4 | `start_game` | `uint32` | `optional` |  |  |
 | 5 | `game_list_index` | `uint32` | `optional` |  |  |
 | 6 | `lobby_ids` | `uint64` | `repeated` |  |  |
@@ -100,8 +101,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `search_key` | `string` | `optional` |  |  |
-| 2 | `league_id` | `uint32` | `optional` |  |  |
-| 3 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
+| 3 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 4 | `start_game` | `uint32` | `optional` |  |  |
 | 5 | `num_games` | `uint32` | `optional` |  |  |
 | 6 | `game_list_index` | `uint32` | `optional` |  |  |
@@ -155,7 +156,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `match_ids` | `uint64` | `repeated` |  |  |
+| 1 | `match_ids` | `uint64` | `repeated` |  | boxed_type = "MatchID_t" |
 
 </details>
 

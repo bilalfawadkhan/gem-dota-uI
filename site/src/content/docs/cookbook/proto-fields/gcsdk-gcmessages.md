@@ -3,7 +3,7 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `base_gcmessages.proto`, `dota_gcmessages_common.proto`, `dota_gcmessages_common_craftworks.proto`, `dota_gcmessages_common_lobby.proto`, `dota_gcmessages_common_match_management.proto`, `dota_gcmessages_common_monster_hunter.proto`, `dota_gcmessages_common_overworld.proto`, `dota_gcmessages_common_survivors.proto`, `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `gcsdk_gcmessages_pb2`
-- Imports: **3**
+- Imports: **4**
 - Messages: **74** (top-level: 57)
 - Enums: **3** (top-level: 3)
 
@@ -12,6 +12,7 @@
 - `valveextensions.proto`
 - `steammessages.proto`
 - `steammessages_steamlearn.steamworkssdk.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -291,7 +292,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 
 </details>
 
@@ -303,7 +304,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 3 | `machine_name` | `string` | `optional` |  |  |
 | 4 | `process_name` | `string` | `optional` |  |  |
 | 6 | `directory` | `.CGCToGCMsgMasterAck.Process` | `repeated` |  |  |
@@ -318,8 +319,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
-| 2 | `type_instances` | `uint32` | `repeated` |  |  |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
+| 2 | `type_instances` | `uint32` | `repeated` |  | boxed_type = "GCType_t" |
 
 </details>
 
@@ -379,7 +380,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `dir_index` | `int32` | `optional` |  | default = -1 |
+| 1 | `dir_index` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 | 2 | `machine_name` | `string` | `optional` |  |  |
 
 </details>

@@ -3,6 +3,7 @@ from . import dota_shared_enums_pb2 as _dota_shared_enums_pb2
 from . import events_pb2 as _events_pb2
 from . import dota_gcmessages_common_pb2 as _dota_gcmessages_common_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -99,9 +100,9 @@ class CMsgMonsterHunterUserData(_message.Message):
     HERO_CODEX_FIELD_NUMBER: _ClassVar[int]
     UNLOCKED_COUNT_FIELD_NUMBER: _ClassVar[int]
     material_inventory: _dota_shared_enums_pb2.CMsgMonsterHunterMaterialQuantity
-    hero_codex: _containers.RepeatedCompositeFieldContainer[CMsgMonsterHunterUserData.HeroCodexEntry]
+    hero_codex: _containers.MessageMap[int, CMsgMonsterHunterHeroCodexEntry]
     unlocked_count: int
-    def __init__(self, material_inventory: _Optional[_Union[_dota_shared_enums_pb2.CMsgMonsterHunterMaterialQuantity, _Mapping]] = ..., hero_codex: _Optional[_Iterable[_Union[CMsgMonsterHunterUserData.HeroCodexEntry, _Mapping]]] = ..., unlocked_count: _Optional[int] = ...) -> None: ...
+    def __init__(self, material_inventory: _Optional[_Union[_dota_shared_enums_pb2.CMsgMonsterHunterMaterialQuantity, _Mapping]] = ..., hero_codex: _Optional[_Mapping[int, CMsgMonsterHunterHeroCodexEntry]] = ..., unlocked_count: _Optional[int] = ...) -> None: ...
 
 class CMsgMonsterHunterMatchRewards(_message.Message):
     __slots__ = ("players",)

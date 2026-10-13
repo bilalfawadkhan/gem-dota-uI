@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `te_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **25** (top-level: 25)
 - Enums: **1** (top-level: 1)
 
 ## Imports
 
 - `networkbasetypes.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -151,7 +152,7 @@ Expand any message to inspect all fields.
 |---:|---|---|---|---|---|
 | 1 | `origin` | `.CMsgVector` | `optional` |  |  |
 | 2 | `start` | `.CMsgVector` | `optional` |  |  |
-| 3 | `entity` | `int32` | `optional` |  | default = -1 |
+| 3 | `entity` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 4 | `hitbox` | `uint32` | `optional` |  |  |
 | 5 | `index` | `uint32` | `optional` |  |  |
 
@@ -169,8 +170,8 @@ Expand any message to inspect all fields.
 | 2 | `start` | `.CMsgVector` | `optional` |  |  |
 | 3 | `normal` | `.CMsgVector` | `optional` |  |  |
 | 4 | `angles` | `.CMsgQAngle` | `optional` |  |  |
-| 5 | `entity` | `fixed32` | `optional` |  | default = 16777215 |
-| 6 | `otherentity` | `fixed32` | `optional` |  | default = 16777215 |
+| 5 | `entity` | `fixed32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
+| 6 | `otherentity` | `fixed32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 | 7 | `scale` | `float` | `optional` |  |  |
 | 8 | `magnitude` | `float` | `optional` |  |  |
 | 9 | `radius` | `float` | `optional` |  |  |
@@ -183,7 +184,7 @@ Expand any message to inspect all fields.
 | 16 | `flags` | `uint32` | `optional` |  |  |
 | 17 | `attachmentindex` | `int32` | `optional` |  |  |
 | 18 | `effectname` | `uint32` | `optional` |  |  |
-| 19 | `attachmentname` | `uint32` | `optional` |  | default = 0 |
+| 19 | `attachmentname` | `uint32` | `optional` |  | default = 0, boxed_type = "CUtlStringToken", synthetic_default = "0" |
 
 </details>
 
@@ -221,7 +222,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `entity` | `int32` | `optional` |  | default = -1 |
+| 1 | `entity` | `int32` | `optional` |  | default = -1, boxed_type = "CEntityIndex", synthetic_default = "-1" |
 | 2 | `density` | `uint32` | `optional` |  |  |
 | 3 | `current` | `int32` | `optional` |  |  |
 
@@ -326,7 +327,7 @@ Expand any message to inspect all fields.
 | 12 | `create_debris` | `bool` | `optional` |  |  |
 | 13 | `debris_origin` | `.CMsgVector` | `optional` |  |  |
 | 14 | `debris_surfaceprop` | `fixed32` | `optional` |  |  |
-| 15 | `explosion_type_name` | `uint32` | `optional` |  | default = 0 |
+| 15 | `explosion_type_name` | `uint32` | `optional` |  | default = 0, boxed_type = "CUtlStringToken", synthetic_default = "0" |
 
 </details>
 
@@ -384,7 +385,7 @@ Expand any message to inspect all fields.
 | 1 | `origin` | `.CMsgVector` | `optional` |  |  |
 | 2 | `velocity` | `.CMsgVector` | `optional` |  |  |
 | 3 | `angles` | `.CMsgQAngle` | `optional` |  |  |
-| 4 | `skin` | `fixed32` | `optional` |  | default = 0 |
+| 4 | `skin` | `fixed32` | `optional` |  | default = 0, boxed_type = "CUtlStringToken", synthetic_default = "0" |
 | 5 | `flags` | `uint32` | `optional` |  |  |
 | 6 | `effects` | `uint32` | `optional` |  |  |
 | 7 | `color` | `fixed32` | `optional` |  |  |

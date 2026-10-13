@@ -3,7 +3,7 @@
 **Loaded, not used**: gem doesn't use this file, but it is imported by `dota_match_metadata.proto`, so Python loads it anyway.
 
 - Module: `dota_gcmessages_common_match_management_pb2`
-- Imports: **3**
+- Imports: **4**
 - Messages: **15** (top-level: 11)
 - Enums: **9** (top-level: 7)
 
@@ -12,6 +12,7 @@
 - `steammessages.proto`
 - `gcsdk_gcmessages.proto`
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -39,7 +40,7 @@ Expand any message to inspect all fields.
 | 14 | `high_priority_disabled` | `bool` | `optional` |  |  |
 | 15 | `has_hp_resource` | `bool` | `optional` |  |  |
 | 16 | `is_steam_china` | `bool` | `optional` |  |  |
-| 17 | `banned_hero_ids` | `int32` | `repeated` |  |  |
+| 17 | `banned_hero_ids` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 
 </details>
 
@@ -271,7 +272,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_slot` | `uint32` | `optional` |  |  |
+| 1 | `player_slot` | `uint32` | `optional` |  | boxed_type = "GCPlayerSlot_t" |
 | 2 | `accolades` | `.CMvpData.MvpDatum.MvpAccolade` | `repeated` |  |  |
 
 </details>

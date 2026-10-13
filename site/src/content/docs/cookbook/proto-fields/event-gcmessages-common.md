@@ -1,11 +1,15 @@
 # event_gcmessages_common.proto
 
-**Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
+**Loaded, not used**: gem doesn't use this file, but it is imported by `dota_shared_enums.proto`, so Python loads it anyway.
 
 - Module: `event_gcmessages_common_pb2`
-- Imports: **0**
-- Messages: **2** (top-level: 2)
-- Enums: **0** (top-level: 0)
+- Imports: **1**
+- Messages: **4** (top-level: 4)
+- Enums: **1** (top-level: 1)
+
+## Imports
+
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -40,7 +44,34 @@ Expand any message to inspect all fields.
 | 6 | `premium_points` | `uint32` | `optional` |  |  |
 | 7 | `completed_actions` | `.CMsgEventAction` | `repeated` |  |  |
 | 8 | `owned` | `bool` | `optional` |  |  |
-| 9 | `active_season_id` | `uint32` | `optional` |  |  |
+| 9 | `active_season_id` | `uint32` | `optional` |  | boxed_type = "EventSeasonID_t" |
+
+</details>
+
+<details>
+<summary><code>CMsgPeriodicResourceKey</code> — fields: 3; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `account_id` | `uint32` | `optional` |  |  |
+| 2 | `periodic_resource_id` | `uint32` | `optional` |  | boxed_type = "PeriodicResourceID_t" |
+| 3 | `timestamp` | `uint32` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>CMsgPeriodicResourceValue</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `periodic_resource_max` | `uint32` | `optional` |  |  |
+| 2 | `periodic_resource_used` | `uint32` | `optional` |  |  |
 
 </details>
 
@@ -48,4 +79,14 @@ Expand any message to inspect all fields.
 
 Expand any enum to inspect all values.
 
-*(No enums in this proto file.)*
+<details>
+<summary><code>EEventActionScoreMode</code> — values: 2</summary>
+
+- Parent: *(top-level)*
+
+| Name | Number |
+|---|---:|
+| `k_eEventActionScoreMode_Add` | 0 |
+| `k_eEventActionScoreMode_Min` | 1 |
+
+</details>

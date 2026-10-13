@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_common_bot_script_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **18** (top-level: 1)
 - Enums: **2** (top-level: 0)
 
 ## Imports
 
 - `valveextensions.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -24,13 +25,13 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `team_id` | `uint32` | `optional` |  |  |
-| 2 | `game_time` | `float` | `optional` |  |  |
+| 2 | `game_time` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 3 | `dota_time` | `float` | `optional` |  |  |
 | 4 | `game_state` | `uint32` | `optional` |  |  |
 | 5 | `hero_pick_state` | `uint32` | `optional` |  |  |
 | 6 | `time_of_day` | `float` | `optional` |  |  |
-| 7 | `glyph_cooldown` | `float` | `optional` |  |  |
-| 8 | `glyph_cooldown_enemy` | `float` | `optional` |  |  |
+| 7 | `glyph_cooldown` | `float` | `optional` |  | boxed_type = "GameTime_t" |
+| 8 | `glyph_cooldown_enemy` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 10 | `players` | `.CMsgBotWorldState.Player` | `repeated` |  | (valve_map_field) = true |
 | 11 | `units` | `.CMsgBotWorldState.Unit` | `repeated` |  | (valve_map_field) = true |
 | 12 | `dropped_items` | `.CMsgBotWorldState.DroppedItem` | `repeated` |  | (diff_encode_field) = 112 |
@@ -72,7 +73,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `player_id` | `int32` | `optional` |  | (valve_map_key) = true |
-| 2 | `hero_id` | `int32` | `optional` |  |  |
+| 2 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 3 | `is_alive` | `bool` | `optional` |  |  |
 | 4 | `respawn_time` | `float` | `optional` |  |  |
 | 5 | `kills` | `uint32` | `optional` |  |  |
@@ -94,7 +95,7 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `handle` | `uint32` | `optional` |  | (valve_map_key) = true |
-| 2 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 2 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 3 | `slot` | `uint32` | `optional` |  |  |
 | 5 | `caster_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 6 | `level` | `uint32` | `optional` |  |  |
@@ -122,7 +123,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `item_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `item_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `location` | `.CMsgBotWorldState.Vector` | `optional` |  |  |
 
 </details>
@@ -167,7 +168,7 @@ Expand any message to inspect all fields.
 | 1 | `name` | `string` | `optional` |  |  |
 | 2 | `stack_count` | `uint32` | `optional` |  |  |
 | 3 | `ability_handle` | `uint32` | `optional` |  | default = 4294967295 |
-| 4 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 4 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 5 | `remaining_duration` | `float` | `optional` |  |  |
 | 6 | `auxiliary_units_handles` | `uint32` | `repeated` |  |  |
 | 7 | `handle` | `uint32` | `optional` |  | (valve_map_key) = true |
@@ -186,7 +187,7 @@ Expand any message to inspect all fields.
 | 2 | `caster_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 3 | `caster_player_id` | `int32` | `optional` |  |  |
 | 4 | `ability_handle` | `uint32` | `optional` |  | default = 4294967295 |
-| 5 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 5 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 6 | `location` | `.CMsgBotWorldState.Vector` | `optional` |  |  |
 | 7 | `velocity` | `.CMsgBotWorldState.Vector` | `optional` |  |  |
 | 8 | `radius` | `uint32` | `optional` |  |  |
@@ -205,7 +206,7 @@ Expand any message to inspect all fields.
 | 1 | `caster_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 2 | `caster_player_id` | `int32` | `optional` |  |  |
 | 3 | `ability_handle` | `uint32` | `optional` |  | default = 4294967295 |
-| 4 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 4 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 5 | `location` | `.CMsgBotWorldState.Vector` | `optional` |  |  |
 | 6 | `velocity` | `uint32` | `optional` |  |  |
 | 7 | `is_dodgeable` | `bool` | `optional` |  |  |
@@ -227,7 +228,7 @@ Expand any message to inspect all fields.
 | 2 | `caster_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 3 | `caster_player_id` | `int32` | `optional` |  |  |
 | 4 | `ability_handle` | `uint32` | `optional` |  | default = 4294967295 |
-| 5 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 5 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 6 | `radius` | `uint32` | `optional` |  |  |
 | 7 | `caster_unit_type` | `.CMsgBotWorldState.UnitType` | `optional` |  | default = INVALID |
 
@@ -255,7 +256,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 1 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 | 2 | `player_id` | `int32` | `optional` |  |  |
 | 3 | `unit_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 4 | `location` | `.CMsgBotWorldState.Vector` | `optional` |  |  |
@@ -276,7 +277,7 @@ Expand any message to inspect all fields.
 | 3 | `victim_unit_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 4 | `attacker_player_id` | `int32` | `optional` |  |  |
 | 5 | `attacker_unit_handle` | `uint32` | `optional` |  | default = 4294967295 |
-| 6 | `ability_id` | `int32` | `optional` |  | default = -1 |
+| 6 | `ability_id` | `int32` | `optional` |  | default = -1, boxed_type = "AbilityID_t", synthetic_default = "-1" |
 
 </details>
 
@@ -366,7 +367,7 @@ Expand any message to inspect all fields.
 | 48 | `attack_projectile_speed` | `int32` | `optional` |  |  |
 | 49 | `attack_target_handle` | `uint32` | `optional` |  | default = 4294967295 |
 | 50 | `attacks_per_second` | `int32` | `optional` |  | default = -1 |
-| 51 | `last_attack_time` | `float` | `optional` |  | default = -1 |
+| 51 | `last_attack_time` | `float` | `optional` |  | default = -1, boxed_type = "GameTime_t" |
 | 52 | `attack_target_name` | `string` | `optional` |  |  |
 | 60 | `bounty_xp` | `uint32` | `optional` |  |  |
 | 61 | `bounty_gold_min` | `uint32` | `optional` |  |  |
@@ -404,7 +405,7 @@ Expand any message to inspect all fields.
 | 111 | `is_illusion` | `bool` | `optional` |  |  |
 | 112 | `respawn_time` | `float` | `optional` |  |  |
 | 113 | `buyback_cost` | `uint32` | `optional` |  |  |
-| 114 | `buyback_cooldown` | `float` | `optional` |  |  |
+| 114 | `buyback_cooldown` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 115 | `spell_amplification` | `float` | `optional` |  |  |
 | 116 | `armor` | `float` | `optional` |  |  |
 | 117 | `magic_resist` | `float` | `optional` |  |  |

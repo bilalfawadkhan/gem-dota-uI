@@ -13,6 +13,7 @@ from . import dota_gcmessages_common_craftworks_pb2 as _dota_gcmessages_common_c
 from . import dota_gcmessages_common_monster_hunter_pb2 as _dota_gcmessages_common_monster_hunter_pb2
 from . import gcsdk_gcmessages_pb2 as _gcsdk_gcmessages_pb2
 from .steammessages_steamlearn import steamworkssdk_pb2 as _steamworkssdk_pb2
+from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -508,18 +509,16 @@ class CMsgGameMatchSignOut(_message.Message):
         contents: bytes
         def __init__(self, id: _Optional[int] = ..., contents: _Optional[bytes] = ...) -> None: ...
     class CSocialFeedMatchEvent(_message.Message):
-        __slots__ = ("account_id", "timestamp", "event_type", "game_time", "replay_time")
+        __slots__ = ("account_id", "timestamp", "event_type", "game_time")
         ACCOUNT_ID_FIELD_NUMBER: _ClassVar[int]
         TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
         EVENT_TYPE_FIELD_NUMBER: _ClassVar[int]
         GAME_TIME_FIELD_NUMBER: _ClassVar[int]
-        REPLAY_TIME_FIELD_NUMBER: _ClassVar[int]
         account_id: int
         timestamp: int
         event_type: int
         game_time: int
-        replay_time: int
-        def __init__(self, account_id: _Optional[int] = ..., timestamp: _Optional[int] = ..., event_type: _Optional[int] = ..., game_time: _Optional[int] = ..., replay_time: _Optional[int] = ...) -> None: ...
+        def __init__(self, account_id: _Optional[int] = ..., timestamp: _Optional[int] = ..., event_type: _Optional[int] = ..., game_time: _Optional[int] = ...) -> None: ...
     class CCustomGameData(_message.Message):
         __slots__ = ("publish_timestamp",)
         PUBLISH_TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
@@ -1133,13 +1132,12 @@ class CMsgGCBanStatusResponse(_message.Message):
     def __init__(self, result: _Optional[int] = ..., low_priority: bool = ..., text_chat_banned: bool = ..., voice_chat_banned: bool = ...) -> None: ...
 
 class CMsgTournamentItemEvent(_message.Message):
-    __slots__ = ("killer_account_id", "victim_account_id", "event_type", "tv_delay", "dota_time", "replay_time", "loot_list", "event_team", "multi_kill_count", "winner_score", "loser_score", "hero_statues")
+    __slots__ = ("killer_account_id", "victim_account_id", "event_type", "tv_delay", "dota_time", "loot_list", "event_team", "multi_kill_count", "winner_score", "loser_score", "hero_statues")
     KILLER_ACCOUNT_ID_FIELD_NUMBER: _ClassVar[int]
     VICTIM_ACCOUNT_ID_FIELD_NUMBER: _ClassVar[int]
     EVENT_TYPE_FIELD_NUMBER: _ClassVar[int]
     TV_DELAY_FIELD_NUMBER: _ClassVar[int]
     DOTA_TIME_FIELD_NUMBER: _ClassVar[int]
-    REPLAY_TIME_FIELD_NUMBER: _ClassVar[int]
     LOOT_LIST_FIELD_NUMBER: _ClassVar[int]
     EVENT_TEAM_FIELD_NUMBER: _ClassVar[int]
     MULTI_KILL_COUNT_FIELD_NUMBER: _ClassVar[int]
@@ -1151,14 +1149,13 @@ class CMsgTournamentItemEvent(_message.Message):
     event_type: _dota_gcmessages_common_pb2.DOTA_TournamentEvents
     tv_delay: int
     dota_time: int
-    replay_time: float
     loot_list: str
     event_team: int
     multi_kill_count: int
     winner_score: int
     loser_score: int
     hero_statues: _containers.RepeatedCompositeFieldContainer[_dota_gcmessages_common_pb2.CProtoItemHeroStatue]
-    def __init__(self, killer_account_id: _Optional[int] = ..., victim_account_id: _Optional[int] = ..., event_type: _Optional[_Union[_dota_gcmessages_common_pb2.DOTA_TournamentEvents, str]] = ..., tv_delay: _Optional[int] = ..., dota_time: _Optional[int] = ..., replay_time: _Optional[float] = ..., loot_list: _Optional[str] = ..., event_team: _Optional[int] = ..., multi_kill_count: _Optional[int] = ..., winner_score: _Optional[int] = ..., loser_score: _Optional[int] = ..., hero_statues: _Optional[_Iterable[_Union[_dota_gcmessages_common_pb2.CProtoItemHeroStatue, _Mapping]]] = ...) -> None: ...
+    def __init__(self, killer_account_id: _Optional[int] = ..., victim_account_id: _Optional[int] = ..., event_type: _Optional[_Union[_dota_gcmessages_common_pb2.DOTA_TournamentEvents, str]] = ..., tv_delay: _Optional[int] = ..., dota_time: _Optional[int] = ..., loot_list: _Optional[str] = ..., event_team: _Optional[int] = ..., multi_kill_count: _Optional[int] = ..., winner_score: _Optional[int] = ..., loser_score: _Optional[int] = ..., hero_statues: _Optional[_Iterable[_Union[_dota_gcmessages_common_pb2.CProtoItemHeroStatue, _Mapping]]] = ...) -> None: ...
 
 class CMsgTournamentItemEventResponse(_message.Message):
     __slots__ = ("event_type", "viewers_granted")

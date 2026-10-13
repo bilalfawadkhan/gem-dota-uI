@@ -32,7 +32,7 @@ Expand any message to inspect all fields.
 | 13 | `eresult` | `int32` | `optional` |  | default = 2 |
 | 14 | `error_message` | `string` | `optional` |  |  |
 | 200 | `gc_msg_src` | `.GCProtoBufMsgSrc` | `optional` |  | default = GCProtoBufMsgSrc_Unspecified |
-| 201 | `gc_dir_index_source` | `int32` | `optional` |  | default = -1 |
+| 201 | `gc_dir_index_source` | `int32` | `optional` |  | default = -1, boxed_type = "GCSDK::GCDirIndex_t", synthetic_default = "-1" |
 
 </details>
 

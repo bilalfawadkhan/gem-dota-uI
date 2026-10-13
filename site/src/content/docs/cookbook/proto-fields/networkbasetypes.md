@@ -4,7 +4,7 @@
 
 - Module: `networkbasetypes_pb2`
 - Imports: **3**
-- Messages: **27** (top-level: 24)
+- Messages: **28** (top-level: 25)
 - Enums: **3** (top-level: 3)
 
 ## Imports
@@ -104,7 +104,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgPlayerInfo</code> — fields: 6; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>CMsgPlayerInfo</code> — fields: 8; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -117,6 +117,8 @@ Expand any message to inspect all fields.
 | 4 | `steamid` | `fixed64` | `optional` |  |  |
 | 5 | `fakeplayer` | `bool` | `optional` |  |  |
 | 6 | `ishltv` | `bool` | `optional` |  |  |
+| 9 | `clan_member` | `bool` | `optional` |  |  |
+| 10 | `clan_officer` | `bool` | `optional` |  |  |
 
 </details>
 
@@ -128,7 +130,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `target_entity` | `uint32` | `optional` |  | default = 16777215 |
+| 1 | `target_entity` | `uint32` | `optional` |  | default = 16777215, boxed_type = "CEHandleNetworkableInt", synthetic_default = "16777215" |
 
 </details>
 
@@ -324,7 +326,7 @@ Expand any message to inspect all fields.
 | 12 | `localnamefixup` | `string` | `optional` |  |  |
 | 13 | `parentnamefixup` | `string` | `optional` |  |  |
 | 14 | `manifestloadpriority` | `int32` | `optional` |  |  |
-| 15 | `worldgroupid` | `uint32` | `optional` |  |  |
+| 15 | `worldgroupid` | `uint32` | `optional` |  | boxed_type = "WorldGroupId_t" |
 | 16 | `creationsequence` | `uint32` | `optional` |  |  |
 | 17 | `savegamefilename` | `string` | `optional` |  |  |
 | 18 | `spawngroupparenthandle` | `uint32` | `optional` |  |  |
@@ -388,7 +390,24 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CSVCMsg_GameSessionConfiguration</code> — fields: 19; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+<summary><code>QuantizedFloatEncoderAlias_t</code> — fields: 6; oneofs: 0; nested messages: 0; nested enums: 0</summary>
+
+- Parent: *(top-level)*
+- Oneofs: *(none)*
+
+| Tag | Field | Type | Label | Oneof | Notes |
+|---:|---|---|---|---|---|
+| 1 | `name` | `string` | `optional` |  |  |
+| 2 | `bit_count` | `int32` | `optional` |  |  |
+| 3 | `encode_flags` | `int32` | `optional` |  |  |
+| 4 | `min_value` | `float` | `optional` |  |  |
+| 5 | `max_value` | `float` | `optional` |  |  |
+| 6 | `validate` | `bool` | `optional` |  |  |
+
+</details>
+
+<details>
+<summary><code>CSVCMsg_GameSessionConfiguration</code> — fields: 21; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -414,6 +433,8 @@ Expand any message to inspect all fields.
 | 17 | `previouslevel` | `string` | `optional` |  |  |
 | 18 | `landmarkname` | `string` | `optional` |  |  |
 | 19 | `no_steam_server` | `bool` | `optional` |  |  |
+| 20 | `quantized_float_encoder_aliases` | `.QuantizedFloatEncoderAlias_t` | `repeated` |  |  |
+| 21 | `max_coord` | `float` | `optional` |  |  |
 
 </details>
 

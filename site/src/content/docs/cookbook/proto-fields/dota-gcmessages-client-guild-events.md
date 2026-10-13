@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_guild_events_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **22** (top-level: 22)
 - Enums: **7** (top-level: 1)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -23,7 +24,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `contract_id` | `uint64` | `optional` |  |  |
+| 1 | `contract_id` | `uint64` | `optional` |  | boxed_type = "GuildContractID_t" |
 | 2 | `challenge_instance_id` | `uint32` | `optional` |  |  |
 | 3 | `challenge_parameter` | `uint32` | `optional` |  |  |
 | 4 | `challenge_timestamp` | `uint32` | `optional` |  |  |
@@ -114,7 +115,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>
@@ -141,7 +142,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 3 | `update_flags` | `uint32` | `optional` |  |  |
 | 4 | `guild_event_data` | `.CMsgAccountGuildEventData` | `optional` |  |  |
@@ -157,7 +158,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>
@@ -184,7 +185,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>
@@ -197,9 +198,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
-| 3 | `contract_id` | `uint64` | `optional` |  |  |
+| 3 | `contract_id` | `uint64` | `optional` |  | boxed_type = "GuildContractID_t" |
 | 4 | `contract_slot` | `uint32` | `optional` |  |  |
 
 </details>
@@ -224,7 +225,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>
@@ -250,7 +251,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 3 | `active_challenge` | `.CMsgGuildChallenge` | `optional` |  |  |
 
@@ -264,7 +265,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>
@@ -293,7 +294,7 @@ Expand any message to inspect all fields.
 | 1 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 | 2 | `region` | `uint32` | `optional` |  |  |
 | 3 | `last_updated` | `uint32` | `optional` |  |  |
-| 4 | `guild_id` | `uint32` | `repeated` |  | packed = true |
+| 4 | `guild_id` | `uint32` | `repeated` |  | packed = true, boxed_type = "GuildID_t" |
 | 5 | `rank` | `uint32` | `repeated` |  | packed = true |
 | 6 | `current_percentile` | `uint32` | `repeated` |  | packed = true |
 | 7 | `weekly_percentile` | `uint32` | `repeated` |  | packed = true |
@@ -309,7 +310,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `guild_id` | `uint32` | `optional` |  |  |
+| 1 | `guild_id` | `uint32` | `optional` |  | boxed_type = "GuildID_t" |
 | 2 | `event_id` | `.EEvent` | `optional` |  | default = EVENT_ID_NONE |
 
 </details>

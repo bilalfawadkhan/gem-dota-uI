@@ -1,4 +1,5 @@
 from . import netmessages_pb2 as _netmessages_pb2
+from . import networkbasetypes_pb2 as _networkbasetypes_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message

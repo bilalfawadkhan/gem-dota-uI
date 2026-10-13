@@ -3,7 +3,7 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_craftworks_pb2`
-- Imports: **10**
+- Imports: **11**
 - Messages: **8** (top-level: 8)
 - Enums: **4** (top-level: 0)
 
@@ -19,6 +19,7 @@
 - `dota_gcmessages_client.proto`
 - `valveextensions.proto`
 - `dota_gcmessages_common_craftworks.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -44,7 +45,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `craftworks_id` | `uint32` | `optional` |  |  |
+| 1 | `craftworks_id` | `uint32` | `optional` |  | boxed_type = "CraftworksID_t" |
 
 </details>
 
@@ -69,7 +70,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `craftworks_id` | `uint32` | `optional` |  |  |
+| 1 | `craftworks_id` | `uint32` | `optional` |  | boxed_type = "CraftworksID_t" |
 | 2 | `user_data` | `.CMsgCraftworksUserData` | `optional` |  |  |
 
 </details>
@@ -82,8 +83,8 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `craftworks_id` | `uint32` | `optional` |  |  |
-| 2 | `recipe_id` | `uint64` | `optional` |  |  |
+| 1 | `craftworks_id` | `uint32` | `optional` |  | boxed_type = "CraftworksID_t" |
+| 2 | `recipe_id` | `uint64` | `optional` |  | boxed_type = "CraftworksRecipeID_t" |
 
 </details>
 
@@ -108,7 +109,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `craftworks_id` | `uint32` | `optional` |  |  |
+| 1 | `craftworks_id` | `uint32` | `optional` |  | boxed_type = "CraftworksID_t" |
 | 2 | `components` | `.CMsgCraftworksComponents` | `optional` |  |  |
 | 3 | `operation` | `.CMsgClientToGCCraftworksDevModifyComponents.EOperation` | `optional` |  | default = k_eAddComponents |
 

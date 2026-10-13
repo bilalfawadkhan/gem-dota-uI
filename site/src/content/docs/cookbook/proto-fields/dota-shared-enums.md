@@ -3,13 +3,15 @@
 **Used by gem**: gem decodes messages from this file. See [The Proto Files gem Uses](../proto-files.md) for what it reads and why.
 
 - Module: `dota_shared_enums_pb2`
-- Imports: **1**
-- Messages: **14** (top-level: 8)
-- Enums: **53** (top-level: 53)
+- Imports: **3**
+- Messages: **13** (top-level: 8)
+- Enums: **52** (top-level: 52)
 
 ## Imports
 
 - `events.proto`
+- `event_gcmessages_common.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -44,7 +46,7 @@ Expand any message to inspect all fields.
 | 2 | `save_time` | `uint32` | `optional` |  |  |
 | 3 | `players` | `.CDOTASaveGame.Player` | `repeated` |  |  |
 | 4 | `save_instances` | `.CDOTASaveGame.SaveInstance` | `repeated` |  |  |
-| 5 | `match_id` | `uint64` | `optional` |  |  |
+| 5 | `match_id` | `uint64` | `optional` |  | boxed_type = "MatchID_t" |
 
 </details>
 
@@ -114,7 +116,7 @@ Expand any message to inspect all fields.
 | 12 | `is_visible_dire` | `bool` | `optional` |  |  |
 | 13 | `value` | `uint32` | `optional` |  |  |
 | 14 | `health` | `int32` | `optional` |  |  |
-| 15 | `timestamp` | `float` | `optional` |  |  |
+| 15 | `timestamp` | `float` | `optional` |  | boxed_type = "GameTime_t" |
 | 16 | `stun_duration` | `float` | `optional` |  |  |
 | 17 | `slow_duration` | `float` | `optional` |  |  |
 | 18 | `is_ability_toggle_on` | `bool` | `optional` |  |  |
@@ -139,7 +141,7 @@ Expand any message to inspect all fields.
 | 37 | `is_target_building` | `bool` | `optional` |  |  |
 | 38 | `neutral_camp_type` | `uint32` | `optional` |  |  |
 | 39 | `rune_type` | `uint32` | `optional` |  |  |
-| 40 | `assist_players` | `int32` | `repeated` |  |  |
+| 40 | `assist_players` | `int32` | `repeated` |  | boxed_type = "PlayerID_t" |
 | 41 | `is_heal_save` | `bool` | `optional` |  |  |
 | 42 | `is_ultimate_ability` | `bool` | `optional` |  |  |
 | 43 | `attacker_hero_level` | `uint32` | `optional` |  |  |
@@ -203,27 +205,14 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgMonsterHunterMaterialQuantity</code> — fields: 1; oneofs: 0; nested messages: 1; nested enums: 0</summary>
+<summary><code>CMsgMonsterHunterMaterialQuantity</code> — fields: 1; oneofs: 0; nested messages: 0; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `material_counts` | `.CMsgMonsterHunterMaterialQuantity.MaterialCountsEntry` | `repeated` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgMonsterHunterMaterialQuantity.MaterialCountsEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgMonsterHunterMaterialQuantity`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `int32` | `optional` |  |  |
+| 1 | `material_counts` | `map<uint32, int32>` | `unlabeled` |  | map field |
 
 </details>
 
@@ -235,7 +224,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `persona_id` | `int32` | `optional` |  |  |
 | 3 | `match_rewards` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 4 | `hunt_rewards` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
@@ -264,7 +253,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `persona_id` | `int32` | `optional` |  |  |
 | 3 | `hunt_rewards` | `.CMsgMonsterHunterMaterialQuantity` | `optional` |  |  |
 | 4 | `success_state` | `bool` | `optional` |  |  |
@@ -279,9 +268,9 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `player_hero` | `int32` | `optional` |  |  |
-| 2 | `allies` | `int32` | `repeated` |  |  |
-| 3 | `enemies` | `int32` | `repeated` |  |  |
+| 1 | `player_hero` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
+| 2 | `allies` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
+| 3 | `enemies` | `int32` | `repeated` |  | boxed_type = "HeroID_t" |
 | 4 | `player_kills` | `.CMsgMonsterHunterCodexUpdateData.KillInfo` | `repeated` |  |  |
 
 </details>
@@ -294,7 +283,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `kill_count` | `int32` | `optional` |  |  |
 
 </details>
@@ -1272,18 +1261,6 @@ Expand any enum to inspect all values.
 | `DPC_PUSH_NOTIFICATION_FANTASY_PLAYER_CLEARED` | 40 |
 | `DPC_PUSH_NOTIFICATION_FANTASY_DAILY_SUMMARY` | 41 |
 | `DPC_PUSH_NOTIFICATION_FANTASY_FINAL_RESULTS` | 42 |
-
-</details>
-
-<details>
-<summary><code>EEventActionScoreMode</code> — values: 2</summary>
-
-- Parent: *(top-level)*
-
-| Name | Number |
-|---|---:|
-| `k_eEventActionScoreMode_Add` | 0 |
-| `k_eEventActionScoreMode_Min` | 1 |
 
 </details>
 

@@ -4,7 +4,7 @@
 
 - Module: `steammessages_steamlearn.steamworkssdk_pb2`
 - Imports: **1**
-- Messages: **52** (top-level: 25)
+- Messages: **47** (top-level: 25)
 - Enums: **7** (top-level: 7)
 
 ## Imports
@@ -384,7 +384,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response</code> — fields: 9; oneofs: 0; nested messages: 9; nested enums: 0</summary>
+<summary><code>CMsgSteamLearn_InferenceMetadata_Response</code> — fields: 9; oneofs: 0; nested messages: 8; nested enums: 0</summary>
 
 - Parent: *(top-level)*
 - Oneofs: *(none)*
@@ -398,7 +398,7 @@ Expand any message to inspect all fields.
 | 5 | `compact_tables` | `.CMsgSteamLearn_InferenceMetadata_Response.CompactTable` | `repeated` |  |  |
 | 6 | `kmeans` | `.CMsgSteamLearn_InferenceMetadata_Response.KMeans` | `repeated` |  |  |
 | 7 | `snapshot_histogram` | `.CMsgSteamLearn_InferenceMetadata_Response.SnapshotHistogram` | `optional` |  |  |
-| 8 | `app_info` | `.CMsgSteamLearn_InferenceMetadata_Response.AppInfoEntry` | `repeated` |  |  |
+| 8 | `app_info` | `map<uint32, .CMsgSteamLearn_InferenceMetadata_Response.AppInfo>` | `unlabeled` |  | map field |
 | 9 | `sequence_tables` | `.CMsgSteamLearn_InferenceMetadata_Response.SequenceTable` | `repeated` |  |  |
 
 </details>
@@ -445,7 +445,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.CompactTable</code> — fields: 3; oneofs: 0; nested messages: 3; nested enums: 0</summary>
+<summary><code>CMsgSteamLearn_InferenceMetadata_Response.CompactTable</code> — fields: 3; oneofs: 0; nested messages: 1; nested enums: 0</summary>
 
 - Parent: `CMsgSteamLearn_InferenceMetadata_Response`
 - Oneofs: *(none)*
@@ -453,8 +453,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
-| 2 | `map_values` | `.CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapValuesEntry` | `repeated` |  |  |
-| 3 | `map_mappings` | `.CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapMappingsEntry` | `repeated` |  |  |
+| 2 | `map_values` | `map<uint32, .CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry>` | `unlabeled` |  | map field |
+| 3 | `map_mappings` | `map<uint32, .CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry>` | `unlabeled` |  | map field |
 
 </details>
 
@@ -473,33 +473,7 @@ Expand any message to inspect all fields.
 </details>
 
 <details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapValuesEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSteamLearn_InferenceMetadata_Response.CompactTable`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.CompactTable.MapMappingsEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSteamLearn_InferenceMetadata_Response.CompactTable`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgSteamLearn_InferenceMetadata_Response.CompactTable.Entry` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.SequenceTable</code> — fields: 4; oneofs: 0; nested messages: 3; nested enums: 0</summary>
+<summary><code>CMsgSteamLearn_InferenceMetadata_Response.SequenceTable</code> — fields: 4; oneofs: 0; nested messages: 1; nested enums: 0</summary>
 
 - Parent: `CMsgSteamLearn_InferenceMetadata_Response`
 - Oneofs: *(none)*
@@ -507,8 +481,8 @@ Expand any message to inspect all fields.
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
 | 1 | `name` | `string` | `optional` |  |  |
-| 2 | `map_values` | `.CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapValuesEntry` | `repeated` |  |  |
-| 3 | `map_mappings` | `.CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapMappingsEntry` | `repeated` |  |  |
+| 2 | `map_values` | `map<uint32, .CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry>` | `unlabeled` |  | map field |
+| 3 | `map_mappings` | `map<string, .CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry>` | `unlabeled` |  | map field |
 | 4 | `total_count` | `uint64` | `optional` |  |  |
 
 </details>
@@ -524,32 +498,6 @@ Expand any message to inspect all fields.
 | 1 | `values` | `uint32` | `repeated` |  |  |
 | 2 | `crc` | `uint32` | `optional` |  |  |
 | 3 | `count` | `uint32` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapValuesEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSteamLearn_InferenceMetadata_Response.SequenceTable`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.MapMappingsEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSteamLearn_InferenceMetadata_Response.SequenceTable`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `string` | `optional` |  |  |
-| 2 | `value` | `.CMsgSteamLearn_InferenceMetadata_Response.SequenceTable.Entry` | `optional` |  |  |
 
 </details>
 
@@ -613,19 +561,6 @@ Expand any message to inspect all fields.
 | 5 | `platform_linux` | `bool` | `optional` |  |  |
 | 6 | `adult_violence` | `bool` | `optional` |  |  |
 | 7 | `adult_sex` | `bool` | `optional` |  |  |
-
-</details>
-
-<details>
-<summary><code>CMsgSteamLearn_InferenceMetadata_Response.AppInfoEntry</code> — fields: 2; oneofs: 0; nested messages: 0; nested enums: 0</summary>
-
-- Parent: `CMsgSteamLearn_InferenceMetadata_Response`
-- Oneofs: *(none)*
-
-| Tag | Field | Type | Label | Oneof | Notes |
-|---:|---|---|---|---|---|
-| 1 | `key` | `uint32` | `optional` |  |  |
-| 2 | `value` | `.CMsgSteamLearn_InferenceMetadata_Response.AppInfo` | `optional` |  |  |
 
 </details>
 

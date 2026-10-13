@@ -3,13 +3,14 @@
 **Not used by gem**: nothing in this file is needed to parse a replay. See [the map of all 84 files](../proto-files.md#the-map-all-84-files) for what it belongs to.
 
 - Module: `dota_gcmessages_client_team_pb2`
-- Imports: **1**
+- Imports: **2**
 - Messages: **28** (top-level: 22)
 - Enums: **6** (top-level: 1)
 
 ## Imports
 
 - `dota_shared_enums.proto`
+- `google/protobuf/descriptor.proto`
 
 ## Messages
 
@@ -61,7 +62,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `hero_id` | `int32` | `optional` |  |  |
+| 1 | `hero_id` | `int32` | `optional` |  | boxed_type = "HeroID_t" |
 | 2 | `picks` | `uint32` | `optional` |  |  |
 | 3 | `wins` | `uint32` | `optional` |  |  |
 | 4 | `bans` | `uint32` | `optional` |  |  |
@@ -117,7 +118,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `standing` | `uint32` | `optional` |  |  |
 | 3 | `points` | `uint32` | `optional` |  |  |
 | 4 | `earnings` | `uint32` | `optional` |  |  |
@@ -164,7 +165,7 @@ Expand any message to inspect all fields.
 
 | Tag | Field | Type | Label | Oneof | Notes |
 |---:|---|---|---|---|---|
-| 1 | `league_id` | `uint32` | `optional` |  |  |
+| 1 | `league_id` | `uint32` | `optional` |  | boxed_type = "LeagueID_t" |
 | 2 | `teams` | `.CMsgDOTATeamInfo` | `repeated` |  |  |
 
 </details>
