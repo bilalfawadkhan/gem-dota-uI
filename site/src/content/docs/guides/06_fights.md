@@ -219,11 +219,11 @@ if fight and fight.centroid_x is not None and fight.centroid_y is not None:
         print(player.hero_name)
 ```
 
-## Reports
+## Recipe
 
-The HTML report builder uses the fight data for minimaps, timelines, participant
-tables, and combat-log drilldowns. See [Match Reports](../reports/index.md) for report
-generation and asset-cache setup.
+[Where were the fights, and who got the kills?](../cookbook/fights.md) puts every
+fight of a match on the map and plays it back, with the code to run it on your own
+replays.
 
 ## Implementation
 

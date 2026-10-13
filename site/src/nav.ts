@@ -73,10 +73,6 @@ export const SECTIONS: Section[] = [
         ],
       },
       {
-        text: "Reports",
-        items: [{ text: "Match Reports", link: "/reports/" }],
-      },
-      {
         text: "Experimental",
         items: [
           { text: "Overview", link: "/experimental/" },

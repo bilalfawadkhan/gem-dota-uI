@@ -232,8 +232,8 @@ ground truth.
   imports extractor result *types* (under `TYPE_CHECKING`).
 - **Assemble `ParsedMatch` / export DataFrames/JSON/Parquet.** That is `results`
   (`assembly.py`, `dataframes.py`, `models.py`).
-- **Render HTML reports.** That is `reports`; it *consumes* analysis output (and
-  shares `_shared.py` constants), but the rendering lives there.
+- **Render anything.** gem has no renderer (the HTML report was removed in 0.14);
+  the docs site's recipes draw figures from analysis output.
 - **Resolve hero/item/ability/map names from IDs.** That is `catalog` (and the
   `constants` facade). `farming.py` and `regions.py` read map data through
   `catalog.map`; `format_npc_name` is only string munging, not a catalog lookup.
@@ -319,7 +319,7 @@ Poor fits:
 - anything that requires re-reading the replay, the schema, or live entity state
   (that belongs in `binary`/`schema`/`state`/`extractors`);
 - name/ID resolution tables (belongs in `catalog`);
-- HTML/visual rendering (belongs in `reports`).
+- HTML/visual rendering (the docs site's recipes, not the library).
 
 Keep new helpers read-only, keep extractor result types behind `TYPE_CHECKING`,
 and push genuinely shared map constants into `_shared.py` rather than

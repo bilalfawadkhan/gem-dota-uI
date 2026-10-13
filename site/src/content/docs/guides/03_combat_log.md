@@ -253,7 +253,6 @@ name.
 
 ## Full working examples
 
-- `examples/match_report.py` — full dashboard including combat log, kills, and vision timelines
 - `examples/extraction_demo.py` — developer guide for custom combat log handlers
 
 ---

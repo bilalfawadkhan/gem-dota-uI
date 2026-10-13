@@ -41,7 +41,7 @@ def roshan_next_fight(match: gem.ParsedMatch) -> pd.DataFrame:
     players = {player.player_id: player for player in match.players}
     # Older (Source 1) replays don't record the killing team; fall back to the killer's.
     hero_team = {player.hero_name: player.team for player in match.players}
-    # Fight numbers match the HTML report's Fights tab: the order of match.fights.
+    # Fight numbers are the order of match.fights (as on the fights recipe page).
     fights = [
         (number, fight, clock.game_time_at(fight.first_death_tick))
         for number, fight in enumerate(match.fights, start=1)

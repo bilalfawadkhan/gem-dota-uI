@@ -39,7 +39,7 @@ reports what the replay shows, and answering questions from it is left to you
 
 1. [Bits & Bytes Primer](../cookbook/bits-and-bytes-primer.md)
 2. [Parser Internals](../deep-dives/index.md)
-3. [Reports](../reports/index.md)
+3. [Recipes](../cookbook/questions.md)
 4. [Farming Patterns](./farming-patterns.md)
 5. [Farming Route Calibration](./farming-patterns-calibration.md)
 6. [Roshan Conversion](./rosh-conversion.md)

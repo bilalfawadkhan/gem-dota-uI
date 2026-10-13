@@ -34,7 +34,6 @@ Use the canonical grouped modules documented below.
 | [Catalog](catalog.md) | Grouped hero, item, ability, league, XP, and map-data lookups |
 | [Constants](constants.md) | Compatibility facade for `hero_display()`, `item_display()`, name lookups |
 | [Analysis Helpers](analysis.md) | Spatial, combat, vision, map-context, and Roshan conversion helpers |
-| [Reports](reports.md) | Self-contained HTML report generation from `ParsedMatch` |
 | [Results Assembly](assembly.md) | Assembles extractor output into `ParsedMatch` |
 | [Combat Aggregator](combat_aggregator.md) | Per-player combat stat aggregation |
 | [DataFrames](dataframes.md) | `parse_to_dataframe()`, `to_parquet()`, `to_json()`, `to_dict()` — export to pandas, Parquet, or JSON |

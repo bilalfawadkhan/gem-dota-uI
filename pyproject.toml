@@ -22,14 +22,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
-    "ipykernel>=6.0.0",
     "numpy>=2.2.6",
     "pandas>=2.3.3",
-    "pillow>=12.1.1",
-    "plotly>=6.6.0",
     "protobuf>=7.34.0",
     "protoc-wheel-0>=30.2",
     "python-snappy>=0.7.3",
+    "rich>=14.0.0",
     "zstandard>=0.25.0",
 ]
 
@@ -44,8 +42,8 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "gem"
-# Icons are downloaded locally by the report asset setup tooling and must not be
-# shipped in the published wheel.
+# Icons are downloaded locally by scripts/fetch_hero_icons.py and
+# fetch_item_icons.py for the docs site and must not be shipped in the wheel.
 source-exclude = [
     ".DS_Store",
     "._*",
@@ -55,14 +53,16 @@ source-exclude = [
 
 [dependency-groups]
 dev = [
+    # The notebook in notebooks/ and the site/asset scripts (map overlays, banner).
+    "ipykernel>=6.0.0",
     "jinja2>=3.1.6",
     "mypy>=1.19.1",
+    "pillow>=12.1.1",
     "pre-commit>=4.5.1",
     "pyarrow>=25.0.1",
     "pymdown-extensions>=10.21",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
-    "rich>=14.0.0",
     "ruff>=0.15.5",
 ]
 
@@ -74,9 +74,6 @@ addopts = [
     "-m",
     "not slow and not integration and not network",
 ]
-# The report's own tests still exercise the deprecated gem.reports until 0.14
-# removes it; tests/test_reports_deprecation.py checks the warning itself.
-filterwarnings = ["ignore:gem.reports is deprecated:DeprecationWarning"]
 markers = [
     "slow: marks expensive tests requiring full replay files",
     "integration: marks integration tests against full replays",

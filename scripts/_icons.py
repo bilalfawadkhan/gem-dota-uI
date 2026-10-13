@@ -4,8 +4,8 @@ Shared by ``fetch_hero_icons.py`` and ``fetch_item_icons.py``. The icons land in
 ``src/gem/data/hero_icons`` and ``item_icons``, which the docs site export copies
 from; they are not committed and not shipped in the wheel.
 
-This is the CDN download from ``gem.reports.asset_cache``, kept here so the
-tooling no longer depends on the HTML report, which is deprecated (HY-136).
+The download moved here from the HTML report's asset cache (HY-136), and stayed
+when the report was removed in 0.14 (HY-137).
 """
 
 from __future__ import annotations

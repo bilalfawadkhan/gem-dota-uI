@@ -2,12 +2,10 @@
 
 gem ships a command-line interface you can invoke with `python -m gem`.
 
-It covers three workflows:
+It covers two workflows:
 
 - `parse` - parse one replay and print a summary, JSON, or Parquet output.
 - `batch` - parse many replays in parallel.
-- `reports assets` - inspect and populate the local asset cache used by HTML reports
-  (deprecated with the HTML report; removed in gem 0.14).
 
 ## Quick examples
 
@@ -26,10 +24,6 @@ python -m gem batch replays/ --format parquet --output ./out --workers 4
 
 # Add the optional post-parse analysis tables
 python -m gem batch replays/ --output ./out --include analysis
-
-# Inspect report asset-cache paths and completeness
-python -m gem reports assets path
-python -m gem reports assets status
 ```
 
 ## `parse` - single replay
@@ -179,47 +173,11 @@ table of failed replays to stderr, so check the output before treating the batch
 complete.
 :::
 
-## `reports assets` - report asset cache
+## `reports` (removed)
 
-> [!WARNING]
-> Deprecated with the HTML report, which is removed in gem 0.14: the command prints a
-> warning until then. The report's views are moving to the [Recipes](../cookbook/questions.md).
-
-HTML reports can inline hero icons, item icons, and map images when those assets are
-available locally. gem does not bundle these assets in the wheel; the CLI manages a user
-cache for them.
-
-```bash
-# Show cache directories
-python -m gem reports assets path
-
-# Check which assets are present or missing
-python -m gem reports assets status
-
-# Exit 1 if any checked asset kind is incomplete
-python -m gem reports assets status --strict
-
-# Download hero and item icons
-python -m gem reports assets download --icons
-
-# Download only one icon category
-python -m gem reports assets download --hero-icons
-python -m gem reports assets download --item-icons
-
-# Re-download existing icons
-python -m gem reports assets download --icons --force
-
-# Include recipe_* item icons in item checks/downloads
-python -m gem reports assets status --include-recipes
-python -m gem reports assets download --item-icons --include-recipes
-
-# Add a locally downloaded map image to the cache
-python -m gem reports assets add-map ./Game_map_7.41.jpg
-python -m gem reports assets add-map ./map.jpg --name Game_map_7.41.jpg
-```
-
-All `reports assets` subcommands accept `--asset-dir` to use a custom cache root. You can
-also set `GEM_REPORT_ASSET_DIR`.
+`python -m gem reports` was removed in gem 0.14 with the HTML report, and now exits
+with a message pointing to the [Recipes](../cookbook/questions.md). See
+[Match Reports](../reports/index.md) for where each report view went.
 
 ## Python API equivalents
 

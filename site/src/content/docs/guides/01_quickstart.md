@@ -122,8 +122,7 @@ python -m gem parse my_replay.dem --format parquet --output ./out
 python -m gem batch replays/ --format parquet --output ./out --workers 4
 ```
 
-See the [CLI Reference](09_cli.md) for all options, including the report asset-cache
-commands used by HTML report generation.
+See the [CLI Reference](09_cli.md) for all options.
 
 ## Next steps
 
