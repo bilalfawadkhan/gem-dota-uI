@@ -20,6 +20,7 @@ import argparse
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 # protoc emits sibling imports in three shapes that only resolve if the output
@@ -42,6 +43,25 @@ from pathlib import Path
 _FLAT_IMPORT_RE = re.compile(r"^import (\w+_pb2) as (\w+)$", re.MULTILINE)
 _DOTTED_IMPORT_RE = re.compile(r"^from (\w+) import (\w+_pb2) as (\w+)$", re.MULTILINE)
 _PUBLIC_IMPORT_RE = re.compile(r"^from (\w+_pb2) import (.+)$", re.MULTILINE)
+
+# Since SteamTracking/Protobufs b2f2f32a (2026-10-04) the protos use options that
+# exist only in Valve's own copy of google/protobuf/descriptor.proto: FileOptions
+# field 50 `additional_includes`, FieldOptions fields 20 `boxed_type` and 21
+# `synthetic_default`. protoc's standard descriptor rejects them ("Option ...
+# unknown"). They are C++ code-generation hints with no effect on the wire
+# format, so the copies handed to protoc drop exactly these and keep every other
+# option (`default`, `packed`, Valve's parenthesised extensions). Manta strips
+# every field option instead, defaults included, which would change the values
+# of absent fields; Valve's descriptor itself would clash with the protobuf
+# runtime's. proto_definitions/ keeps the pristine upstream files.
+_VALVE_FILE_OPTIONS = frozenset({"additional_includes"})
+_VALVE_FIELD_OPTIONS = frozenset({"boxed_type", "synthetic_default"})
+_FILE_OPTION_RE = re.compile(
+    r"^[ \t]*option[ \t]+(\w+)[ \t]*=[^;\n]*;[ \t]*(?:\n|\Z)", re.MULTILINE
+)
+_FIELD_OPTIONS_RE = re.compile(r"[ \t]*\[([^\]\n]*)\]")
+_OPTION_ENTRY_RE = re.compile(r'(?:[^,"]|"[^"]*")+')
+_UNKNOWN_OPTION_RE = re.compile(r'Option "(\w+)" unknown')
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -100,6 +120,61 @@ def is_up_to_date(proto_file: Path, out_dir: Path) -> bool:
     return pb2.stat().st_mtime >= proto_file.stat().st_mtime
 
 
+def strip_valve_options(text: str) -> tuple[str, int]:
+    """Remove the options only Valve's ``descriptor.proto`` defines.
+
+    Drops ``option additional_includes = "...";`` lines and the ``boxed_type`` /
+    ``synthetic_default`` entries of field option lists, keeping every other
+    entry; a list left empty is removed with its brackets.
+
+    Args:
+        text: The source of one ``.proto`` file.
+
+    Returns:
+        The cleaned source and the number of options removed.
+    """
+    removed = 0
+
+    def drop_file_option(match: re.Match[str]) -> str:
+        nonlocal removed
+        if match.group(1) not in _VALVE_FILE_OPTIONS:
+            return match.group(0)
+        removed += 1
+        return ""
+
+    def drop_field_options(match: re.Match[str]) -> str:
+        nonlocal removed
+        entries = [entry.strip() for entry in _OPTION_ENTRY_RE.findall(match.group(1))]
+        kept = [e for e in entries if e.split("=", 1)[0].strip() not in _VALVE_FIELD_OPTIONS]
+        if len(kept) == len(entries):
+            return match.group(0)
+        removed += len(entries) - len(kept)
+        return f" [{', '.join(kept)}]" if kept else ""
+
+    text = _FILE_OPTION_RE.sub(drop_file_option, text)
+    text = _FIELD_OPTIONS_RE.sub(drop_field_options, text)
+    return text, removed
+
+
+def write_compile_sources(proto_files: list[Path], dest_dir: Path) -> int:
+    """Write the copies protoc compiles: each proto with Valve-only options removed.
+
+    Args:
+        proto_files: The upstream ``.proto`` files.
+        dest_dir: An empty directory; each file keeps its name, so the generated
+            descriptors are the same as compiling from ``proto_definitions/``.
+
+    Returns:
+        The number of options removed across all files.
+    """
+    removed = 0
+    for proto_file in proto_files:
+        text, count = strip_valve_options(proto_file.read_text())
+        (dest_dir / proto_file.name).write_text(text)
+        removed += count
+    return removed
+
+
 def ensure_init_files(out_dir: Path) -> None:
     """Create __init__.py in the output dir and its parent so it's importable."""
     for directory in (out_dir.parent, out_dir):
@@ -135,6 +210,14 @@ def compile_proto(
     if result.returncode != 0:
         print(f"  FAILED: {proto_file.name}", file=sys.stderr)
         print(result.stderr.strip(), file=sys.stderr)
+        unknown = sorted(set(_UNKNOWN_OPTION_RE.findall(result.stderr)))
+        if unknown:
+            print(
+                f"  Hint: option(s) {', '.join(unknown)} are not in protoc's descriptor.proto. "
+                "If Valve's dota2/google/protobuf/descriptor.proto defines them, add them "
+                "to _VALVE_FILE_OPTIONS / _VALVE_FIELD_OPTIONS in this script.",
+                file=sys.stderr,
+            )
         return False
     return True
 
@@ -242,21 +325,33 @@ def main() -> None:
     skipped = 0
     failed = 0
 
-    for proto_file in proto_files:
-        if not args.force and is_up_to_date(proto_file, PROTO_OUT_DIR):
-            if args.verbose:
-                print(f"  {proto_file.name} ... up to date")
-            skipped += 1
-            continue
+    with tempfile.TemporaryDirectory(prefix="gem-protos-") as tmp:
+        compile_dir = Path(tmp)
+        removed = write_compile_sources(proto_files, compile_dir)
+        if removed:
+            print(f"Removed {removed} Valve-only option(s) from the copies protoc compiles.")
+            print()
 
-        print(f"  {proto_file.name} ... ", end="", flush=True)
-        if compile_proto(
-            proto_file, PROTO_SRC_DIR, PROTO_OUT_DIR, protoc_exe, protoc_include, args.verbose
-        ):
-            print("ok")
-            compiled += 1
-        else:
-            failed += 1
+        for proto_file in proto_files:
+            if not args.force and is_up_to_date(proto_file, PROTO_OUT_DIR):
+                if args.verbose:
+                    print(f"  {proto_file.name} ... up to date")
+                skipped += 1
+                continue
+
+            print(f"  {proto_file.name} ... ", end="", flush=True)
+            if compile_proto(
+                compile_dir / proto_file.name,
+                compile_dir,
+                PROTO_OUT_DIR,
+                protoc_exe,
+                protoc_include,
+                args.verbose,
+            ):
+                print("ok")
+                compiled += 1
+            else:
+                failed += 1
 
     print()
     print(f"Compiled: {compiled}  Skipped: {skipped}  Failed: {failed}")
