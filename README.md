@@ -26,12 +26,69 @@
 
 ---
 
-> ### Try it: Gem Studio, a desktop app for Windows
-> Open a Dota 2 replay and explore its fights, objectives, lanes, runes, gold and XP lead, and wards. No Python needed.
->
-> **[Download the latest installer](https://github.com/bilalfawadkhan/gem-dota-uI/releases/latest)** · [How it works and how to build it](app/README.md)
->
-> The installer is **not code-signed yet**. Windows may show "Windows protected your PC" (choose *More info*, then *Run anyway*), and Windows 11 *Smart App Control* can block it outright. The first time a replay is opened it takes a few minutes to read; the result is saved.
+## Gem Studio: a desktop app for Windows
+
+**Gem Studio** is a desktop app built on gem, so you can explore a Dota 2 replay without writing any code.
+Open a `.dem` file and it shows the match as fights, objectives, lanes, runes, gold and XP, and wards.
+No Python needed.
+
+**[Download the latest installer](https://github.com/bilalfawadkhan/gem-dota-uI/releases/latest)** (Windows 10/11, 64-bit)
+· [App guide](app/README.md) · [Implementation log](Implementation_log.md) · [Plan](UI-Implementation-plan.md)
+
+> The installer is **not code-signed yet**. Windows may show "Windows protected your PC" (choose *More info*,
+> then *Run anyway*), and Windows 11 *Smart App Control* can block it outright.
+
+### What it does
+
+- **Fight Replay & Dashboard.** The open fight's replay (map, health and mana, casts, damage) sits on the left
+  (60%) and its fight log on the right (40%). **Previous / Next fight** arrows and a click on the timeline move
+  between fights, and a button shows the map of all fights. Play, pause, 10-second steps, a seek slider and
+  speeds from 0.25x to 4x, with keyboard shortcuts (Space, Ctrl+Left / Right).
+- **Objectives, Lanes, Runes, Gold & XP Lead, Wards.** One tab for each: the docs site's figures, drawn from
+  your replay.
+- **A dashboard around them.** A roster for both teams (K/D/A, net worth), the match facts, and an
+  **Analytical Telemetry** drawer (Ctrl+T) with the gold and XP advantage chart and sortable player and fight
+  tables. Picking a fight or a player in one place updates the other.
+- **Reads once, then remembers.** A replay is read in separate processes with a progress view (about 3 minutes
+  the first time for a 36-minute match); the results are saved, so opening it again takes seconds.
+- **Facts, not verdicts.** Like gem itself, it shows what happened and does not score plays.
+
+### How it is built
+
+A native PySide6 window with the docs site's figures shown in an embedded web view. The figures are built from
+`site/` in place (never copied), and the two sides talk through a small Qt WebChannel bridge. All of the app's
+code lives in [`app/`](app/), and the parser and the docs site are untouched, so upstream updates merge
+cleanly. The Windows installer is made with PyInstaller and Inno Setup, and the packaged app is self-tested
+before an installer is built. The decisions, bugs and measurements are written up step by step in the
+[implementation log](Implementation_log.md).
+
+<details>
+<summary>Run it or build it yourself</summary>
+
+```powershell
+cd app
+.\.venv\Scripts\python -m gemstudio my_match.dem         # run from source
+cd ..
+powershell -NoProfile -ExecutionPolicy Bypass -File app\scripts\build_app.ps1   # build the exe and installer
+```
+
+Every command, including first-time setup, tests and the GitHub build, is in
+[Rebuild-Readme.txt](Rebuild-Readme.txt) and the [app guide](app/README.md).
+
+</details>
+
+### Current limits
+
+- Windows only, and unsigned (see the note above).
+- A fight gets a map replay when it has 3 or more deaths; smaller fights show their log and timeline without the
+  map.
+- The *Scoreboard & Players* and *Batch & Parquet Export* tabs are placeholders for now.
+- Hero and item icons and the map image belong to Valve Corporation. Gem Studio is not affiliated with or
+  endorsed by Valve.
+
+---
+
+## gem: the replay parser
 
 gem reads a replay the way the game recorded it: every entity update, combat-log
 entry and chat event, rebuilt into one `ParsedMatch`. It runs offline, needs no API
