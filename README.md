@@ -26,6 +26,13 @@
 
 ---
 
+> ### Try it: Gem Studio, a desktop app for Windows
+> Open a Dota 2 replay and explore its fights, objectives, lanes, runes, gold and XP lead, and wards. No Python needed.
+>
+> **[Download the latest installer](https://github.com/bilalfawadkhan/gem-dota-uI/releases/latest)** · [How it works and how to build it](app/README.md)
+>
+> The installer is **not code-signed yet**. Windows may show "Windows protected your PC" (choose *More info*, then *Run anyway*), and Windows 11 *Smart App Control* can block it outright. The first time a replay is opened it takes a few minutes to read; the result is saved.
+
 gem reads a replay the way the game recorded it: every entity update, combat-log
 entry and chat event, rebuilt into one `ParsedMatch`. It runs offline, needs no API
 keys, and handles both the old and new combat-log formats.
