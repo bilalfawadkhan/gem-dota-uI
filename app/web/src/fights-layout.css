@@ -1,0 +1,114 @@
+/*
+ * The Fights tab's layout (the app's own; the docs site's figure keeps its page layout).
+ *
+ *   1. the replay (map, playback, damage strip) on the left, 60%, and the fight log on the right, 40%,
+ *   2. the fight picker: size filters, timeline and list,
+ *   3. the map of all fights, hidden until its button is pressed.
+ *
+ * It only reorders and resizes the site's markup (flex `order`, grid columns); no site file changes.
+ */
+.fights-fig {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fights-fig > .fight-nav {
+  order: 0;
+}
+.fights-fig > [data-panel] {
+  order: 1;
+}
+.fights-fig > [data-controls] {
+  order: 2;
+}
+.fights-fig > .fights-fig-strip {
+  order: 3;
+}
+.fights-fig > .fights-fig-list {
+  order: 4;
+}
+.fights-fig > .fights-fig-body {
+  order: 5;
+  display: none; /* the all-fights map: shown by its button */
+}
+.fights-fig.gem-all-map > .fights-fig-body {
+  display: grid;
+}
+.fights-fig > figcaption {
+  order: 6;
+}
+/* The map's legend belongs to the all-fights map. */
+.fights-fig:not(.gem-all-map) > figcaption .legend {
+  display: none;
+}
+
+/* The replay and its log: 60 / 40. */
+.fights-fig .fights-panel {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: stretch;
+}
+.fights-fig .fights-panel-map {
+  max-width: none;
+  margin: 0;
+}
+/* The log is as tall as the replay beside it and scrolls inside; it never makes the row taller. */
+.fights-fig .fights-panel-feed {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  contain: size;
+}
+.fights-fig .fights-panel-feed .feed {
+  max-height: none;
+}
+
+/* The all-fights map button sits at the right of the filter row. */
+.fights-fig-controls .all-fights-toggle {
+  margin-left: auto;
+}
+
+@media (max-width: 700px) {
+  .fights-fig .fights-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fights-fig .fights-panel-feed {
+    contain: none;
+  }
+  .fights-fig .fights-panel-feed .feed {
+    max-height: 420px;
+  }
+}
+
+/* Previous / Next fight, above the replay. */
+.fight-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fight-nav-middle {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 12px;
+  min-width: 0;
+}
+.fight-nav-label {
+  font-weight: 600;
+}
+.fight-nav-kind {
+  font-size: 12px;
+  color: var(--muted);
+}
+.fight-nav-kind[data-map="true"] {
+  color: var(--ink);
+}
+.fight-nav .chip:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* Dragging a stretch on the timeline is replaced by click-to-open, so its pill never shows. */
+.fights-fig .range-pill {
+  display: none;
+}

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&amp;family=Roboto+Flex:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "secondary": "#78d9ec",
+          "text-tertiary": "#80868b",
+          "surface-container-lowest": "#131314",
+          "surface-container-low": "#1e1f20",
+          "surface-container": "#28292a",
+          "surface-container-high": "#333537",
+          "surface-container-highest": "#3c4043",
+          "border-subtle": "#3c4043",
+          "border-strong": "#5f6368",
+          "primary": "#8ab4f8",
+          "primary-container": "#2979ff",
+          "on-primary": "#002a66",
+          "on-primary-container": "#d5e3ff",
+          "viz-pure": "#fdd663",
+          "viz-dire": "#f28b82",
+          "viz-radiant": "#81c995",
+          "viz-magical": "#c58af9",
+          "viz-physical": "#e8eaed",
+          "error": "#f28b82",
+          "error-container": "#5c1d1d",
+          "on-error": "#601410",
+          "on-error-container": "#fce8e6",
+          "tertiary": "#c58af9",
+          "tertiary-container": "#3c2954",
+          "outline": "#9aa0a6",
+          "outline-variant": "#424750",
+          "surface": "#131314",
+          "surface-dim": "#121314",
+          "surface-bright": "#38393a",
+          "surface-variant": "#343536",
+          "background": "#131314",
+          "on-background": "#e3e2e3",
+          "on-surface": "#e3e2e3",
+          "on-surface-variant": "#c4c7c5",
+          "text-primary": "#e8eaed",
+          "text-secondary": "#9aa0a6"
+        },
+        borderRadius: {
+          "DEFAULT": "0.5rem",
+          "lg": "0.75rem",
+          "xl": "1rem",
+          "2xl": "1.25rem",
+          "full": "9999px"
+        },
+        fontFamily: {
+          "title-md": ["Google Sans", "Roboto Flex", "sans-serif"],
+          "display-lg": ["Google Sans", "Roboto Flex", "sans-serif"],
+          "body-sm": ["Roboto Flex", "sans-serif"],
+          "body-md": ["Roboto Flex", "sans-serif"],
+          "body-lg": ["Roboto Flex", "sans-serif"],
+          "data-metric": ["JetBrains Mono", "monospace"],
+          "label-md": ["JetBrains Mono", "monospace"],
+          "label-sm": ["JetBrains Mono", "monospace"],
+          "label-lg": ["JetBrains Mono", "monospace"],
+          "headline-lg": ["Google Sans", "sans-serif"],
+          "headline-md": ["Google Sans", "sans-serif"],
+          "headline-sm": ["Google Sans", "sans-serif"]
+        }
+      }
+    }
+  };
+</script></head><body class="bg-surface-container-lowest font-body-md text-on-surface antialiased select-none"><header class="fixed top-0 left-0 right-0 z-50 bg-[#1e1f20]/95 backdrop-blur-xl border-b border-border-subtle/40 shadow-sm"><div class="h-7 px-4 flex items-center justify-between bg-surface-container-lowest border-b border-border-subtle/30"><div class="flex items-center gap-3"><div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#f28b82]/80 cursor-pointer hover:opacity-100 transition-opacity"></span><span class="w-2.5 h-2.5 rounded-full bg-[#fdd663]/80 cursor-pointer hover:opacity-100 transition-opacity"></span><span class="w-2.5 h-2.5 rounded-full bg-[#81c995]/80 cursor-pointer hover:opacity-100 transition-opacity"></span></div><span class="font-body-sm text-[11px] text-text-tertiary tracking-wide flex items-center gap-1.5 font-medium"><span class="text-primary font-semibold">gem</span> / True Sight Engine v7.41</span></div><div class="flex items-center gap-2"><div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-[11px] text-text-secondary border border-border-subtle/40"><span class="w-1.5 h-1.5 rounded-full bg-viz-radiant animate-pulse"></span><span class="font-label-sm">DEM PARQUET SYNCED</span></div><div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-[11px] text-text-secondary border border-border-subtle/40"><span class="font-label-sm">TICK 86,760</span><span class="material-symbols-outlined text-primary text-[12px]">schedule</span></div><div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-[11px] text-text-secondary border border-border-subtle/40"><span class="font-label-sm">OFFLINE DEM 7.41</span></div></div></div><div class="h-14 px-4 flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">insights</span></div><div class="flex flex-col"><div class="flex items-center gap-2"><span class="font-headline-sm text-[16px] font-bold text-text-primary tracking-tight">GEM WORKBENCH</span><span class="px-1.5 py-0.5 rounded-full bg-primary/15 text-primary text-[10px] font-medium tracking-wide border border-primary/30">M3 v7.41</span></div><span class="font-body-sm text-[11px] text-text-tertiary">Telemetry &amp; Combat Analyzer</span></div></div><div class="h-6 w-px bg-border-subtle mx-1"></div><div class="flex items-center gap-2">
+<!-- M3 Replay Controls -->
+<div class="flex items-center gap-0.5 bg-surface-container rounded-full p-1 border border-border-subtle/50">
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Step Back 10s" type="button">
+<span class="material-symbols-outlined text-[16px]">replay_10</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Previous Keyframe / Event" type="button">
+<span class="material-symbols-outlined text-[16px]">skip_previous</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-title-md text-[12px] font-medium shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+<span>Play Replay</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Next Keyframe / Event" type="button">
+<span class="material-symbols-outlined text-[16px]">skip_next</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Step Forward 10s" type="button">
+<span class="material-symbols-outlined text-[16px]">forward_10</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-border-subtle/50">
+<span class="font-data-metric text-[13px] text-primary font-bold">42:41</span>
+<span class="font-body-sm text-[11px] text-text-tertiary">/ 48:12</span>
+<span class="font-label-sm text-[10px] text-text-tertiary ml-1 px-1.5 py-0.2 bg-surface-container-high rounded font-mono">TICK 76,820</span>
+</div>
+<div class="flex items-center bg-surface-container rounded-full p-0.5 border border-border-subtle/50">
+<button class="px-2 py-0.5 rounded-full font-label-sm text-[11px] text-text-secondary hover:text-on-surface" type="button">0.25×</button>
+<button class="px-2 py-0.5 rounded-full font-label-sm text-[11px] text-text-secondary hover:text-on-surface" type="button">0.5×</button>
+<button class="px-2 py-0.5 rounded-full font-label-sm text-[11px] text-text-secondary hover:text-on-surface" type="button">1×</button>
+<button class="px-2 py-0.5 rounded-full bg-primary text-[#002a66] font-bold font-label-sm text-[11px] shadow-sm" type="button">2×</button>
+<button class="px-2 py-0.5 rounded-full font-label-sm text-[11px] text-text-secondary hover:text-on-surface" type="button">4×</button>
+</div>
+</div></div><div class="flex items-center gap-2"><button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-body-sm text-[12px] font-medium border border-border-subtle/60 transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">folder_open</span><span>Open .dem</span></button><button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-[12px] font-medium border border-border-subtle/60 transition-colors" type="button"><span class="material-symbols-outlined text-[16px]">cloud_download</span><span>Fetch ID</span></button><button class="p-2 rounded-full hover:bg-surface-container text-text-secondary hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">settings</span></button><div class="w-8 h-8 rounded-full bg-[#1a73e8] flex items-center justify-center shadow-sm text-white font-medium text-xs">G</div></div></div><div class="h-10 px-4 flex items-center bg-surface-container-low border-b border-border-subtle/40"><nav class="flex items-center gap-1"><a class="px-3 py-1 rounded-full font-body-sm text-[12px] font-medium bg-[#1a73e8]/20 text-primary border border-primary/30 transition-colors" data-path="fight-replay-dashboard" href="#">Fight Replay &amp; Dashboard</a><a class="px-3 py-1 rounded-full font-body-sm text-[12px] font-medium text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" data-path="scoreboard-players" href="#">Scoreboard &amp; Players</a><a class="px-3 py-1 rounded-full font-body-sm text-[12px] font-medium text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" data-path="vision-wards" href="#">Vision &amp; Wards</a><a class="px-3 py-1 rounded-full font-body-sm text-[12px] font-medium text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" data-path="events-objectives" href="#">Events &amp; Objectives</a><a class="px-3 py-1 rounded-full font-body-sm text-[12px] font-medium text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" data-path="batch-parquet-export" href="#">Batch &amp; Parquet Export</a></nav></div></header><aside class="fixed left-0 top-[120px] bottom-[48px] w-64 bg-surface-container-low border-r border-border-subtle/50 z-40 flex flex-col justify-between py-3"><div class="flex flex-col gap-3 px-3 overflow-y-auto"><div class="px-2 py-1 flex items-center justify-between border-b border-border-subtle/30"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-viz-radiant"></span><span class="font-label-sm text-[11px] text-viz-radiant uppercase font-bold tracking-wider">Radiant</span></div><span class="font-label-sm text-[11px] text-viz-radiant font-medium">+8.4k NW</span></div><div class="flex flex-col gap-1"><div class="p-2 rounded-xl bg-surface-container/60 hover:bg-surface-container flex items-center justify-between cursor-pointer border border-border-subtle/30 transition-colors"><div class="flex items-center gap-2"><div class="w-7 h-6 rounded-lg bg-surface-container-high flex items-center justify-center font-label-sm text-[10px] text-text-secondary font-bold">26</div><div class="flex flex-col"><span class="font-body-md text-[13px] font-semibold text-text-primary leading-tight">Morphling</span><span class="font-body-sm text-[11px] text-viz-radiant">Ame</span></div></div><div class="flex flex-col items-end"><span class="font-data-metric text-[12px] text-primary font-bold">34.2k</span><span class="font-label-sm text-[10px] text-text-tertiary">11/2/14</span></div></div><div class="p-2 rounded-xl bg-surface-container/60 hover:bg-surface-container flex items-center justify-between cursor-pointer border border-border-subtle/30 transition-colors"><div class="flex items-center gap-2"><div class="w-7 h-6 rounded-lg bg-surface-container-high flex items-center justify-center font-label-sm text-[10px] text-text-secondary font-bold">25</div><div class="flex flex-col"><span class="font-body-md text-[13px] font-semibold text-text-primary leading-tight">Storm Spirit</span><span class="font-body-sm text-[11px] text-viz-radiant">NothingToSay</span></div></div><div class="flex flex-col items-end"><span class="font-data-metric text-[12px] text-primary font-bold">27.8k</span><span class="font-label-sm text-[10px] text-text-tertiary">14/5/19</span></div></div><div class="p-2 rounded-xl bg-surface-container/60 hover:bg-surface-container flex items-center justify-between cursor-pointer border border-border-subtle/30 transition-colors"><div class="flex items-center gap-2"><div class="w-7 h-6 rounded-lg bg-surface-container-high flex items-center justify-center font-label-sm text-[10px] text-text-secondary font-bold">23</div><div class="flex flex-col"><span class="font-body-md text-[13px] font-semibold text-text-primary leading-tight">Centaur</span><span class="font-body-sm text-[11px] text-viz-radiant">Faith_bian</span></div></div><div class="flex flex-col items-end"><span class="font-data-metric text-[12px] text-primary font-bold">19.5k</span><span class="font-label-sm text-[10px] text-text-tertiary">6/6/24</span></div></div></div><div class="px-2 py-1 mt-1 flex items-center justify-between border-b border-border-subtle/30"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-viz-dire"></span><span class="font-label-sm text-[11px] text-viz-dire uppercase font-bold tracking-wider">Dire</span></div><span class="font-label-sm text-[11px] text-viz-dire font-medium">-8.4k NW</span></div><div class="flex flex-col gap-1"><div class="p-2 rounded-xl bg-surface-container/60 hover:bg-surface-container flex items-center justify-between cursor-pointer border border-border-subtle/30 transition-colors"><div class="flex items-center gap-2"><div class="w-7 h-6 rounded-lg bg-surface-container-high flex items-center justify-center font-label-sm text-[10px] text-text-secondary font-bold">27</div><div class="flex flex-col"><span class="font-body-md text-[13px] font-semibold text-text-primary leading-tight">Terrorblade</span><span class="font-body-sm text-[11px] text-viz-dire">Yatoro</span></div></div><div class="flex flex-col items-end"><span class="font-data-metric text-[12px] text-primary font-bold">36.1k</span><span class="font-label-sm text-[10px] text-text-tertiary">13/4/8</span></div></div><div class="p-2 rounded-xl bg-surface-container/60 hover:bg-surface-container flex items-center justify-between cursor-pointer border border-border-subtle/30 transition-colors"><div class="flex items-center gap-2"><div class="w-7 h-6 rounded-lg bg-surface-container-high flex items-center justify-center font-label-sm text-[10px] text-text-secondary font-bold">24</div><div class="flex flex-col"><span class="font-body-md text-[13px] font-semibold text-text-primary leading-tight">Invoker</span><span class="font-body-sm text-[11px] text-viz-dire">TORONTOTOKYO</span></div></div><div class="flex flex-col items-end"><span class="font-data-metric text-[12px] text-primary font-bold">22.4k</span><span class="font-label-sm text-[10px] text-text-tertiary">9/8/16</span></div></div></div></div><div class="p-2.5 mx-2 rounded-2xl bg-surface-container border border-border-subtle/40"><div class="flex items-center justify-between mb-1.5"><span class="font-label-sm text-[10px] text-text-secondary uppercase">Scrub Rate</span><span class="font-label-sm text-[11px] text-primary font-bold">1.0x</span></div><div class="flex items-center justify-between gap-1"><button class="flex-1 py-0.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest font-label-sm text-[10px] text-text-secondary" type="button">0.5x</button><button class="flex-1 py-0.5 rounded-full bg-primary text-[#002a66] font-label-sm text-[10px] font-bold" type="button">1.0x</button><button class="flex-1 py-0.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest font-label-sm text-[10px] text-text-secondary" type="button">2.0x</button><button class="flex-1 py-0.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest font-label-sm text-[10px] text-text-secondary" type="button">4.0x</button></div></div></aside><div class="pl-64"><main class="relative pt-[120px] pb-[48px] w-full min-h-screen bg-surface-container-lowest"><div class="flex flex-col w-full">
+<!-- TOP STRIP: TEAMFIGHT NAVIGATOR & MAP FILTER CONTROLS -->
+<div class="px-4 py-2.5 bg-surface-container-low border-b border-border-subtle/50 flex flex-col gap-2">
+<!-- Row 1: Key Teamfight Selector Pills -->
+<div class="flex items-center justify-between gap-4 flex-wrap">
+<div class="flex items-center gap-1.5 overflow-x-auto py-0.5">
+<span class="font-body-sm text-[11px] text-text-secondary uppercase tracking-wider mr-1 flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-viz-dire">local_fire_department</span>
+Key Engagements:
+</span>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] transition-colors flex items-center gap-1.5 border border-border-subtle/40" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-text-tertiary"></span>
+<span>Fight 1 <span class="text-text-tertiary">(14:20 Mid T1)</span></span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] transition-colors flex items-center gap-1.5 border border-border-subtle/40" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-text-tertiary"></span>
+<span>Fight 2 <span class="text-text-tertiary">(28:45 Roshan)</span></span>
+</button>
+<button class="px-3 py-1 rounded-full bg-[#1a73e8] text-white font-body-sm text-[11px] font-medium flex items-center gap-1.5 shadow-sm" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant animate-pulse"></span>
+<span>Fight 3 (42:34–43:46 River Climax)</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest/80 text-viz-pure text-[9px] uppercase font-bold tracking-wide">10 Deaths</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] transition-colors flex items-center gap-1.5 border border-border-subtle/40" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-text-tertiary"></span>
+<span>Fight 4 <span class="text-text-tertiary">(47:10 Base Defense)</span></span>
+</button>
+</div>
+<!-- Secondary Quick Replay Sync Controls -->
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-0.5 bg-surface-container rounded-full p-0.5 border border-border-subtle/50">
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Step Back 10s" type="button">
+<span class="material-symbols-outlined text-[15px]">replay_10</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Previous Keyframe / Event" type="button">
+<span class="material-symbols-outlined text-[15px]">skip_previous</span>
+</button>
+<button class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-title-md text-[11px] font-medium shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">play_arrow</span>
+<span>Play</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Next Keyframe / Event" type="button">
+<span class="material-symbols-outlined text-[15px]">skip_next</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface flex items-center transition-colors" title="Step Forward 10s" type="button">
+<span class="material-symbols-outlined text-[15px]">forward_10</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container border border-border-subtle/50">
+<span class="font-data-metric text-[12px] text-primary font-bold">42:41</span>
+<span class="font-body-sm text-[10px] text-text-tertiary">/ 48:12</span>
+<span class="font-label-sm text-[9px] text-text-tertiary ml-1 font-mono">TICK 76,820</span>
+</div>
+<div class="flex items-center bg-surface-container rounded-full p-0.5 border border-border-subtle/50">
+<button class="px-1.5 py-0.5 rounded-full font-label-sm text-[10px] text-text-secondary hover:text-on-surface" type="button">0.25×</button>
+<button class="px-1.5 py-0.5 rounded-full font-label-sm text-[10px] text-text-secondary hover:text-on-surface" type="button">0.5×</button>
+<button class="px-1.5 py-0.5 rounded-full font-label-sm text-[10px] text-text-secondary hover:text-on-surface" type="button">1×</button>
+<button class="px-1.5 py-0.5 rounded-full bg-primary text-[#002a66] font-bold font-label-sm text-[10px]" type="button">2×</button>
+<button class="px-1.5 py-0.5 rounded-full font-label-sm text-[10px] text-text-secondary hover:text-on-surface" type="button">4×</button>
+</div>
+</div>
+</div>
+<!-- Row 2: Map Telemetry Layer Toggles (Material Chips) -->
+<div class="flex items-center justify-between gap-4 border-t border-border-subtle/30 pt-1.5">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-body-sm text-[11px] text-text-secondary uppercase tracking-wider mr-1 font-medium">Layers:</span>
+<button class="px-3 py-1 rounded-full bg-[#1a73e8]/20 text-primary border border-primary/30 font-body-sm text-[11px] font-medium" type="button">HP &amp; Mana</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Casts &amp; Vectors</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Damage Tiers</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Disables &amp; Buffs</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Wards &amp; Truesight</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Gold Swings</button>
+<div class="h-4 w-px bg-border-subtle mx-1"></div>
+<button class="px-3 py-1 rounded-full bg-surface-container-high text-secondary border border-secondary/40 font-body-sm text-[11px] font-medium flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[14px]">timeline</span>
+<span>Hero Movement Trails (ON)</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] flex items-center gap-1 border border-border-subtle/40" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">route</span>
+<span>Full Match Trajectory</span>
+</button>
+</div>
+<!-- Combat Legend -->
+<div class="hidden xl:flex items-center gap-3 font-body-sm text-[11px] text-text-secondary">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-1 rounded-full bg-viz-physical"></span><span>Physical</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-1 rounded-full bg-viz-magical"></span><span>Magical</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-1 rounded-full bg-viz-pure"></span><span>Pure</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-viz-radiant"></span><span>Radiant Cast</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-viz-dire"></span><span>Dire Cast</span></div>
+</div>
+</div>
+</div>
+<!-- MAIN TWO-COLUMN WORKBENCH ARENA -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
+<!-- LEFT COLUMN: 7.41 TACTICAL MAP & DPS TIMELINE (cols 1-6) -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<!-- 7.41 Map Canvas Container -->
+<div class="relative bg-surface-container-low rounded-2xl overflow-hidden border border-border-subtle/50 shadow-lg flex flex-col">
+<!-- Map Canvas Header Meta -->
+<div class="px-4 py-2.5 bg-surface-container flex items-center justify-between border-b border-border-subtle/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">layers</span>
+<span class="font-title-md text-[13px] text-text-primary font-medium tracking-tight">Figure 3. River Trench Replay</span>
+<span class="font-label-sm text-[10px] text-text-tertiary font-mono bg-surface-container-lowest px-2 py-0.5 rounded-full border border-border-subtle/30">BBOX [X:-1200 Y:450 Z:128]</span>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-[11px]">
+<span class="text-viz-radiant font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>RAD: 5 LIVE</span>
+<span class="text-text-tertiary">vs</span>
+<span class="text-viz-dire font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-viz-dire"></span>DIR: 5 LIVE</span>
+</div>
+</div>
+<!-- Simulated Map Tactical Viewport -->
+<div class="relative w-full aspect-square bg-[#101214] overflow-hidden select-none">
+<!-- Clean Google Geospatial Grid & Dark Theme Underlay -->
+<div class="absolute inset-0 bg-gradient-to-tr from-[#131718] via-[#101214] to-[#181214] opacity-90"></div>
+<!-- Subtle coordinate grid lines -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#3c40431a_1px,transparent_1px),linear-gradient(to_bottom,#3c40431a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+<!-- River Cut S-Curve SVG Overlay -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-50" fill="none" viewbox="0 0 500 500">
+<!-- Diagonal River Channel -->
+<path d="M 0 160 C 140 180, 200 240, 260 280 C 330 330, 420 360, 500 370 L 500 420 C 400 410, 310 370, 240 320 C 180 270, 120 220, 0 210 Z" fill="#1b2a38" opacity="0.7"></path>
+<!-- Rosh Pit Perimeter -->
+<path d="M 330 190 Q 370 170 380 210 Q 360 240 320 220 Z" fill="#24211e" opacity="0.9" stroke="#fdd663" stroke-dasharray="3,3" stroke-width="1.2"></path>
+<text fill="#fdd663" font-family="Google Sans, Roboto Flex" font-size="9" font-weight="bold" opacity="0.9" x="338" y="210">ROSHAN</text>
+<!-- Lotus Pool Indicator -->
+<circle cx="40" cy="420" fill="#1c3028" r="14" stroke="#81c995" stroke-width="1.5"></circle>
+<circle cx="460" cy="80" fill="#321c1c" r="14" stroke="#f28b82" stroke-width="1.5"></circle>
+<!-- Highground Cliff Elevation Contours -->
+<path d="M 80 40 L 220 50 L 260 120 L 160 190 Z" fill="none" stroke="#3c4043" stroke-dasharray="4,4" stroke-width="1"></path>
+<path d="M 280 340 L 380 320 L 440 380 L 360 450 Z" fill="none" stroke="#3c4043" stroke-dasharray="4,4" stroke-width="1"></path>
+<!-- Cast lines & blink vectors -->
+<!-- Puck Blink Dagger Vector -->
+<path d="M 190 320 L 245 270" marker-end="url(#arrow-radiant)" stroke="#81c995" stroke-dasharray="3,2" stroke-width="1.5"></path>
+<!-- Fade Bolt Arc -->
+<path d="M 290 190 Q 260 220 250 260" stroke="#81c995" stroke-dasharray="2,2" stroke-width="1"></path>
+<!-- Shiva's Guard Frost Wave Expanding AOE Ring -->
+<circle cx="280" cy="245" fill="#78d9ec" fill-opacity="0.12" r="54" stroke="#78d9ec" stroke-dasharray="6,4" stroke-width="1.5"></circle>
+<!-- Ice Vortex Slow Zone -->
+<ellipse cx="260" cy="210" fill="#78d9ec" fill-opacity="0.15" rx="36" ry="22" stroke="#78d9ec" stroke-width="1"></ellipse>
+<!-- Shrapnel Red Zone -->
+<ellipse cx="230" cy="275" fill="#f28b82" fill-opacity="0.12" rx="42" ry="26" stroke="#f28b82" stroke-dasharray="4,2" stroke-width="1"></ellipse>
+<!-- Sentry Ward AOE Field (Cyan) -->
+<circle cx="160" cy="270" fill="#78d9ec" fill-opacity="0.08" r="48" stroke="#78d9ec" stroke-dasharray="2,2" stroke-width="1"></circle>
+<!-- Observer Ward AOE Field (Gold-Green) -->
+<circle cx="160" cy="270" fill="#81c995" fill-opacity="0.06" r="75" stroke="#81c995" stroke-width="1"></circle>
+<defs>
+<marker id="arrow-radiant" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#81c995"></path>
+</marker>
+</defs>
+<g id="hero-movement-trajectories" opacity="0.85"><path d="M 110 390 Q 140 370 170 340 T 240 270" fill="none" stroke="#81c995" stroke-dasharray="4,3" stroke-width="2"></path><circle cx="110" cy="390" fill="#81c995" r="2.5"></circle><path d="M 80 430 Q 120 400 160 380 T 210 310" fill="none" opacity="0.6" stroke="#81c995" stroke-dasharray="3,3" stroke-width="1.5"></path><path d="M 380 410 Q 350 360 330 330 T 320 290" fill="none" opacity="0.6" stroke="#81c995" stroke-dasharray="3,3" stroke-width="1.5"></path><path d="M 420 120 Q 380 150 340 180 T 290 220" fill="none" stroke="#f28b82" stroke-dasharray="4,3" stroke-width="2"></path><circle cx="420" cy="120" fill="#f28b82" r="2.5"></circle><path d="M 440 220 Q 390 210 360 220 T 340 230" fill="none" opacity="0.6" stroke="#f28b82" stroke-dasharray="3,3" stroke-width="1.5"></path><path d="M 310 120 Q 290 150 280 180 T 270 210" fill="none" opacity="0.6" stroke="#f28b82" stroke-dasharray="3,3" stroke-width="1.5"></path></g></svg>
+<!-- Ward Tokens on Map -->
+<div class="absolute top-[52%] left-[30%] -translate-x-1/2 -translate-y-1/2 flex items-center justify-center group cursor-pointer z-10">
+<div class="w-7 h-7 rounded-full bg-surface-container border border-viz-radiant flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[14px] text-viz-radiant">visibility</span>
+</div>
+<span class="absolute -bottom-3 text-[9px] font-mono text-viz-radiant bg-surface-container-lowest/90 px-1.5 py-0.2 rounded-full border border-border-subtle/40">OBS 4:18</span>
+</div>
+<!-- Hero Unit: DIRE (Top Team) Tokens -->
+<!-- 1. Shadow Fiend (Dire Mid) -->
+<div class="absolute top-[28%] left-[58%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20">
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-viz-dire font-label-sm text-[8px] font-mono mb-0.5 border border-viz-dire/30">SHADOWRAZE</span>
+<div class="w-10 h-10 rounded-full border-2 border-viz-dire p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center overflow-hidden font-bold text-xs text-viz-dire">
+SF
+</div>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-viz-dire text-[#131314] text-[8px] font-bold flex items-center justify-center">24</span>
+</div>
+<div class="w-12 h-1.5 bg-surface-container rounded-full mt-1 overflow-hidden p-0.5">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 68%;"></div>
+</div>
+<div class="w-12 h-1 bg-surface-container rounded-full mt-0.5 overflow-hidden p-0.5">
+<div class="h-full bg-secondary rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<!-- 2. Timbersaw (Dire Offlane) -->
+<div class="absolute top-[34%] left-[68%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20">
+<div class="w-9 h-9 rounded-full border-2 border-viz-dire p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[10px] text-viz-dire">
+TBR
+</div>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-viz-dire text-[#131314] text-[8px] font-bold flex items-center justify-center">23</span>
+</div>
+<div class="w-11 h-1.5 bg-surface-container rounded-full mt-1 p-0.5">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<!-- 3. Snapfire (Dire Support) -->
+<div class="absolute top-[22%] left-[48%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20">
+<span class="px-1.5 py-0.2 rounded-full bg-tertiary-container text-tertiary font-label-sm text-[8px] font-mono mb-0.5 border border-tertiary/30">HIDDEN</span>
+<div class="w-8 h-8 rounded-full border border-viz-dire/70 p-0.5 bg-surface-container-lowest shadow-md opacity-80">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[9px] text-viz-dire">
+SNP
+</div>
+</div>
+<div class="w-10 h-1 bg-surface-container rounded-full mt-1">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+<!-- 4. Nyx Assassin (Dire Assassin - Stunned Target) -->
+<div class="absolute top-[42%] left-[54%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20 animate-pulse">
+<span class="px-1.5 py-0.2 rounded-full bg-error-container text-viz-dire font-label-sm text-[8px] font-bold font-mono mb-0.5 border border-viz-dire/40">STUNNED 2.2s</span>
+<div class="w-9 h-9 rounded-full border-2 border-viz-pure p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[10px] text-viz-dire">
+NYX
+</div>
+</div>
+<div class="w-11 h-1.5 bg-surface-container rounded-full mt-1 p-0.5">
+<div class="h-full bg-viz-dire rounded-full" style="width: 24%;"></div>
+</div>
+</div>
+<!-- 5. Nature's Prophet (Dire Carry) -->
+<div class="absolute top-[26%] left-[76%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-20">
+<div class="w-9 h-9 rounded-full border border-viz-dire p-0.5 bg-surface-container-lowest shadow-md">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[10px] text-viz-dire">
+NP
+</div>
+</div>
+<div class="w-11 h-1 bg-surface-container rounded-full mt-1">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- Hero Unit: RADIANT (Bottom Team) Tokens -->
+<!-- 1. Puck (Radiant Mid - In Blinking Vector) -->
+<div class="absolute top-[54%] left-[48%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-30">
+<span class="px-1.5 py-0.2 rounded-full bg-primary/20 text-primary font-label-sm text-[8px] font-bold font-mono mb-0.5 border border-primary/30">BLINK AGGRESS</span>
+<div class="w-11 h-11 rounded-full border-2 border-viz-radiant p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-xs text-viz-radiant">
+PUCK
+</div>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-viz-radiant text-[#131314] text-[8px] font-bold flex items-center justify-center">25</span>
+</div>
+<div class="w-12 h-1.5 bg-surface-container rounded-full mt-1 p-0.5">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 84%;"></div>
+</div>
+<div class="w-12 h-1 bg-surface-container rounded-full mt-0.5 p-0.5">
+<div class="h-full bg-secondary rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+<!-- 2. Earthshaker (Radiant Initiator) -->
+<div class="absolute top-[62%] left-[42%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-30">
+<span class="px-1.5 py-0.2 rounded-full bg-primary text-[#002a66] font-label-sm text-[8px] font-bold font-mono mb-0.5">EARTH SPIKE</span>
+<div class="w-10 h-10 rounded-full border-2 border-viz-radiant p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-xs text-viz-radiant">
+ES
+</div>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-viz-radiant text-[#131314] text-[8px] font-bold flex items-center justify-center">22</span>
+</div>
+<div class="w-12 h-1.5 bg-surface-container rounded-full mt-1 p-0.5">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 58%;"></div>
+</div>
+</div>
+<!-- 3. Tinker (Radiant Position 2 - Shiva's Actuator) -->
+<div class="absolute top-[58%] left-[64%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-30">
+<div class="w-10 h-10 rounded-full border-2 border-viz-radiant p-0.5 bg-surface-container-lowest shadow-xl relative">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-xs text-viz-radiant">
+TNK
+</div>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-viz-radiant text-[#131314] text-[8px] font-bold flex items-center justify-center">25</span>
+</div>
+<div class="w-12 h-1.5 bg-surface-container rounded-full mt-1 p-0.5">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 76%;"></div>
+</div>
+</div>
+<!-- 4. Muerta (Radiant Carry) -->
+<div class="absolute top-[72%] left-[54%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-25">
+<div class="w-9 h-9 rounded-full border border-viz-radiant p-0.5 bg-surface-container-lowest shadow-md">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[10px] text-viz-radiant">
+MRT
+</div>
+</div>
+<div class="w-11 h-1.5 bg-surface-container rounded-full mt-1">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- 5. Shadow Demon (Radiant Support) -->
+<div class="absolute top-[76%] left-[38%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer z-25">
+<div class="w-8 h-8 rounded-full border border-viz-radiant p-0.5 bg-surface-container-lowest shadow-md">
+<div class="w-full h-full rounded-full bg-surface-container flex items-center justify-center font-bold text-[9px] text-viz-radiant">
+SD
+</div>
+</div>
+<div class="w-10 h-1 bg-surface-container rounded-full mt-1">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 48%;"></div>
+</div>
+</div>
+<!-- Mini Map Legend & Coordinate Marker -->
+<div class="absolute bottom-2.5 left-2.5 bg-surface-container-lowest/90 px-2 py-1 rounded-full text-[10px] font-mono text-text-secondary flex items-center gap-1.5 backdrop-blur-md border border-border-subtle/40">
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span>Radiant Frontline: Low River Trench</span>
+</div>
+</div>
+<!-- DPS & ENGAGEMENT INTENSITY TIMELINE (Matching Figure 3 chart) -->
+<div class="p-3 bg-surface-container-low flex flex-col gap-2 border-t border-border-subtle/40">
+<div class="flex items-center justify-between text-text-secondary font-body-sm text-[11px]">
+<div class="flex items-center gap-3">
+<span class="font-medium text-text-primary">Damage Per Second Flow</span>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-viz-radiant"></span><span>Radiant (above)</span></div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-viz-dire"></span><span>Dire (below)</span></div>
+</div>
+<span class="text-[10px] text-text-tertiary font-mono">Drag timeline or click ✕ to loop engagement</span>
+</div>
+<!-- Interactive Histogram SVG Track -->
+<div class="relative w-full h-24 bg-surface-container-lowest rounded-xl p-1 overflow-hidden border border-border-subtle/30">
+<!-- Center baseline (0 line) -->
+<div class="absolute top-1/2 left-0 right-0 h-px bg-border-subtle/60"></div>
+<!-- Time markers -->
+<div class="absolute top-1 left-2 font-label-sm text-[9px] text-text-tertiary">42:30</div>
+<div class="absolute top-1 left-1/4 font-label-sm text-[9px] text-text-tertiary">42:40</div>
+<div class="absolute top-1 left-1/2 font-label-sm text-[9px] text-primary font-bold">42:46 [CLIMAX]</div>
+<div class="absolute top-1 left-3/4 font-label-sm text-[9px] text-text-tertiary">43:00</div>
+<div class="absolute top-1 right-2 font-label-sm text-[9px] text-text-tertiary">43:30</div>
+<!-- SVG DPS Histogram -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 60">
+<!-- Radiant Positive DPS Bars (Mint green, Y going up from 30) -->
+<rect fill="#81c995" height="3" rx="0.5" width="1.5" x="5" y="27"></rect>
+<rect fill="#81c995" height="5" rx="0.5" width="1.5" x="10" y="25"></rect>
+<rect fill="#81c995" height="6" rx="0.5" width="1.5" x="15" y="24"></rect>
+<rect fill="#81c995" height="10" rx="0.5" width="1.5" x="20" y="20"></rect>
+<rect fill="#81c995" height="14" rx="0.5" width="1.5" x="25" y="16"></rect>
+<rect fill="#81c995" height="16" rx="0.5" width="1.5" x="30" y="14"></rect>
+<rect fill="#81c995" height="18" rx="0.5" width="1.5" x="35" y="12"></rect>
+<rect fill="#81c995" height="22" rx="0.5" width="1.8" x="40" y="8"></rect>
+<rect fill="#81c995" height="25" rx="0.5" width="2.2" x="44" y="5"></rect>
+<rect fill="#a8e6b8" height="28" rx="0.5" width="2.5" x="48" y="2"></rect>
+<rect fill="#81c995" height="23" rx="0.5" width="2" x="52" y="7"></rect>
+<rect fill="#81c995" height="15" rx="0.5" width="1.5" x="56" y="15"></rect>
+<rect fill="#81c995" height="8" rx="0.5" width="1.5" x="62" y="22"></rect>
+<rect fill="#81c995" height="12" rx="0.5" width="1.8" x="70" y="18"></rect>
+<rect fill="#81c995" height="18" rx="0.5" width="1.8" x="76" y="12"></rect>
+<rect fill="#81c995" height="6" rx="0.5" width="1.5" x="82" y="24"></rect>
+<rect fill="#81c995" height="3" rx="0.5" width="1.5" x="90" y="27"></rect>
+<!-- Dire Negative DPS Bars (Soft Coral, Y going down from 30) -->
+<rect fill="#f28b82" height="2" rx="0.5" width="1.5" x="8" y="30"></rect>
+<rect fill="#f28b82" height="4" rx="0.5" width="1.5" x="14" y="30"></rect>
+<rect fill="#f28b82" height="9" rx="0.5" width="1.5" x="22" y="30"></rect>
+<rect fill="#f28b82" height="14" rx="0.5" width="1.5" x="28" y="30"></rect>
+<rect fill="#f28b82" height="17" rx="0.5" width="1.5" x="34" y="30"></rect>
+<rect fill="#f28b82" height="22" rx="0.5" width="1.8" x="39" y="30"></rect>
+<rect fill="#ea4335" height="26" rx="0.5" width="2.2" x="45" y="30"></rect>
+<rect fill="#ea4335" height="29" rx="0.5" width="2.5" x="49" y="30"></rect>
+<rect fill="#f28b82" height="20" rx="0.5" width="2" x="54" y="30"></rect>
+<rect fill="#f28b82" height="11" rx="0.5" width="1.5" x="60" y="30"></rect>
+<rect fill="#f28b82" height="14" rx="0.5" width="1.8" x="68" y="30"></rect>
+<rect fill="#f28b82" height="16" rx="0.5" width="1.8" x="74" y="30"></rect>
+<rect fill="#f28b82" height="5" rx="0.5" width="1.5" x="85" y="30"></rect>
+</svg>
+<!-- Playhead Scrub Needle (At min 42:41) -->
+<div class="absolute top-0 bottom-0 left-[46%] w-0.5 bg-primary shadow-sm flex flex-col items-center pointer-events-none">
+<div class="w-2.5 h-2.5 rounded-full bg-primary -mt-1 shadow-md"></div>
+</div>
+<!-- Kill Cross Markers -->
+<!-- Radiant death 1 (42:38) -->
+<div class="absolute top-2 left-[28%] text-viz-radiant font-bold text-[10px] pointer-events-none">✕</div>
+<!-- Dire death 1 (42:44) -->
+<div class="absolute bottom-1 left-[43%] text-viz-dire font-bold text-[10px] pointer-events-none">✕</div>
+<!-- Dire death 2 (42:46 Nyx) -->
+<div class="absolute bottom-1 left-[49%] text-viz-dire font-bold text-[10px] pointer-events-none">✕</div>
+<!-- Climax Burst Markers -->
+<div class="absolute top-1 left-[49%] text-[9px] font-mono text-viz-radiant bg-surface-container/90 px-1.5 py-0.2 rounded border border-viz-radiant/30">831 DPS</div>
+<div class="absolute bottom-1 left-[49%] text-[9px] font-mono text-viz-dire bg-surface-container/90 px-1.5 py-0.2 rounded border border-viz-dire/30">2,101 DPS</div>
+</div>
+<!-- Explanatory Caption -->
+<div class="p-2 rounded-xl bg-surface-container text-text-secondary text-[11px] leading-relaxed border border-border-subtle/30">
+<span class="text-primary font-semibold">Figure 3 Annotation:</span> The match's pivotal River Fight (42:34–43:46) at 2× scrub. HP/mana tracks updated every replay frame. Grey rings designate smoke dissipation; glowing arcs track active debuff timers. Clicking any death marker syncs combat ledger.
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: COMBAT EVENT FEED & METRICS (cols 7-12) -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<!-- HERO ROSTER COMBAT VITAL STRIP -->
+<div class="p-3 bg-surface-container-low rounded-2xl flex flex-col gap-2 border border-border-subtle/50 shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-[13px] font-semibold text-text-primary tracking-tight">Combat Roster Telemetry</span>
+<span class="font-label-sm text-[11px] text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">10 Deaths Total (Rad 4 / Dire 6)</span>
+</div>
+<!-- Radiant 5 Heroes Mini Gauge Row -->
+<div class="grid grid-cols-5 gap-1.5">
+<!-- Puck -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-radiant font-semibold truncate">Puck</span>
+<span class="text-text-secondary">84%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 84%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 72%;"></div>
+</div>
+<span class="text-[8px] text-viz-radiant font-mono mt-1">Blink Ready</span>
+</div>
+<!-- Earthshaker -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-radiant font-semibold truncate">EShaker</span>
+<span class="text-text-secondary">58%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 58%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 60%;"></div>
+</div>
+<span class="text-[8px] text-viz-radiant font-mono mt-1">Echo Cast</span>
+</div>
+<!-- Tinker -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-radiant font-semibold truncate">Tinker</span>
+<span class="text-text-secondary">76%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 76%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 88%;"></div>
+</div>
+<span class="text-[8px] text-viz-radiant font-mono mt-1">Shiva 3 Hits</span>
+</div>
+<!-- Muerta -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-radiant font-semibold truncate">Muerta</span>
+<span class="text-text-secondary">95%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-radiant rounded-full" style="width: 95%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 90%;"></div>
+</div>
+<span class="text-[8px] text-text-tertiary font-mono mt-1">Backline</span>
+</div>
+<!-- Shadow Demon -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-radiant font-semibold truncate">SDemon</span>
+<span class="text-viz-dire font-bold">DEAD</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 0%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 0%;"></div>
+</div>
+<span class="text-[8px] text-text-tertiary font-mono mt-1">Respawn 52s</span>
+</div>
+</div>
+<!-- Dire 5 Heroes Mini Gauge Row -->
+<div class="grid grid-cols-5 gap-1.5 mt-0.5">
+<!-- Shadow Fiend -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-dire font-semibold truncate">SFiend</span>
+<span class="text-text-secondary">68%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 68%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 45%;"></div>
+</div>
+<span class="text-[8px] text-viz-dire font-mono mt-1">BKB Active</span>
+</div>
+<!-- Timbersaw -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-dire font-semibold truncate">Timber</span>
+<span class="text-text-secondary">82%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 82%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 30%;"></div>
+</div>
+<span class="text-[8px] text-text-tertiary font-mono mt-1">Reactive x16</span>
+</div>
+<!-- Snapfire -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-dire font-semibold truncate">Snapfire</span>
+<span class="text-text-secondary">90%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 90%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 70%;"></div>
+</div>
+<span class="text-[8px] text-tertiary font-mono mt-1">Mortar Stby</span>
+</div>
+<!-- Nyx Assassin -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-dire font-semibold truncate">Nyx</span>
+<span class="text-viz-dire font-bold">24%</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 24%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 15%;"></div>
+</div>
+<span class="text-[8px] text-viz-pure font-mono mt-1 font-bold">STUN 2.2s</span>
+</div>
+<!-- Nature's Prophet -->
+<div class="p-1.5 rounded-xl bg-surface-container/80 flex flex-col border border-border-subtle/30">
+<div class="flex items-center justify-between text-[10px] font-mono">
+<span class="text-viz-dire font-semibold truncate">NProphet</span>
+<span class="text-viz-dire font-bold">DEAD</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-viz-dire rounded-full" style="width: 0%;"></div>
+</div>
+<div class="h-0.5 bg-surface-container-high rounded-full mt-0.5 overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 0%;"></div>
+</div>
+<span class="text-[8px] text-viz-dire font-mono mt-1">BB Ready</span>
+</div>
+</div>
+</div>
+<!-- COMBAT LOG EVENT LEDGER -->
+<div class="p-3 bg-surface-container-low rounded-2xl flex flex-col gap-2 border border-border-subtle/50 shadow-md">
+<!-- Filter Header -->
+<div class="flex items-center justify-between flex-wrap gap-2">
+<span class="font-title-md text-[13px] font-semibold text-text-primary tracking-tight">Sequential Combat Feed</span>
+<div class="flex items-center gap-1 flex-wrap">
+<button class="px-2.5 py-0.5 rounded-full bg-primary text-[#002a66] font-semibold font-body-sm text-[11px]" type="button">All</button>
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Deaths</button>
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Spells</button>
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Items</button>
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Disables</button>
+<button class="px-2.5 py-0.5 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] border border-border-subtle/40" type="button">Buffs &amp; Smoke</button>
+</div>
+</div>
+<!-- Sequential Event Log Entries (Tick precise) -->
+<div class="flex flex-col gap-1 max-h-[380px] overflow-y-auto pr-1">
+<!-- 42:22 Puck Blink Dagger -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:22</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Puck</span>
+<span class="material-symbols-outlined text-[14px] text-primary">navigation</span>
+<span class="text-on-surface">cast <span class="text-primary font-medium">Blink Dagger</span></span>
+</div>
+<span class="text-[10px] text-text-tertiary font-mono">POS [142, -88]</span>
+</div>
+<!-- 42:23 Shadow Fiend Shadowraze -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:23</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-dire"></span>
+<span class="text-viz-dire font-semibold">Shadow Fiend</span>
+<span class="material-symbols-outlined text-[14px] text-viz-dire">auto_fix_high</span>
+<span class="text-on-surface">cast <span class="text-viz-dire font-medium">Shadowraze</span> (Directional Medium)</span>
+</div>
+<span class="text-[10px] text-text-tertiary font-mono">0 hits</span>
+</div>
+<!-- 42:25 Shadow Demon Ward Placement -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:25</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Shadow Demon</span>
+<span class="material-symbols-outlined text-[14px] text-viz-radiant">visibility</span>
+<span class="text-on-surface">placed <span class="text-viz-radiant font-medium">Observer &amp; Sentry Wards</span></span>
+</div>
+<span class="text-[10px] text-viz-radiant font-mono">Cliff River</span>
+</div>
+<!-- 42:32 Shadow Fiend Silver Edge -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:32</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-dire"></span>
+<span class="text-viz-dire font-semibold">Shadow Fiend</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">magic_button</span>
+<span class="text-on-surface">used <span class="text-primary font-medium">Silver Edge</span> (on self, 17s buff)</span>
+</div>
+<span class="text-[10px] text-tertiary font-mono">Invis Active</span>
+</div>
+<!-- 42:34 Fade Bolt -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:34</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Rubick</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">bolt</span>
+<span class="text-on-surface">cast Fade Bolt → <span class="text-text-tertiary">Creep radiant melee</span></span>
+</div>
+<span class="text-[10px] text-secondary font-mono">140 dmg</span>
+</div>
+<!-- 42:40 Fire Remnant -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:40</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-dire"></span>
+<span class="text-viz-dire font-semibold">Ember Spirit</span>
+<span class="material-symbols-outlined text-[14px] text-viz-dire">local_fire_department</span>
+<span class="text-on-surface">cast <span class="text-viz-dire font-medium">Fire Remnant</span> (retreat anchor)</span>
+</div>
+<span class="text-[10px] text-text-tertiary font-mono">T2 River</span>
+</div>
+<!-- 42:46 Earthshaker Earth Spike / Fissure Hit -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container-high/80 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container-high transition-colors border border-border-subtle/40">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">42:46</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Earthshaker</span>
+<span class="material-symbols-outlined text-[14px] text-primary">landslide</span>
+<span class="text-on-surface">cast <span class="text-viz-radiant font-medium">Earth Spike</span> hit <span class="text-viz-dire font-medium">Shadow Fiend</span></span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-secondary font-medium text-[10px] font-mono border border-secondary/30">205 Magical</span>
+</div>
+<!-- 42:46 Tinker Shiva's Guard Burst -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container-high/80 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container-high transition-colors border border-border-subtle/40">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">42:46</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Tinker</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">ac_unit</span>
+<span class="text-on-surface">used <span class="text-primary font-medium">Shiva's Guard</span> (3 targets hit)</span>
+</div>
+<div class="flex items-center gap-1 font-mono text-[10px]">
+<span class="text-secondary">199</span>
+<span class="text-secondary">188</span>
+<span class="text-secondary">145</span>
+<span class="text-text-tertiary text-[9px]">Magical</span>
+</div>
+</div>
+<!-- 42:46 Nyx Stun Applied -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-primary font-bold">42:46</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+<span class="text-viz-radiant font-semibold">Puck</span>
+<span class="material-symbols-outlined text-[14px] text-primary">do_not_disturb_on</span>
+<span class="text-on-surface">applied <span class="text-primary font-medium">Stun / Silence</span> to <span class="text-viz-dire font-medium">Nyx Assassin</span></span>
+</div>
+<span class="text-primary font-mono text-[10px] font-medium bg-primary/10 px-1.5 py-0.2 rounded border border-primary/20">2.2s Duration</span>
+</div>
+<!-- 42:47 Shrapnel Rain -->
+<div class="px-3 py-1.5 rounded-xl bg-surface-container/60 flex items-center justify-between text-body-sm font-mono hover:bg-surface-container border border-border-subtle/30 transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-text-tertiary font-medium">42:47</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-dire"></span>
+<span class="text-viz-dire font-semibold">Sniper</span>
+<span class="material-symbols-outlined text-[14px] text-viz-dire">grain</span>
+<span class="text-on-surface">cast <span class="text-viz-dire font-medium">Shrapnel</span> (charge 1)</span>
+</div>
+<span class="text-text-tertiary font-mono text-[10px]">AOE 450</span>
+</div>
+</div>
+<!-- Fight Net Impact Summary Card -->
+<div class="p-3 rounded-2xl bg-surface-container mt-1 flex items-center justify-between flex-wrap gap-3 border border-border-subtle/40">
+<div class="flex flex-col">
+<span class="font-title-md text-[11px] uppercase tracking-wider text-text-tertiary">Fight Aggregate Outcome</span>
+<span class="font-body-sm text-[12px] text-on-surface">Dire sustained more kills; Radiant secures River Control &amp; Roshan lead.</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-[10px] text-viz-radiant font-bold uppercase">Radiant Gain</span>
+<span class="font-data-metric text-[13px] text-viz-radiant font-bold">+3,130g <span class="text-text-tertiary text-[10px] font-normal">/ +16,863 XP</span></span>
+</div>
+<div class="h-6 w-px bg-border-subtle"></div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-[10px] text-viz-dire font-bold uppercase">Dire Gain</span>
+<span class="font-data-metric text-[13px] text-viz-dire font-bold">+4,174g <span class="text-text-tertiary text-[10px] font-normal">/ +20,616 XP</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- EXPANDED BOTTOM DRAWER: GOLD & XP ADVANTAGE CURVE + ANALYTICAL DOCK -->
+<div class="mt-2 bg-surface-container-low border-t border-border-subtle/50 flex flex-col shadow-xl">
+<!-- Drawer Title & Window Control Header -->
+<div class="px-4 py-2 bg-surface-container flex items-center justify-between border-b border-border-subtle/40">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">query_stats</span>
+<span class="font-title-md text-[13px] text-text-primary font-semibold tracking-tight">Analytical Telemetry Drawer</span>
+</div>
+<div class="h-4 w-px bg-border-subtle"></div>
+<span class="font-body-sm text-[11px] text-text-secondary">Synchronized to Frame 76,820 (Match #7842910398)</span>
+</div>
+<!-- Action Toggles -->
+<div class="flex items-center gap-1.5">
+<button class="px-3 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-text-secondary hover:text-on-surface font-body-sm text-[11px] flex items-center gap-1.5 transition-colors border border-border-subtle/50" type="button">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span>Parquet / CSV</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">crop_square</span>
+</button>
+<button class="p-1 rounded-full hover:bg-surface-container-high text-text-secondary hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Active Analytic Tabs Navigation -->
+<div class="px-4 py-1.5 bg-surface-container-low flex items-center gap-2 overflow-x-auto border-b border-border-subtle/30">
+<button class="px-3 py-1 rounded-full bg-[#1a73e8]/20 text-primary font-body-sm text-[11px] font-medium flex items-center gap-1.5 border border-primary/30" type="button">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>Gold &amp; XP Advantage Curve</span>
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] flex items-center gap-1.5 transition-colors border border-border-subtle/40" type="button">
+<span class="material-symbols-outlined text-[14px]">swords</span>
+<span>Damage Inflictor &amp; Target Matrix</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] flex items-center gap-1.5 transition-colors border border-border-subtle/40" type="button">
+<span class="material-symbols-outlined text-[14px]">forest</span>
+<span>Farming Routes &amp; Camp Stacking</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] flex items-center gap-1.5 transition-colors border border-border-subtle/40" type="button">
+<span class="material-symbols-outlined text-[14px]">account_balance_wallet</span>
+<span>Hero Net Worth Hierarchies</span>
+</button>
+</div>
+<!-- Graph Body: Match Lifetime Net Worth / XP Curve (0 to 48:12) -->
+<div class="p-4 grid grid-cols-1 xl:grid-cols-12 gap-4 bg-surface-container-lowest">
+<!-- Left: Interactive Advantage Curve Visualization (cols 1-9) -->
+<div class="xl:col-span-9 flex flex-col gap-2">
+<div class="flex items-center justify-between text-text-secondary font-body-sm text-[11px]">
+<div class="flex items-center gap-4">
+<span class="text-text-primary font-semibold">Radiant Net Advantage Over Match Lifespan</span>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1 rounded-full bg-primary"></span>
+<span class="text-primary font-medium">Gold Lead (+8,420g)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1 rounded-full bg-secondary"></span>
+<span class="text-secondary font-medium">XP Lead (+11,290 XP)</span>
+</div>
+</div>
+<span class="font-mono text-text-tertiary text-[10px]">PARQUET AGGREGATION: 10hz RESAMPLED</span>
+</div>
+<!-- SVG Advantage Chart -->
+<div class="relative w-full h-44 bg-surface-container-low rounded-2xl p-2 overflow-hidden border border-border-subtle/40">
+<!-- Y-Axis Ticks -->
+<div class="absolute left-3 top-2 font-mono text-[9px] text-viz-radiant font-bold">+15k (Radiant)</div>
+<div class="absolute left-3 top-[46%] font-mono text-[9px] text-text-tertiary">0k (Parity)</div>
+<div class="absolute left-3 bottom-2 font-mono text-[9px] text-viz-dire font-bold">-10k (Dire)</div>
+<!-- Zero Baseline -->
+<div class="absolute top-1/2 left-20 right-0 h-px bg-border-subtle/60"></div>
+<!-- Fight Regions Shading -->
+<div class="absolute top-0 bottom-0 left-[30%] w-8 bg-surface-container-high/30 pointer-events-none"></div>
+<div class="absolute top-0 bottom-0 left-[60%] w-10 bg-surface-container-high/30 pointer-events-none"></div>
+<div class="absolute top-0 bottom-0 left-[84%] w-12 bg-primary/10 border-x border-primary/20 pointer-events-none"></div>
+<!-- X-Axis Timestamps -->
+<div class="absolute bottom-1 left-24 font-mono text-[9px] text-text-tertiary">10:00</div>
+<div class="absolute bottom-1 left-[32%] font-mono text-[9px] text-text-tertiary">20:00</div>
+<div class="absolute bottom-1 left-[54%] font-mono text-[9px] text-text-tertiary">30:00</div>
+<div class="absolute bottom-1 left-[75%] font-mono text-[9px] text-text-tertiary">40:00</div>
+<div class="absolute bottom-1 left-[88%] font-mono text-[9px] text-primary font-bold">42:41 NOW</div>
+<div class="absolute bottom-1 right-3 font-mono text-[9px] text-text-tertiary">48:12 END</div>
+<!-- Curve Vectors -->
+<svg class="w-full h-full pl-20 pr-2" preserveaspectratio="none" viewbox="0 0 1000 160">
+<!-- Shaded Gold Advantage Area -->
+<path d="M 0 80 Q 80 84 150 75 T 300 70 T 450 65 T 600 45 T 750 35 L 850 48 L 920 30 L 1000 20 L 1000 80 L 0 80 Z" fill="#8ab4f8" fill-opacity="0.1"></path>
+<!-- Gold Line -->
+<path d="M 0 80 Q 80 84 150 75 T 300 70 T 450 65 T 600 45 T 750 35 L 850 48 L 920 30 L 1000 20" fill="none" stroke="#8ab4f8" stroke-width="2.5"></path>
+<!-- XP Line -->
+<path d="M 0 80 Q 80 78 150 72 T 300 68 T 450 55 T 600 38 T 750 28 L 850 42 L 920 22 L 1000 14" fill="none" stroke="#78d9ec" stroke-dasharray="4,2" stroke-width="2"></path>
+<!-- Peak Callout Marker at min 32 (+14.2k) -->
+<circle cx="680" cy="38" fill="#8ab4f8" r="4"></circle>
+<text fill="#8ab4f8" font-family="Google Sans, Roboto Flex" font-size="9" font-weight="bold" x="660" y="28">+14.2k NW</text>
+<!-- Climax Fight Dip Callout at min 42 River Fight -->
+<circle cx="850" cy="48" fill="#f28b82" r="4"></circle>
+<text fill="#f28b82" font-family="Google Sans, Roboto Flex" font-size="9" font-weight="bold" x="820" y="66">-4.1k River Climax</text>
+<!-- Replay Scrubber Vertical Hairline -->
+<line stroke="#8ab4f8" stroke-width="1.5" x1="880" x2="880" y1="0" y2="160"></line>
+</svg>
+</div>
+</div>
+<!-- Right: Secondary Match Telemetry & Breakdown Card (cols 10-12) -->
+<div class="xl:col-span-3 flex flex-col justify-between p-3.5 bg-surface-container-low rounded-2xl border border-border-subtle/50">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between border-b border-border-subtle/30 pb-2">
+<span class="font-title-md text-[13px] font-semibold text-text-primary">Economy Metrics</span>
+<span class="font-label-sm text-[11px] text-viz-radiant font-semibold bg-viz-radiant/10 px-2 py-0.5 rounded-full border border-viz-radiant/20">TI 10 Standard</span>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-secondary text-[12px]">Max Gold Swing:</span>
+<span class="font-data-metric text-[12px] text-primary font-bold">+14,240g @ 34:10</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-secondary text-[12px]">Roshan Kills:</span>
+<span class="font-data-metric text-[12px] text-on-surface font-medium">3 (Rad 2 / Dire 1)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-secondary text-[12px]">Observer Wards:</span>
+<span class="font-data-metric text-[12px] text-on-surface font-medium">82 (Rad 63 / Dire 19)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-secondary text-[12px]">Sentry Wards:</span>
+<span class="font-data-metric text-[12px] text-on-surface font-medium">139 Units Total</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-text-secondary text-[12px]">Buybacks Spent:</span>
+<span class="font-data-metric text-[12px] text-viz-dire font-bold">Dire 4 / Rad 2</span>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-border-subtle/40 flex items-center justify-between">
+<span class="font-body-sm text-[11px] text-text-tertiary">Parser Engine Status:</span>
+<span class="font-label-sm text-[11px] text-viz-radiant font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-viz-radiant animate-pulse"></span>
+100% INGESTED
+</span>
+</div>
+</div>
+</div>
+</div>
+</div></main></div><footer class="fixed bottom-0 left-0 right-0 z-50 h-12 bg-surface-container-low/95 backdrop-blur-xl border-t border-border-subtle/50 flex items-center justify-between px-4 shadow-sm"><div class="flex items-center gap-2"><span class="font-body-sm text-[12px] text-primary font-semibold flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[16px]">query_stats</span>Analytical Panels</span><div class="h-4 w-px bg-border-subtle mx-1"></div><button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] font-medium border border-border-subtle/40 transition-colors" type="button"><span class="material-symbols-outlined text-[15px] text-primary">trending_up</span><span>Gold &amp; XP Curves</span></button><button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] font-medium border border-border-subtle/40 transition-colors" type="button"><span class="material-symbols-outlined text-[15px] text-tertiary">swords</span><span>Damage Inflictor</span></button><button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] font-medium border border-border-subtle/40 transition-colors" type="button"><span class="material-symbols-outlined text-[15px] text-viz-radiant">forest</span><span>Farming Routes</span></button><button class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-text-secondary hover:text-on-surface font-body-sm text-[11px] font-medium border border-border-subtle/40 transition-colors" type="button"><span class="material-symbols-outlined text-[15px] text-text-tertiary">receipt_long</span><span>Combat Log Ledger</span></button></div><div class="flex items-center gap-4"><div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container border border-border-subtle/40"><span class="w-1.5 h-1.5 rounded-full bg-viz-radiant"></span><span class="font-label-sm text-[10px] text-text-secondary">PARQUET WRITER: READY</span></div><span class="font-label-sm text-[11px] text-text-tertiary font-medium">TI 10 GRAND FINALS — FRAME 14209</span></div></footer>
+</body></html>

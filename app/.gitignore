@@ -1,0 +1,5 @@
+# The repo-wide *.html ignore is for generated reports; app/web's entry pages are source.
+!*.html
+node_modules/
+dist/
+web/icons/
